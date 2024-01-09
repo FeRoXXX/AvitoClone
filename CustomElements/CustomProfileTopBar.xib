@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomProfileTopBar" customModule="NewProject" customModuleProvider="target">
+            <connections>
+                <outlet property="settingsMenu" destination="RuS-eN-sjG" id="zz7-Wg-hua"/>
+                <outlet property="topLabel" destination="EiC-He-WnU" id="O3v-33-YiJ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="9Su-r9-pd8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Профиль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiC-He-WnU">
+                    <rect key="frame" x="160" y="17" width="72" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuS-eN-sjG">
+                    <rect key="frame" x="356" y="16" width="21" height="22"/>
+                    <color key="tintColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <menu key="menu" id="O1L-Lx-SgL">
+                        <children>
+                            <command title="Изменить" id="zQb-oN-rUC"/>
+                            <command title="Выйти" id="PCi-4R-snr"/>
+                        </children>
+                    </menu>
+                    <state key="normal" image="gearshape.fill" catalog="system">
+                        <color key="titleColor" systemColor="labelColor"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" id="ksA-lC-2UG">
+                    <rect key="frame" x="0.0" y="50" width="393" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <viewLayoutGuide key="safeArea" id="ArE-gv-LqX"/>
+                    <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="RuS-eN-sjG" firstAttribute="leading" secondItem="EiC-He-WnU" secondAttribute="trailing" constant="124" id="6ps-mz-u7P"/>
+                <constraint firstItem="RuS-eN-sjG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="9QW-dq-DJi"/>
+                <constraint firstItem="EiC-He-WnU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="160" id="X9m-IE-nLA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RuS-eN-sjG" secondAttribute="trailing" constant="16" id="kdt-S4-B53"/>
+                <constraint firstItem="EiC-He-WnU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="lyN-AL-aWj"/>
+                <constraint firstItem="RuS-eN-sjG" firstAttribute="leading" secondItem="EiC-He-WnU" secondAttribute="trailing" constant="124" id="vZH-Er-h1h"/>
+                <constraint firstItem="ksA-lC-2UG" firstAttribute="top" secondItem="EiC-He-WnU" secondAttribute="bottom" constant="15" id="zix-K8-s18"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-291.90140845070425"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

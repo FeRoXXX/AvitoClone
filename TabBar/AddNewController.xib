@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewController" customModule="NewProject" customModuleProvider="target">
+            <connections>
+                <outlet property="myPublicationView" destination="aFB-Gm-u7V" id="5w8-na-qZJ"/>
+                <outlet property="noPublication" destination="XVS-Mc-JiC" id="fGu-fN-yKn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lu8-1C-6BJ" customClass="MyPostsTopBar" customModule="NewProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="393" height="51"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="UIT-Fq-FXV"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVS-Mc-JiC" customClass="NoPublicationView" customModule="NewProject" customModuleProvider="target">
+                    <rect key="frame" x="36" y="185" width="320" height="483"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="483" id="Iis-zO-Dar"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFB-Gm-u7V" customClass="ScrollAndCollectionViewForAddNewController" customModule="NewProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="112" width="393" height="706"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aFB-Gm-u7V" secondAttribute="bottom" id="7Iy-F0-eCU"/>
+                <constraint firstItem="XVS-Mc-JiC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="36" id="EmI-vQ-2bw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XVS-Mc-JiC" secondAttribute="trailing" constant="37" id="GQW-Qk-aTi"/>
+                <constraint firstItem="Lu8-1C-6BJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="J0G-1o-OiC"/>
+                <constraint firstItem="XVS-Mc-JiC" firstAttribute="top" secondItem="Lu8-1C-6BJ" secondAttribute="bottom" constant="75" id="Kxu-C3-pLg"/>
+                <constraint firstItem="aFB-Gm-u7V" firstAttribute="top" secondItem="Lu8-1C-6BJ" secondAttribute="bottom" constant="2" id="Ss1-re-3R7"/>
+                <constraint firstItem="Lu8-1C-6BJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="VGl-1R-PLi"/>
+                <constraint firstItem="aFB-Gm-u7V" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Vdh-vl-LfO"/>
+                <constraint firstItem="Lu8-1C-6BJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eZG-dA-nbP"/>
+                <constraint firstItem="aFB-Gm-u7V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qeN-6m-qWk"/>
+            </constraints>
+            <point key="canvasLocation" x="87.786259541984734" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

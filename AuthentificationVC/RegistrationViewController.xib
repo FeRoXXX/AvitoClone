@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationViewController" customModule="NewProject" customModuleProvider="target">
+            <connections>
+                <outlet property="organisationButton" destination="XJh-Ih-IkO" id="EJ6-EN-MPY"/>
+                <outlet property="organizationNameTextField" destination="rpn-Vx-yf5" id="0Xd-6A-19w"/>
+                <outlet property="profileNameTextField" destination="JGt-7t-7QH" id="RzT-ND-zS5"/>
+                <outlet property="tableViewButton" destination="CBa-Qp-3Tc" id="8mv-Hg-R5a"/>
+                <outlet property="topBar" destination="keo-0r-qMc" id="Ms5-QS-4wb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keo-0r-qMc" customClass="CustomRegistrationTopBar" customModule="NewProject" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="59" width="393" height="51"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="w5p-V1-Sd7"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQN-Nd-7V5">
+                    <rect key="frame" x="133" y="549" width="126" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Регистрация" cornerStyle="dynamic">
+                        <color key="baseBackgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="signUpClicked:" destination="-1" eventType="touchUpInside" id="PEa-68-Uqd"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="UEH-p3-dIR">
+                    <rect key="frame" x="75" y="210" width="242" height="205.66666666666663"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите имя профиля" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JGt-7t-7QH">
+                            <rect key="frame" x="0.0" y="0.0" width="242" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-Qp-3Tc">
+                            <rect key="frame" x="0.0" y="57" width="242" height="34.333333333333343"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Выберите город">
+                                <color key="baseBackgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </buttonConfiguration>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJh-Ih-IkO">
+                            <rect key="frame" x="0.0" y="114.3333333333333" width="242" height="34.333333333333329"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Организация">
+                                <color key="baseBackgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </buttonConfiguration>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название организации" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpn-Vx-yf5">
+                            <rect key="frame" x="0.0" y="171.66666666666669" width="242" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="keo-0r-qMc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5Gh-gw-OaG"/>
+                <constraint firstItem="UEH-p3-dIR" firstAttribute="top" secondItem="keo-0r-qMc" secondAttribute="bottom" constant="100" id="9tb-pO-YIz"/>
+                <constraint firstItem="UEH-p3-dIR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="75" id="AVK-OH-S8P"/>
+                <constraint firstItem="keo-0r-qMc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FIc-fm-3an"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UEH-p3-dIR" secondAttribute="trailing" constant="76" id="VdJ-IB-Zha"/>
+                <constraint firstItem="keo-0r-qMc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="g5x-Vf-dcT"/>
+            </constraints>
+            <point key="canvasLocation" x="-72.51908396946564" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

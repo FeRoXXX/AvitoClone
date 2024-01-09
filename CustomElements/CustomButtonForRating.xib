@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomButtonForSettingRating" customModule="NewProject" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEa-d4-sL8">
+                    <rect key="frame" x="12" y="8" width="24" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="Z3e-EK-IAB"/>
+                        <constraint firstAttribute="height" constant="21" id="huQ-ke-30h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7X-Zc-B6N">
+                    <rect key="frame" x="0.0" y="64" width="237" height="34.333333333333343"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="237" id="rKD-lY-wy2"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Как получить рейтинг?"/>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-7n-lEa">
+                    <rect key="frame" x="44" y="8" width="196" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="MZe-Gr-b3E"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="y7X-Zc-B6N" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="6Fn-rt-knq"/>
+                <constraint firstAttribute="trailing" secondItem="pIi-7n-lEa" secondAttribute="trailing" constant="153" id="CrT-pB-cdD"/>
+                <constraint firstItem="rEa-d4-sL8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Lxy-aF-k0l"/>
+                <constraint firstItem="pIi-7n-lEa" firstAttribute="leading" secondItem="rEa-d4-sL8" secondAttribute="trailing" constant="8" symbolic="YES" id="MSs-gD-CIA"/>
+                <constraint firstItem="y7X-Zc-B6N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MfX-XA-s9D"/>
+                <constraint firstItem="pIi-7n-lEa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Thp-Kj-3sD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y7X-Zc-B6N" secondAttribute="trailing" constant="156" id="TkE-IE-0Qq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pIi-7n-lEa" secondAttribute="bottom" constant="30" id="sgg-Oa-CUt"/>
+                <constraint firstItem="y7X-Zc-B6N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="vRl-es-Q1S"/>
+                <constraint firstItem="rEa-d4-sL8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="zaT-gd-jKX"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="23.664122137404579" y="-288.73239436619718"/>
+        </view>
+    </objects>
+</document>
