@@ -7,7 +7,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPostsTopBar" customModule="NewProject" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPostsTopBar" customModule="NewProject" customModuleProvider="target">
+            <connections>
+                <outlet property="addNewButton" destination="qnQ-4l-amW" id="NmE-Ux-eHw"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
@@ -28,6 +32,15 @@
                     <viewLayoutGuide key="safeArea" id="VdI-b2-dsP"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-4l-amW">
+                    <rect key="frame" x="336" y="8" width="47" height="35"/>
+                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                    <connections>
+                        <action selector="addNewButtonClicked:" destination="-1" eventType="touchUpInside" id="7B4-Nc-Ywq"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,10 +48,16 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ylx-Kk-dDr" secondAttribute="trailing" constant="130" id="1iS-Zs-YBE"/>
                 <constraint firstItem="hdn-vv-lDK" firstAttribute="top" secondItem="Ylx-Kk-dDr" secondAttribute="bottom" constant="13" id="KNK-RG-hmF"/>
                 <constraint firstItem="Ylx-Kk-dDr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="130" id="Myo-PT-cbf"/>
+                <constraint firstItem="qnQ-4l-amW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="NjR-b0-czu"/>
+                <constraint firstItem="qnQ-4l-amW" firstAttribute="leading" secondItem="Ylx-Kk-dDr" secondAttribute="trailing" constant="73" id="kde-Td-VPv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qnQ-4l-amW" secondAttribute="trailing" constant="10" id="qQr-0Q-CMA"/>
                 <constraint firstItem="Ylx-Kk-dDr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="xRH-A4-97t"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-86" y="-11"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

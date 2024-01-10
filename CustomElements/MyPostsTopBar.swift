@@ -8,6 +8,9 @@
 import UIKit
 
 class MyPostsTopBar: UIView {
+    @IBOutlet weak var addNewButton: UIButton!
+    
+    var newPublicationClicked: (() -> Void)?
     
     required init?(coder: NSCoder) {
         super.init(coder:coder)
@@ -26,4 +29,10 @@ class MyPostsTopBar: UIView {
         
         return bundle
     }
+    
+    
+    @IBAction func addNewButtonClicked(_ sender: Any) {
+        newPublicationClicked?()
+    }
+    
 }

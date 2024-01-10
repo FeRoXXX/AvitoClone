@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="myPublicationView" destination="aFB-Gm-u7V" id="5w8-na-qZJ"/>
                 <outlet property="noPublication" destination="XVS-Mc-JiC" id="fGu-fN-yKn"/>
+                <outlet property="topBar" destination="Lu8-1C-6BJ" id="VZV-Pu-ygy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
