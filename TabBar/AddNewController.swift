@@ -10,6 +10,7 @@ import UIKit
 class AddNewController: UIViewController {
     @IBOutlet weak var noPublication: NoPublicationView!
     @IBOutlet weak var myPublicationView: ScrollAndCollectionViewForAddNewController!
+    @IBOutlet weak var topBar: MyPostsTopBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,10 @@ class AddNewController: UIViewController {
         noPublication.addPublication = { [weak self] in
             self?.handleButtonTapped()
         }
+        topBar.newPublicationClicked = { [weak self] in
+            self?.handleButtonTapped()
+        }
+        
     }
 }
 
