@@ -38,16 +38,11 @@ class AuthentificationViewController: UIViewController {
                     UserAuthData.shared.uid = userId
                     FireAuth.share.checkUserDataExistence(uid: userId) { result, error in
                         if result?.data() == nil {
-                            let registrationScreen = RegistrationViewController()
-                            registrationScreen.modalPresentationStyle = .fullScreen
-                            registrationScreen.modalTransitionStyle = .flipHorizontal
-                            self.present(registrationScreen, animated: true)
+                            self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                            self.navigationController?.setNavigationBarHidden(true, animated: true)
                         } else {
-                            FireGetData.shared.getDataFromUserBase()
-                            let mainScreen = MainTabBarViewController()
-                            mainScreen.modalPresentationStyle = .fullScreen
-                            mainScreen.modalTransitionStyle = .flipHorizontal
-                            self.present(mainScreen, animated: true)
+                            self.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
+                            self.navigationController?.setNavigationBarHidden(true, animated: true)
                         }
                     }
                 }
@@ -90,11 +85,8 @@ class AuthentificationViewController: UIViewController {
                     if let userId = Auth.auth().currentUser?.uid {
                         UserAuthData.shared.uid = userId
                     }
-                    
-                    let registrationScreen = RegistrationViewController()
-                    registrationScreen.modalPresentationStyle = .fullScreen
-                    registrationScreen.modalTransitionStyle = .flipHorizontal
-                    self.present(registrationScreen, animated: true)
+                    self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                    self.navigationController?.setNavigationBarHidden(true, animated: true)
                 case .failure(let error):
                     print(error.localizedDescription) //TODO: - alert
                     GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Введены неверные данные")
@@ -131,16 +123,12 @@ class AuthentificationViewController: UIViewController {
                         UserAuthData.shared.uid = userId
                         FireAuth.share.checkUserDataExistence(uid: userId) { result, error in
                             if result?.data() == nil {
-                                let registrationScreen = RegistrationViewController()
-                                registrationScreen.modalPresentationStyle = .fullScreen
-                                registrationScreen.modalTransitionStyle = .flipHorizontal
-                                self.present(registrationScreen, animated: true)
+                                self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                                self.navigationController?.setNavigationBarHidden(true, animated: true)
                             } else {
                                 FireGetData.shared.getDataFromUserBase()
-                                let mainScreen = MainTabBarViewController()
-                                mainScreen.modalPresentationStyle = .fullScreen
-                                mainScreen.modalTransitionStyle = .flipHorizontal
-                                self.present(mainScreen, animated: true)
+                                self.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
+                                self.navigationController?.setNavigationBarHidden(true, animated: true)
                             }
                         }
                     }
@@ -153,8 +141,4 @@ class AuthentificationViewController: UIViewController {
         checkSignUp = false
         checkSignIn = true
     }
-    
-    
-    
 }
-

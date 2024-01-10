@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,9 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = AuthentificationViewController()
+        
+        let navigationController = RootNavigationViewController()
+        navigationController.setNavigationBarHidden(true, animated: true)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

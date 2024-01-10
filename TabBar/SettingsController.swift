@@ -95,10 +95,11 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
                 cell.customButton.tapHandler = {
                     do{
                         try Auth.auth().signOut()
-                        if let rootViewController = self.view.window?.rootViewController {
-                            rootViewController.dismiss(animated: true, completion: nil)
-                            UserAuthData.shared.reset()
-                        }
+                        let authenticationVC = AuthentificationViewController()
+                        
+                        self.navigationController?.viewControllers = [authenticationVC]
+                        UserAuthData.shared.reset()
+                        
                     } catch {
                         print(error.localizedDescription)
                     }
