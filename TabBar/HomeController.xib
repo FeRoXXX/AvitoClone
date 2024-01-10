@@ -20,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUb-fp-f3r">
-                    <rect key="frame" x="0.0" y="118" width="393" height="700"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="740"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NuD-Wa-TeC">
-                            <rect key="frame" x="10" y="0.0" width="373" height="659"/>
+                            <rect key="frame" x="10" y="0.0" width="373" height="699"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7hZ-fD-IOZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="373" height="659"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="373" height="699"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uSC-vz-7Yd">
                                         <size key="itemSize" width="180" height="260"/>
@@ -47,7 +47,7 @@
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="trailing" secondItem="g5a-wR-BXe" secondAttribute="trailing" constant="383" id="Qy9-V8-0A3"/>
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="leading" secondItem="g5a-wR-BXe" secondAttribute="leading" constant="10" id="Tsn-55-UAn"/>
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="top" secondItem="g5a-wR-BXe" secondAttribute="top" id="b6S-YP-jd9"/>
-                        <constraint firstItem="NuD-Wa-TeC" firstAttribute="bottom" secondItem="g5a-wR-BXe" secondAttribute="bottom" id="uYh-2X-UDM"/>
+                        <constraint firstItem="NuD-Wa-TeC" firstAttribute="bottom" secondItem="g5a-wR-BXe" secondAttribute="bottom" constant="663" id="uYh-2X-UDM"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="g5a-wR-BXe"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="G7o-VZ-Nha"/>
@@ -63,13 +63,13 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="hUb-fp-f3r" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="EPx-K2-rXM"/>
+                <constraint firstItem="hUb-fp-f3r" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="40" id="EPx-K2-rXM"/>
+                <constraint firstItem="bXh-y4-vpN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hoe-MD-pJA"/>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="59" id="SVX-eB-mEi"/>
-                <constraint firstItem="bXh-y4-vpN" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Va1-HJ-PIs"/>
                 <constraint firstItem="bXh-y4-vpN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dls-Wc-34z"/>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dqR-fh-bAv"/>
-                <constraint firstItem="bXh-y4-vpN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hvQ-hY-njb"/>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="rls-2y-PgK"/>
+                <constraint firstItem="bXh-y4-vpN" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vbj-br-Tyc"/>
             </constraints>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>
