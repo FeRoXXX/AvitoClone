@@ -49,7 +49,6 @@ class CustomSearchString: UITextField {
             updateViewRight()
         }
     }
-    
 }
 
 //MARK: - Left image settings

@@ -66,8 +66,16 @@
 		27778E2F2B3F02A100163A16 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27778E2D2B3F02A100163A16 /* RegistrationViewController.swift */; };
 		27778E302B3F02A100163A16 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27778E2E2B3F02A100163A16 /* RegistrationViewController.xib */; };
 		27778E322B3F02EB00163A16 /* CustomRegistrationTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27778E312B3F02EB00163A16 /* CustomRegistrationTopBar.swift */; };
+		2780358F2B5128790040EC4C /* SearchViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780358E2B5128790040EC4C /* SearchViewController+Extensions.swift */; };
+		278035912B512BBB0040EC4C /* HomeController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278035902B512BBB0040EC4C /* HomeController+Extensions.swift */; };
+		278035942B5145A10040EC4C /* HomeController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278035932B5145A10040EC4C /* HomeController+Protocol.swift */; };
+		278035962B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278035952B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift */; };
+		2780359C2B514EBE0040EC4C /* UniversalCellDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780359A2B514EBE0040EC4C /* UniversalCellDetailsViewController.swift */; };
+		2780359D2B514EBE0040EC4C /* UniversalCellDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2780359B2B514EBE0040EC4C /* UniversalCellDetailsViewController.xib */; };
 		27B70BA02B4ED5B000662987 /* RootNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B70B9E2B4ED5B000662987 /* RootNavigationViewController.swift */; };
 		27B70BA12B4ED5B000662987 /* RootNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B70B9F2B4ED5B000662987 /* RootNavigationViewController.xib */; };
+		27B70BA52B4F96E400662987 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B70BA32B4F96E400662987 /* SearchViewController.swift */; };
+		27B70BA62B4F96E400662987 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B70BA42B4F96E400662987 /* SearchViewController.xib */; };
 		DAB9AE96AB6F5F423B67F550 /* Pods_NewProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B065FAFAF9A1FE10D7CA27 /* Pods_NewProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,8 +142,16 @@
 		27778E2D2B3F02A100163A16 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		27778E2E2B3F02A100163A16 /* RegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
 		27778E312B3F02EB00163A16 /* CustomRegistrationTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRegistrationTopBar.swift; sourceTree = "<group>"; };
+		2780358E2B5128790040EC4C /* SearchViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+Extensions.swift"; sourceTree = "<group>"; };
+		278035902B512BBB0040EC4C /* HomeController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeController+Extensions.swift"; sourceTree = "<group>"; };
+		278035932B5145A10040EC4C /* HomeController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeController+Protocol.swift"; sourceTree = "<group>"; };
+		278035952B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomSearchAndSortField+Extensions.swift"; sourceTree = "<group>"; };
+		2780359A2B514EBE0040EC4C /* UniversalCellDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCellDetailsViewController.swift; sourceTree = "<group>"; };
+		2780359B2B514EBE0040EC4C /* UniversalCellDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniversalCellDetailsViewController.xib; sourceTree = "<group>"; };
 		27B70B9E2B4ED5B000662987 /* RootNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationViewController.swift; sourceTree = "<group>"; };
 		27B70B9F2B4ED5B000662987 /* RootNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootNavigationViewController.xib; sourceTree = "<group>"; };
+		27B70BA32B4F96E400662987 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		27B70BA42B4F96E400662987 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		41B065FAFAF9A1FE10D7CA27 /* Pods_NewProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76681B5E5EF066791FF426A5 /* Pods-NewProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProject.release.xcconfig"; path = "Target Support Files/Pods-NewProject/Pods-NewProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +180,9 @@
 		2726E49E2B20B68E00850B31 = {
 			isa = PBXGroup;
 			children = (
+				278035972B514E720040EC4C /* UniversalCellsDetail */,
+				2780358D2B5128470040EC4C /* Extension */,
+				27B70BA22B4F96BD00662987 /* SearchVC */,
 				27B70B9D2B4ED59100662987 /* Navigation */,
 				2757C7082B4D74EE00F8D630 /* GlobalFunctions */,
 				2757C7052B4D707B00F8D630 /* AllPosts */,
@@ -324,6 +343,34 @@
 			path = UserData;
 			sourceTree = "<group>";
 		};
+		2780358D2B5128470040EC4C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				278035922B5145780040EC4C /* Protocols */,
+				2780358E2B5128790040EC4C /* SearchViewController+Extensions.swift */,
+				278035902B512BBB0040EC4C /* HomeController+Extensions.swift */,
+				278035952B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		278035922B5145780040EC4C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				278035932B5145A10040EC4C /* HomeController+Protocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		278035972B514E720040EC4C /* UniversalCellsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2780359A2B514EBE0040EC4C /* UniversalCellDetailsViewController.swift */,
+				2780359B2B514EBE0040EC4C /* UniversalCellDetailsViewController.xib */,
+			);
+			path = UniversalCellsDetail;
+			sourceTree = "<group>";
+		};
 		27B70B9C2B4ED21200662987 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +389,15 @@
 				27B70B9F2B4ED5B000662987 /* RootNavigationViewController.xib */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		27B70BA22B4F96BD00662987 /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				27B70BA32B4F96E400662987 /* SearchViewController.swift */,
+				27B70BA42B4F96E400662987 /* SearchViewController.xib */,
+			);
+			path = SearchVC;
 			sourceTree = "<group>";
 		};
 		E2053904F544D3FBAA007C75 /* Frameworks */ = {
@@ -424,6 +480,7 @@
 				27778E162B3D6A5500163A16 /* ScrollAndCollectionViewForAddNewController.xib in Resources */,
 				2726E4EA2B26248700850B31 /* CustomProfileTopBar.xib in Resources */,
 				27778E0E2B3D5DCE00163A16 /* MyPostsTopBar.xib in Resources */,
+				27B70BA62B4F96E400662987 /* SearchViewController.xib in Resources */,
 				277687692B3B24A6005C3784 /* HomeCollectionViewCell.xib in Resources */,
 				277687592B39CA7B005C3784 /* CustomViewButtonForRating.xib in Resources */,
 				2757C7002B49717E00F8D630 /* ProductsViewController.xib in Resources */,
@@ -431,6 +488,7 @@
 				27778E222B3DA57200163A16 /* GoogleService-Info.plist in Resources */,
 				27B70BA12B4ED5B000662987 /* RootNavigationViewController.xib in Resources */,
 				2726E4E32B26111600850B31 /* HomeController.xib in Resources */,
+				2780359D2B514EBE0040EC4C /* UniversalCellDetailsViewController.xib in Resources */,
 				2726E4E52B2623DB00850B31 /* SettingsController.xib in Resources */,
 				2726E4B72B20B69000850B31 /* Assets.xcassets in Resources */,
 				2757C6E52B480C7A00F8D630 /* AddNewProfilePhotoViewController.xib in Resources */,
@@ -499,6 +557,7 @@
 				27778E092B3D5D4D00163A16 /* AddNewController.swift in Sources */,
 				2757C6F72B49603300F8D630 /* NewPublicationFirst.swift in Sources */,
 				27778E2F2B3F02A100163A16 /* RegistrationViewController.swift in Sources */,
+				278035942B5145A10040EC4C /* HomeController+Protocol.swift in Sources */,
 				277687482B39A5F8005C3784 /* ProfileInfoCell.swift in Sources */,
 				27778E292B3DBE1000163A16 /* FireAuth.swift in Sources */,
 				27B70BA02B4ED5B000662987 /* RootNavigationViewController.swift in Sources */,
@@ -507,6 +566,7 @@
 				27778E102B3D66CE00163A16 /* NoPublicationView.swift in Sources */,
 				2776875F2B3B17FE005C3784 /* CustomButtonEditPassword.swift in Sources */,
 				2726E4B52B20B68E00850B31 /* NewProject.xcdatamodeld in Sources */,
+				2780358F2B5128790040EC4C /* SearchViewController+Extensions.swift in Sources */,
 				2757C6E42B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift in Sources */,
 				277687682B3B24A6005C3784 /* HomeCollectionViewCell.swift in Sources */,
 				2757C6DE2B400CDF00F8D630 /* FireLoadData.swift in Sources */,
@@ -515,6 +575,8 @@
 				2726E4E82B26247800850B31 /* CustomProfileTopBar.swift in Sources */,
 				2776876F2B3C7061005C3784 /* CustomSearchString.swift in Sources */,
 				27778E0C2B3D5DC300163A16 /* MyPostsTopBar.swift in Sources */,
+				27B70BA52B4F96E400662987 /* SearchViewController.swift in Sources */,
+				278035962B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift in Sources */,
 				277687712B3C78CE005C3784 /* CustomSearchAndSortField.swift in Sources */,
 				2726E4AB2B20B68E00850B31 /* AppDelegate.swift in Sources */,
 				27778E252B3DBAEC00163A16 /* AuthentificationViewController.swift in Sources */,
@@ -524,6 +586,8 @@
 				2757C7072B4D70BC00F8D630 /* ReceivedAllPosts.swift in Sources */,
 				27778E322B3F02EB00163A16 /* CustomRegistrationTopBar.swift in Sources */,
 				2757C6FA2B49626200F8D630 /* UniversalTopBar.swift in Sources */,
+				2780359C2B514EBE0040EC4C /* UniversalCellDetailsViewController.swift in Sources */,
+				278035912B512BBB0040EC4C /* HomeController+Extensions.swift in Sources */,
 				2757C6FF2B49717E00F8D630 /* ProductsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

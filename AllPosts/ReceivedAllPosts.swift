@@ -31,6 +31,17 @@ class ReceivedAllPosts {
             throw error
         }
     }
+    init(text: String) async throws {
+        do{
+            let snapshot = try await getAllUserPostsSorted(text)
+            
+            for document in snapshot.documents {
+                self.data.append(document.data())
+            }
+        } catch {
+            throw error
+        }
+    }
     
     init(postData: [[String : Any]]) {
         self.data = postData
@@ -74,6 +85,17 @@ class ReceivedAllPosts {
                 }
             }
         }
+    }
+    
+    private func getAllUserPostsSorted(_ text: String) async throws -> QuerySnapshot{
+        let db = Firestore.firestore()
+        let dbURL = db.collection("Posts").document("products").collection("all").whereField("Name", isEqualTo: text)
         
+        do {
+            let results = try await dbURL.getDocuments()
+            return results
+        } catch {
+            throw error
+        }
     }
 }
