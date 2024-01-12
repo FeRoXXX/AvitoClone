@@ -7,7 +7,7 @@
 
 import UIKit
 
-//MARK: - Setup tableView
+//MARK: - Setup collectionView
 extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource {
 
     func setup() {
@@ -31,6 +31,17 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard postsArray.count > 0 else { return 0 }
         return postsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsViewController = UniversalCellDetailsViewController()
+        detailsViewController.uuid = postsArray[indexPath.row].uuid
+        hidesBottomBarWhenPushed = true
+        
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(detailsViewController, animated: true)
+        }
+        hidesBottomBarWhenPushed = false
     }
 }
 
@@ -62,6 +73,7 @@ extension HomeController {
     }
 }
 
+//MARK: - TableView
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func setupTableView() {
@@ -98,6 +110,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: - go to new vc
 extension HomeController {
     func goToNewViewControllerFromSearchBar() {
         if let navigationController = self.navigationController {
