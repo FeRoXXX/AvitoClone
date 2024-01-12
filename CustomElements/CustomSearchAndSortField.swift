@@ -9,12 +9,23 @@ import UIKit
 
 class CustomSearchAndSortField: UIView {
     
+    @IBOutlet weak var searchWidthConstrain: NSLayoutConstraint!
+    
+    @IBOutlet weak var searchWidthConstrainHigh: NSLayoutConstraint!
+    
     @IBOutlet weak var searchTextField: CustomSearchString!
     @IBOutlet weak var sortImage: UIImageView!
+    var collectionView : UICollectionView?
+    var tableView : UITableView?
+    var viewController : (HomeController?, SearchViewController?)
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureView()
+        setupTextField()
+        if let tableView = self.tableView {
+            tableView.isHidden = true
+        }
     }
     
     private func configureView() {

@@ -1,31 +1,31 @@
 //
-//  HomeController.swift
+//  SearchViewController.swift
 //  NewProject
 //
-//  Created by Александр Федоткин on 06.12.2023.
+//  Created by Александр Федоткин on 11.01.2024.
 //
 
 import UIKit
 
-class HomeController: UIViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableView: UITableView!
-    
+class SearchViewController: UIViewController {
     @IBOutlet weak var searchTopBar: CustomSearchAndSortField!
-    static let shared = HomeController()
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     var postsArray = [ReceivedAllPosts]()
     private var firstOpen = true
+    var sortedText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .darkGray
-        setup()
+        setupGesture()
         setupTableView()
         getAllPosts()
+        setupCollectionView()
         searchTopBar.collectionView = collectionView
         searchTopBar.tableView = self.tableView
-        searchTopBar.viewController = (self, nil)
+        searchTopBar.viewController = (nil, self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,5 +33,5 @@ class HomeController: UIViewController {
             firstOpen = false
         }
     }
-}
 
+}

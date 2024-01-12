@@ -13,7 +13,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let homeController = HomeController()
+        let homeController = UINavigationController(rootViewController: HomeController())
+        homeController.setNavigationBarHidden(true, animated: true)
         let addNewController = AddNewController()
         let settingsController = SettingsController()
         

@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7hZ-fD-IOZ" id="EX0-4R-ffJ"/>
+                <outlet property="searchTopBar" destination="bXh-y4-vpN" id="kZk-FX-Jpr"/>
+                <outlet property="tableView" destination="eow-pL-RHf" id="VWj-Rt-fsQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Pbx-0j-2sN"/>
             </connections>
         </placeholder>
@@ -25,6 +27,10 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NuD-Wa-TeC">
                             <rect key="frame" x="10" y="0.0" width="373" height="699"/>
                             <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eow-pL-RHf">
+                                    <rect key="frame" x="0.0" y="0.0" width="373" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </tableView>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7hZ-fD-IOZ">
                                     <rect key="frame" x="0.0" y="0.0" width="373" height="699"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -39,6 +45,7 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="7hZ-fD-IOZ" secondAttribute="bottom" id="m9N-JC-y86"/>
                                 <constraint firstAttribute="width" constant="373" id="nLp-7j-AJ2"/>
+                                <constraint firstItem="7hZ-fD-IOZ" firstAttribute="top" secondItem="eow-pL-RHf" secondAttribute="top" id="qS5-Wc-DN1"/>
                             </constraints>
                         </stackView>
                     </subviews>
