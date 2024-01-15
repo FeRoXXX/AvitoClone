@@ -25,7 +25,9 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                     tableView.alpha = 100.0
                     collectionView.alpha = 0.0
                     self.searchTextField.rightView?.alpha = 100.0
-                    self.searchWidthConstrain.priority = UILayoutPriority(rawValue: 1000)
+                    //self.searchWidthConstrain.priority = UILayoutPriority(rawValue: 900)
+                    self.toBackViewConstrain.priority = UILayoutPriority(1000)
+                    self.searchConstraintWithCart.priority = UILayoutPriority(1)
                     self.layoutIfNeeded()
                 } completion: { _ in
                     self.searchTextField.rightImage = nil
@@ -53,13 +55,17 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                     self.searchTextField.rightView?.alpha = 0.0
                     self.searchWidthConstrain.priority = UILayoutPriority(rawValue: 10.0)
                     self.layoutIfNeeded()
+                    self.toBackViewConstrain.priority = UILayoutPriority(100)
+                    //self.searchWidthConstrain.priority = UILayoutPriority(250)
+                    self.searchConstraintWithCart.priority = UILayoutPriority(1000)
+                    self.layoutIfNeeded()
                 } completion: { _ in
                     tableView.isHidden = true
-                    self.sortImage.image = UIImage(systemName: "cart.fill")
                     self.searchTextField.text = ""
                     self.searchTextField.rightView = nil
                     self.searchTextField.rightImage = UIImage(systemName: "slider.horizontal.3")
                     self.searchTextField.resignFirstResponder()
+                    self.sortImage.image = UIImage(systemName: "cart.fill")
                 }
             }
         }

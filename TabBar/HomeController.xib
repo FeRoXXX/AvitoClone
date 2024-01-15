@@ -34,7 +34,7 @@
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7hZ-fD-IOZ">
                                     <rect key="frame" x="0.0" y="0.0" width="373" height="699"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uSC-vz-7Yd">
+                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uSC-vz-7Yd">
                                         <size key="itemSize" width="180" height="260"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -51,6 +51,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" secondItem="NuD-Wa-TeC" secondAttribute="height" constant="41" id="DhO-cG-2SW"/>
+                        <constraint firstItem="G7o-VZ-Nha" firstAttribute="trailing" secondItem="NuD-Wa-TeC" secondAttribute="trailing" constant="10" id="Qm4-kI-Tvv"/>
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="trailing" secondItem="g5a-wR-BXe" secondAttribute="trailing" constant="383" id="Qy9-V8-0A3"/>
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="leading" secondItem="g5a-wR-BXe" secondAttribute="leading" constant="10" id="Tsn-55-UAn"/>
                         <constraint firstItem="NuD-Wa-TeC" firstAttribute="top" secondItem="g5a-wR-BXe" secondAttribute="top" id="b6S-YP-jd9"/>

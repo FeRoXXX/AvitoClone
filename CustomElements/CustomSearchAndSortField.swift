@@ -15,6 +15,10 @@ class CustomSearchAndSortField: UIView {
     
     @IBOutlet weak var searchTextField: CustomSearchString!
     @IBOutlet weak var sortImage: UIImageView!
+    @IBOutlet weak var toBackViewConstrain: NSLayoutConstraint!
+    
+    @IBOutlet weak var searchConstraintWithCart: NSLayoutConstraint!
+    
     var collectionView : UICollectionView?
     var tableView : UITableView?
     var viewController : (HomeController?, SearchViewController?)

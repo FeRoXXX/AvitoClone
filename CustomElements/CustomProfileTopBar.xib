@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Профиль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiC-He-WnU">
-                    <rect key="frame" x="160" y="17" width="72" height="18"/>
+                    <rect key="frame" x="160.66666666666666" y="15.333333333333334" width="72" height="20.333333333333329"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -40,9 +40,8 @@
                         <color key="titleColor" systemColor="labelColor"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" id="ksA-lC-2UG">
-                    <rect key="frame" x="0.0" y="50" width="393" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksA-lC-2UG">
+                    <rect key="frame" x="0.0" y="49" width="393" height="2"/>
                     <viewLayoutGuide key="safeArea" id="ArE-gv-LqX"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
@@ -50,13 +49,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="RuS-eN-sjG" firstAttribute="leading" secondItem="EiC-He-WnU" secondAttribute="trailing" constant="124" id="6ps-mz-u7P"/>
-                <constraint firstItem="RuS-eN-sjG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="9QW-dq-DJi"/>
-                <constraint firstItem="EiC-He-WnU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="160" id="X9m-IE-nLA"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RuS-eN-sjG" secondAttribute="trailing" constant="16" id="kdt-S4-B53"/>
-                <constraint firstItem="EiC-He-WnU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="lyN-AL-aWj"/>
-                <constraint firstItem="RuS-eN-sjG" firstAttribute="leading" secondItem="EiC-He-WnU" secondAttribute="trailing" constant="124" id="vZH-Er-h1h"/>
-                <constraint firstItem="ksA-lC-2UG" firstAttribute="top" secondItem="EiC-He-WnU" secondAttribute="bottom" constant="15" id="zix-K8-s18"/>
+                <constraint firstItem="ksA-lC-2UG" firstAttribute="top" secondItem="RuS-eN-sjG" secondAttribute="bottom" constant="11" id="9m6-Q7-IAl"/>
+                <constraint firstItem="RuS-eN-sjG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="C0l-IQ-YYu"/>
+                <constraint firstAttribute="trailing" secondItem="RuS-eN-sjG" secondAttribute="trailing" constant="16" id="EmW-Yr-Psy"/>
+                <constraint firstItem="EiC-He-WnU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SI0-iz-eqH"/>
+                <constraint firstItem="EiC-He-WnU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dhr-Lv-UKj"/>
+                <constraint firstAttribute="bottom" secondItem="ksA-lC-2UG" secondAttribute="bottom" id="lqq-9r-YHa"/>
+                <constraint firstItem="ksA-lC-2UG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o12-fY-ZPL"/>
+                <constraint firstAttribute="trailing" secondItem="ksA-lC-2UG" secondAttribute="trailing" id="pHF-yn-z6r"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -30,9 +30,8 @@
                         <constraint firstAttribute="height" constant="51" id="w5p-V1-Sd7"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQN-Nd-7V5">
-                    <rect key="frame" x="133" y="549" width="126" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQN-Nd-7V5">
+                    <rect key="frame" x="133.66666666666666" y="549" width="125.99999999999997" height="34.333333333333371"/>
                     <color key="tintColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Регистрация" cornerStyle="dynamic">
@@ -43,7 +42,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="UEH-p3-dIR">
-                    <rect key="frame" x="75" y="210" width="242" height="205.66666666666663"/>
+                    <rect key="frame" x="75.666666666666686" y="210" width="242" height="205.66666666666663"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите имя профиля" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JGt-7t-7QH">
                             <rect key="frame" x="0.0" y="0.0" width="242" height="34"/>
@@ -75,12 +74,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="cQN-Nd-7V5" firstAttribute="top" secondItem="UEH-p3-dIR" secondAttribute="bottom" constant="133.33000000000001" id="2Zc-D6-hoS"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5Gh-gw-OaG"/>
+                <constraint firstItem="cQN-Nd-7V5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7xs-rj-0GW"/>
                 <constraint firstItem="UEH-p3-dIR" firstAttribute="top" secondItem="keo-0r-qMc" secondAttribute="bottom" constant="100" id="9tb-pO-YIz"/>
-                <constraint firstItem="UEH-p3-dIR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="75" id="AVK-OH-S8P"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FIc-fm-3an"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UEH-p3-dIR" secondAttribute="trailing" constant="76" id="VdJ-IB-Zha"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="g5x-Vf-dcT"/>
+                <constraint firstItem="UEH-p3-dIR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xBD-hz-hQh"/>
             </constraints>
             <point key="canvasLocation" x="-72.51908396946564" y="-11.267605633802818"/>
         </view>

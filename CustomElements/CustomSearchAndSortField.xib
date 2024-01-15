@@ -10,10 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomSearchAndSortField" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="searchConstraintWithCart" destination="Nng-VQ-hiH" id="nmK-Ke-yBi"/>
                 <outlet property="searchTextField" destination="tK9-Ro-MMe" id="CKV-F5-ycb"/>
                 <outlet property="searchWidthConstrain" destination="918-xv-IdH" id="vog-mV-nf6"/>
                 <outlet property="searchWidthConstrainHigh" destination="Luu-ro-Nw7" id="4W0-tP-yQx"/>
                 <outlet property="sortImage" destination="clh-Ay-Z66" id="8dN-Ca-Jmf"/>
+                <outlet property="toBackViewConstrain" destination="NDD-vF-Y29" id="eK8-QG-Fdp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,9 +23,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="joT-Dd-0ad">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joT-Dd-0ad">
                     <rect key="frame" x="0.0" y="49" width="393" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <viewLayoutGuide key="safeArea" id="DqO-cv-X5n"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
@@ -31,11 +32,11 @@
                     <rect key="frame" x="10" y="8" width="373" height="34"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Поиск" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-Ro-MMe" customClass="CustomSearchString" customModule="NewProject" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="344" height="34"/>
+                            <rect key="frame" x="0.0" y="0.0" width="346" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="2wN-jv-7pD"/>
-                                <constraint firstAttribute="width" priority="750" constant="373" id="918-xv-IdH"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="344" id="Luu-ro-Nw7"/>
+                                <constraint firstAttribute="width" priority="250" constant="373" id="918-xv-IdH"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="1" constant="344" id="Luu-ro-Nw7"/>
                             </constraints>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -59,7 +60,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="clh-Ay-Z66">
-                            <rect key="frame" x="350" y="1.6666666666666643" width="23" height="32"/>
+                            <rect key="frame" x="352" y="1.6666666666666643" width="21" height="32"/>
                             <color key="tintColor" red="0.53097381043915792" green="0.53097381043915792" blue="0.53097381043915792" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="0mw-rS-b0e"/>
@@ -67,13 +68,21 @@
                             </constraints>
                         </imageView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="tK9-Ro-MMe" secondAttribute="trailing" priority="749" id="NDD-vF-Y29"/>
+                        <constraint firstItem="clh-Ay-Z66" firstAttribute="trailing" secondItem="tK9-Ro-MMe" secondAttribute="trailing" constant="27" id="Nng-VQ-hiH"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="0e8-0y-PVd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="6hM-hS-TLi"/>
+                <constraint firstAttribute="trailing" secondItem="joT-Dd-0ad" secondAttribute="trailing" id="Dgk-z0-gch"/>
+                <constraint firstItem="joT-Dd-0ad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jti-5W-8hL"/>
                 <constraint firstItem="0e8-0y-PVd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="LwA-Wq-5V0"/>
+                <constraint firstItem="joT-Dd-0ad" firstAttribute="top" secondItem="0e8-0y-PVd" secondAttribute="bottom" constant="7" id="Udi-zz-k7S"/>
+                <constraint firstAttribute="bottom" secondItem="joT-Dd-0ad" secondAttribute="bottom" id="naB-GZ-jkm"/>
                 <constraint firstAttribute="trailing" secondItem="0e8-0y-PVd" secondAttribute="trailing" constant="10" id="vkF-GF-Mk2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

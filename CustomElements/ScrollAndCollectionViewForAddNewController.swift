@@ -33,7 +33,7 @@ class ScrollAndCollectionViewForAddNewController: UIView {
 }
 
 //MARK: - setup collectionView
-extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private func setup() {
         myPublicationCollectionView.delegate = self
         myPublicationCollectionView.dataSource = self
@@ -55,6 +55,13 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
         cell.publicationPrice.text = postsArray[indexPath.row].price
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width
+        let spacingBetweenCells: CGFloat = 10.0
+        let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
+        return CGSize(width: cellWidth, height: 260)
     }
 }
 

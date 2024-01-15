@@ -14,20 +14,18 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6o-jd-hlF">
-                    <rect key="frame" x="145" y="15" width="102" height="21"/>
+                    <rect key="frame" x="145.66666666666666" y="15" width="102" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" id="SOj-SI-zCh">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOj-SI-zCh">
                     <rect key="frame" x="0.0" y="49" width="393" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <viewLayoutGuide key="safeArea" id="2uC-4e-lY5"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eJ-1E-P0Q">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eJ-1E-P0Q">
                     <rect key="frame" x="7" y="8" width="40" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
@@ -39,9 +37,15 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Y6o-jd-hlF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Ug1-D3-Bwp"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Y6o-jd-hlF" secondAttribute="trailing" constant="146" id="aNi-GH-T13"/>
-                <constraint firstItem="Y6o-jd-hlF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="145" id="qd4-P8-9bO"/>
+                <constraint firstItem="SOj-SI-zCh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0ZH-qe-2Uw"/>
+                <constraint firstItem="4eJ-1E-P0Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="1Kk-tA-TIk"/>
+                <constraint firstItem="4eJ-1E-P0Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="9Le-pS-dvR"/>
+                <constraint firstItem="SOj-SI-zCh" firstAttribute="top" secondItem="4eJ-1E-P0Q" secondAttribute="bottom" constant="6" id="B6T-KM-gSO"/>
+                <constraint firstItem="Y6o-jd-hlF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="IB9-gq-bcz"/>
+                <constraint firstItem="Y6o-jd-hlF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OIW-ER-HHh"/>
+                <constraint firstAttribute="bottom" secondItem="SOj-SI-zCh" secondAttribute="bottom" id="o55-Cp-PIW"/>
+                <constraint firstAttribute="trailing" secondItem="SOj-SI-zCh" secondAttribute="trailing" id="qrd-UE-dEf"/>
+                <constraint firstItem="SOj-SI-zCh" firstAttribute="top" secondItem="4eJ-1E-P0Q" secondAttribute="bottom" constant="6" id="xM3-VZ-SMR"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

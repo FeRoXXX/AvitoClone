@@ -17,23 +17,22 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои объявления" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylx-Kk-dDr">
-                    <rect key="frame" x="130" y="15" width="133" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="5Qe-gU-cpm"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои объявления" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ylx-Kk-dDr">
+                    <rect key="frame" x="130.33333333333331" y="15" width="132.33333333333331" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" id="hdn-vv-lDK">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdn-vv-lDK">
                     <rect key="frame" x="0.0" y="49" width="393" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <viewLayoutGuide key="safeArea" id="VdI-b2-dsP"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnQ-4l-amW">
                     <rect key="frame" x="336" y="8" width="47" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="PGd-vt-t3A"/>
+                    </constraints>
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
@@ -45,13 +44,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ylx-Kk-dDr" secondAttribute="trailing" constant="130" id="1iS-Zs-YBE"/>
-                <constraint firstItem="hdn-vv-lDK" firstAttribute="top" secondItem="Ylx-Kk-dDr" secondAttribute="bottom" constant="13" id="KNK-RG-hmF"/>
-                <constraint firstItem="Ylx-Kk-dDr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="130" id="Myo-PT-cbf"/>
-                <constraint firstItem="qnQ-4l-amW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="NjR-b0-czu"/>
-                <constraint firstItem="qnQ-4l-amW" firstAttribute="leading" secondItem="Ylx-Kk-dDr" secondAttribute="trailing" constant="73" id="kde-Td-VPv"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qnQ-4l-amW" secondAttribute="trailing" constant="10" id="qQr-0Q-CMA"/>
-                <constraint firstItem="Ylx-Kk-dDr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="xRH-A4-97t"/>
+                <constraint firstItem="hdn-vv-lDK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="12i-kc-8ld"/>
+                <constraint firstItem="Ylx-Kk-dDr" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2LV-gX-l3N"/>
+                <constraint firstItem="hdn-vv-lDK" firstAttribute="top" secondItem="qnQ-4l-amW" secondAttribute="bottom" constant="6" id="Esa-PH-W0y"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qnQ-4l-amW" secondAttribute="trailing" constant="10" id="S1L-TK-83Q"/>
+                <constraint firstItem="Ylx-Kk-dDr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="b25-jg-K8m"/>
+                <constraint firstItem="qnQ-4l-amW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="fI3-st-ZdB"/>
+                <constraint firstAttribute="trailing" secondItem="hdn-vv-lDK" secondAttribute="trailing" id="pNc-DB-5Ix"/>
+                <constraint firstAttribute="bottom" secondItem="hdn-vv-lDK" secondAttribute="bottom" id="paN-QW-C6i"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-86" y="-11"/>

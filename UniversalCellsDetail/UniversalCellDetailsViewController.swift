@@ -26,6 +26,7 @@ class UniversalCellDetailsViewController: UIViewController {
         topBar.backButtonTapped = { [weak self] in
             self?.handleButtonTapped()
         }
+        topBar.topBarText.text = "Просмотр объявления"
         
         let swipeGestureRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         let swipeGestureLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
@@ -33,7 +34,6 @@ class UniversalCellDetailsViewController: UIViewController {
         swipeGestureLeft.direction = .left
         imageView.addGestureRecognizer(swipeGestureLeft)
         imageView.addGestureRecognizer(swipeGestureRight)
-        
     }
     
     private func handleButtonTapped() {
@@ -53,7 +53,9 @@ class UniversalCellDetailsViewController: UIViewController {
     
     func updateImage() {
         guard imageArray.count != 0 else { return }
-        imageView.image = imageArray[indexImage]
+        UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.imageView.image = self.imageArray[self.indexImage]
+        }, completion: nil)
     }
     
     func getPostFromFirebase() {

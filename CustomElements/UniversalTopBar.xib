@@ -17,17 +17,15 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="51"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="REx-IL-bfC">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REx-IL-bfC">
                     <rect key="frame" x="0.0" y="49" width="393" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <viewLayoutGuide key="safeArea" id="v0T-bq-knK"/>
                     <color key="backgroundColor" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCm-MM-cDk">
                     <rect key="frame" x="7" y="8" width="40" height="35"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="T1e-hq-eut"/>
-                        <constraint firstAttribute="width" constant="40" id="nN9-pO-SLE"/>
+                        <constraint firstAttribute="height" constant="35" id="h4l-5r-XL2"/>
                     </constraints>
                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
@@ -46,11 +44,15 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="sCm-MM-cDk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="1Gt-YA-Yzf"/>
-                <constraint firstItem="sCm-MM-cDk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="7" id="M7g-ez-c9p"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nEZ-1g-rnI" secondAttribute="trailing" constant="174" id="NjR-9h-tbO"/>
-                <constraint firstItem="nEZ-1g-rnI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="cOF-FW-Ejw"/>
-                <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="sCm-MM-cDk" secondAttribute="bottom" constant="6" id="u3v-BH-6hT"/>
+                <constraint firstAttribute="trailing" secondItem="REx-IL-bfC" secondAttribute="trailing" id="30d-90-m3R"/>
+                <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="sCm-MM-cDk" secondAttribute="bottom" constant="6" id="KVZ-AM-WNk"/>
+                <constraint firstItem="sCm-MM-cDk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="U3Q-Ok-Fi0"/>
+                <constraint firstItem="nEZ-1g-rnI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="a5m-xH-JjD"/>
+                <constraint firstItem="sCm-MM-cDk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ccV-W4-bCP"/>
+                <constraint firstAttribute="bottom" secondItem="REx-IL-bfC" secondAttribute="bottom" id="diA-bQ-zsi"/>
+                <constraint firstItem="REx-IL-bfC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fFT-Mc-CCO"/>
+                <constraint firstItem="nEZ-1g-rnI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xAi-h6-hYt"/>
+                <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="sCm-MM-cDk" secondAttribute="bottom" constant="6" id="y4S-v6-gxY"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

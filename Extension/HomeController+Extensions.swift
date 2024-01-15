@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - Setup collectionView
-extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func setup() {
         collectionView.delegate = self
@@ -42,6 +42,13 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource 
             navigationController.pushViewController(detailsViewController, animated: true)
         }
         hidesBottomBarWhenPushed = false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width
+        let spacingBetweenCells: CGFloat = 10.0
+        let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
+        return CGSize(width: cellWidth, height: 260)
     }
 }
 

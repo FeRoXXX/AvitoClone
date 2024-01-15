@@ -28,14 +28,14 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-qm-zKP">
-                    <rect key="frame" x="76" y="158" width="240" height="240"/>
+                    <rect key="frame" x="76.666666666666686" y="158" width="240" height="240"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="240" id="AMn-uT-EB4"/>
                         <constraint firstAttribute="width" constant="240" id="Gf2-df-18g"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GL-EW-8LC">
-                    <rect key="frame" x="128" y="472" width="136" height="137"/>
+                    <rect key="frame" x="128.66666666666666" y="472" width="135.99999999999997" height="137"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBf-UG-JSf">
                             <rect key="frame" x="0.0" y="0.0" width="136" height="34.333333333333336"/>
@@ -76,15 +76,13 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="6GL-EW-8LC" firstAttribute="top" secondItem="lCZ-qm-zKP" secondAttribute="bottom" constant="74" id="3z9-Y5-DRo"/>
-                <constraint firstItem="6GL-EW-8LC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="128" id="Bi4-3J-paw"/>
-                <constraint firstItem="lCZ-qm-zKP" firstAttribute="top" secondItem="CzA-cs-Xb6" secondAttribute="bottom" constant="48" id="CMs-jB-Qj4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6GL-EW-8LC" secondAttribute="trailing" constant="129" id="Ep1-ad-Cwm"/>
-                <constraint firstItem="CzA-cs-Xb6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Hcd-iC-Cz7"/>
-                <constraint firstItem="CzA-cs-Xb6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Mod-k0-uPT"/>
-                <constraint firstItem="lCZ-qm-zKP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="76" id="PyR-my-BqQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lCZ-qm-zKP" secondAttribute="trailing" constant="77" id="h5S-Ed-t3q"/>
-                <constraint firstItem="CzA-cs-Xb6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="hPa-qS-FxU"/>
+                <constraint firstItem="lCZ-qm-zKP" firstAttribute="top" secondItem="CzA-cs-Xb6" secondAttribute="bottom" constant="48" id="2Dp-gP-Xar"/>
+                <constraint firstItem="6GL-EW-8LC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ClZ-l8-8fJ"/>
+                <constraint firstItem="CzA-cs-Xb6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MKQ-Fb-2PU"/>
+                <constraint firstItem="CzA-cs-Xb6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bXI-5l-4sm"/>
+                <constraint firstItem="lCZ-qm-zKP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fU9-9K-50k"/>
+                <constraint firstItem="6GL-EW-8LC" firstAttribute="top" secondItem="lCZ-qm-zKP" secondAttribute="bottom" constant="74" id="mse-Hh-Mze"/>
+                <constraint firstItem="CzA-cs-Xb6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xDi-WD-mCv"/>
             </constraints>
             <point key="canvasLocation" x="98.473282442748086" y="-11.267605633802818"/>
         </view>
