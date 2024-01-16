@@ -18,8 +18,12 @@ class UploadNewPost {
     let imagesArray: [UIImage]
     let category: String
     
-    init(name: String, information: String, price: String, imagesArray: [UIImage], category: String) {
-        self.uuid = UUID()
+    init(name: String, information: String, price: String, imagesArray: [UIImage], category: String, uuidOpt: UUID? = nil) {
+        if let uuid = uuidOpt {
+            self.uuid = uuid
+        } else {
+            self.uuid = UUID()
+        }
         self.name = name
         self.information = information
         self.price = price

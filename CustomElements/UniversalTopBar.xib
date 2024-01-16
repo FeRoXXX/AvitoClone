@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UniversalTopBar" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="firstButton" destination="Gia-w1-gqn" id="USH-w7-Txw"/>
+                <outlet property="secondButton" destination="Jnn-5V-ewj" id="1eT-ir-iAh"/>
                 <outlet property="topBarText" destination="nEZ-1g-rnI" id="G7T-4C-Ns1"/>
             </connections>
         </placeholder>
@@ -40,18 +42,42 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gia-w1-gqn">
+                    <rect key="frame" x="343" y="8" width="24" height="35"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="firstButtonClicked:" destination="-1" eventType="touchUpInside" id="BQ0-9E-LaK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnn-5V-ewj">
+                    <rect key="frame" x="367" y="8" width="24" height="35"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="secondButtonClicked:" destination="-1" eventType="touchUpInside" id="VME-ww-nkL"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="Jnn-5V-ewj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="281-bo-lxS"/>
                 <constraint firstAttribute="trailing" secondItem="REx-IL-bfC" secondAttribute="trailing" id="30d-90-m3R"/>
+                <constraint firstItem="Gia-w1-gqn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="KUC-rc-hLZ"/>
                 <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="sCm-MM-cDk" secondAttribute="bottom" constant="6" id="KVZ-AM-WNk"/>
+                <constraint firstItem="Jnn-5V-ewj" firstAttribute="leading" secondItem="Gia-w1-gqn" secondAttribute="trailing" id="OAB-1d-xlt"/>
                 <constraint firstItem="sCm-MM-cDk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="U3Q-Ok-Fi0"/>
+                <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="Gia-w1-gqn" secondAttribute="bottom" constant="6" id="Yfb-W7-fJ6"/>
+                <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="Jnn-5V-ewj" secondAttribute="bottom" constant="6" id="ZgG-gB-6OQ"/>
                 <constraint firstItem="nEZ-1g-rnI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="a5m-xH-JjD"/>
                 <constraint firstItem="sCm-MM-cDk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ccV-W4-bCP"/>
                 <constraint firstAttribute="bottom" secondItem="REx-IL-bfC" secondAttribute="bottom" id="diA-bQ-zsi"/>
                 <constraint firstItem="REx-IL-bfC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fFT-Mc-CCO"/>
                 <constraint firstItem="nEZ-1g-rnI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xAi-h6-hYt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jnn-5V-ewj" secondAttribute="trailing" constant="2" id="xWK-dk-OkA"/>
                 <constraint firstItem="REx-IL-bfC" firstAttribute="top" secondItem="sCm-MM-cDk" secondAttribute="bottom" constant="6" id="y4S-v6-gxY"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

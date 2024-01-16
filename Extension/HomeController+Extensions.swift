@@ -130,3 +130,23 @@ extension HomeController {
     }
 }
 
+//MARK: - setup refresh control
+extension HomeController {
+    
+    func setupRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        scrollView.addSubview(refreshControl)
+        scrollView.refreshControl = refreshControl
+    }
+    
+    func updateData() {
+        postsArray.removeAll()
+        getAllPosts()
+        self.refreshControl.endRefreshing()
+    }
+    
+    @objc func refreshData() {
+        updateData()
+    }
+}
+

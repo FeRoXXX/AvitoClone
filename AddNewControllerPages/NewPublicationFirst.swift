@@ -20,10 +20,14 @@ class NewPublicationFirst: UIViewController {
         topBar.backButtonTapped = { [weak self] in
             self?.handleButtonTapped()
         }
+        topBar.firstButton.isHidden = true
+        topBar.secondButton.isHidden = true
     }
 
     private func handleButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }
 
@@ -57,10 +61,11 @@ extension NewPublicationFirst: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
+            self.hidesBottomBarWhenPushed = true
             let productsScreen = ProductsViewController()
-            productsScreen.modalPresentationStyle = .fullScreen
-            productsScreen.modalTransitionStyle = .flipHorizontal
-            self.present(productsScreen, animated: true)
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(productsScreen, animated: true)
+            }
         }
         if indexPath.row == 1 {
             print("Work")

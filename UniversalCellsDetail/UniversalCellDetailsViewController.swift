@@ -14,10 +14,12 @@ class UniversalCellDetailsViewController: UIViewController {
     @IBOutlet weak var publicationName: UILabel!
     @IBOutlet weak var city: UILabel!
     @IBOutlet weak var aboutPublication: UILabel!
+    var buttonFlag: Bool?
     var uuid : UUID?
     var currentPost : ReceivedCurrentPost?
     var imageArray = [UIImage]()
     var indexImage: Int = 0
+    var scrollAndCollectionVC : ScrollAndCollectionViewForAddNewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,19 @@ class UniversalCellDetailsViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         topBar.backButtonTapped = { [weak self] in
             self?.handleButtonTapped()
+        }
+        if buttonFlag != nil, buttonFlag! {
+            topBar.firstButtonTapped = { [weak self] in
+                self?.handleCorrectButtonTapped()
+            }
+            topBar.secondButtonTapped = { [weak self] in
+                self?.handleDeleteButtonTapped()
+            }
+            topBar.firstButton.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
+            topBar.secondButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        } else {
+            topBar.firstButton.isHidden = true
+            topBar.secondButton.isHidden = true
         }
         topBar.topBarText.text = "Просмотр объявления"
         
@@ -34,6 +49,30 @@ class UniversalCellDetailsViewController: UIViewController {
         swipeGestureLeft.direction = .left
         imageView.addGestureRecognizer(swipeGestureLeft)
         imageView.addGestureRecognizer(swipeGestureRight)
+    }
+    
+    private func handleCorrectButtonTapped() {
+        let productsViewController = ProductsViewController()
+        productsViewController.universalCellDetailsViewController = self
+        productsViewController.uuid = self.uuid
+        hidesBottomBarWhenPushed = true
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(productsViewController, animated: true)
+        }
+    }
+    
+    private func handleDeleteButtonTapped() {
+        Task {
+            do {
+                try await currentPost?.deletePost()
+                if let navigationController = self.navigationController {
+                    self.scrollAndCollectionVC?.loadData()
+                    navigationController.popViewController(animated: true)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func handleButtonTapped() {

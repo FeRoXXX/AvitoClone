@@ -49,8 +49,8 @@ class UserPosts {
     }
     
     func dictionaryToVariables(index: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        if let uuid = data[index]["UUID"] as? UUID {
-            self.uuid = uuid
+        if let uuid = data[index]["UUID"] as? String {
+            self.uuid = UUID(uuidString: uuid)
         }
         if let name = data[index]["Name"] as? String {
             self.name = name

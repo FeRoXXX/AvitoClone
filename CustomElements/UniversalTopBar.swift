@@ -10,8 +10,12 @@ import UIKit
 class UniversalTopBar: UIView {
     
     @IBOutlet weak var topBarText: UILabel!
+    @IBOutlet weak var firstButton: UIButton!
+    @IBOutlet weak var secondButton: UIButton!
     
     var backButtonTapped: (() -> Void)?
+    var firstButtonTapped: (() -> Void)?
+    var secondButtonTapped: (() -> Void)?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -34,4 +38,12 @@ class UniversalTopBar: UIView {
     @IBAction func backClicked(_ sender: Any) {
         backButtonTapped?()
     }
+    
+    @IBAction func firstButtonClicked(_ sender: Any) {
+        firstButtonTapped?()
+    }
+    @IBAction func secondButtonClicked(_ sender: Any) {
+        secondButtonTapped?()
+    }
+    
 }

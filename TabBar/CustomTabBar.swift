@@ -12,15 +12,19 @@ class CustomTabBar: UITabBar {
     
     private var shapeLayer: CAShapeLayer?
     var centeredWidth : CGFloat = 0
+    var flagToDraw = true
     
     override func draw(_ rect: CGRect) {
-        centeredWidth = self.bounds.width / 2
-        centeredWidth /= 3
-        
-        self.unselectedItemTintColor = .black
-        self.tintColor = .white
-        self.barTintColor = .gray
-        self.addShape()
+        if flagToDraw {
+            centeredWidth = self.bounds.width / 2
+            centeredWidth /= 3
+            
+            self.unselectedItemTintColor = .black
+            self.tintColor = .white
+            self.barTintColor = .gray
+            self.addShape()
+            flagToDraw = false
+        }
     }
     
     private func addShape() {
@@ -66,7 +70,6 @@ class CustomTabBar: UITabBar {
     func updateCurveForTappedIndex() {
         guard let selectedTabView = self.selectedItem?.value(forKey: "view") as? UIView else { return }
         self.centeredWidth = selectedTabView.frame.origin.x + (selectedTabView.frame.width / 2)
-        
         addShape()
     }
     

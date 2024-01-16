@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7hZ-fD-IOZ" id="EX0-4R-ffJ"/>
+                <outlet property="scrollView" destination="hUb-fp-f3r" id="lgW-dp-6Ca"/>
                 <outlet property="searchTopBar" destination="bXh-y4-vpN" id="kZk-FX-Jpr"/>
                 <outlet property="tableView" destination="eow-pL-RHf" id="VWj-Rt-fsQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Pbx-0j-2sN"/>

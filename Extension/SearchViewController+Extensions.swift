@@ -45,7 +45,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 //MARK: - CollectionView
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setupCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -67,6 +67,24 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.publicationPrice.text = postsArray[indexPath.row].price
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width
+        let spacingBetweenCells: CGFloat = 10.0
+        let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
+        return CGSize(width: cellWidth, height: 260)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsViewController = UniversalCellDetailsViewController()
+        detailsViewController.uuid = postsArray[indexPath.row].uuid
+        hidesBottomBarWhenPushed = true
+        
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(detailsViewController, animated: true)
+        }
+        hidesBottomBarWhenPushed = false
     }
 }
 

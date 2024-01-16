@@ -15,7 +15,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         let homeController = UINavigationController(rootViewController: HomeController())
         homeController.setNavigationBarHidden(true, animated: true)
-        let addNewController = AddNewController()
+        let addNewController = UINavigationController(rootViewController: AddNewController())
+        addNewController.setNavigationBarHidden(true, animated: true)
         let settingsController = SettingsController()
         
         customTabBar.delegate = self
@@ -41,7 +42,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 customTabBar.topAnchor.constraint(equalTo: tabBar.topAnchor),
                 customTabBar.heightAnchor.constraint(equalTo: tabBar.heightAnchor)
             ])
-            customTabBar.updateCurveForTappedIndex()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

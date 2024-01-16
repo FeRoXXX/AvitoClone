@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 import SDWebImage
 
 class ReceivedCurrentPost {
@@ -18,6 +19,7 @@ class ReceivedCurrentPost {
     var price: String?
     var image = [UIImage]()
     var category: String?
+    var userID: String?
     
     init(uuidCurrentPost: UUID) async throws {
         do{
@@ -42,9 +44,49 @@ class ReceivedCurrentPost {
         }
     }
     
+    private func deleteImage() async throws {
+        guard let userID = self.userID, let uuid = self.uuid else { return }
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let images = storageRef.child("media/posts/\(userID)/\(uuid.uuidString)")
+        do {
+            let results = try await images.listAll()
+            
+            for item in results.items {
+                do {
+                    try await item.delete()
+                } catch {
+                    throw error
+                }
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func deletePost() async throws {
+        guard let uuid = self.uuid else { return }
+        let db = Firestore.firestore()
+        let dbURL = db.collection("Posts").document("products").collection("all").document(uuid.uuidString)
+        do {
+            try await deleteImage()
+        } catch {
+            throw error
+        }
+        
+        do {
+            try await dbURL.delete()
+        } catch {
+            throw error
+        }
+    }
+    
     func dictionaryToVariables(completion: @escaping (Result<Bool, Error>) -> Void) {
         if let uuid = data["UUID"] as? String{
             self.uuid = UUID(uuidString: uuid)
+        }
+        if let userID = data["UserID"] as? String {
+            self.userID = userID
         }
         if let name = data["Name"] as? String {
             self.name = name

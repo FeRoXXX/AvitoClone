@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollAndCollectionViewForAddNewController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="myPublicationCollectionView" destination="JhD-9v-Ak9" id="9cP-aZ-Bpa"/>
+                <outlet property="scrollView" destination="5MX-Me-km9" id="roU-rw-ECk"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -24,7 +24,10 @@ class AddNewController: UIViewController {
         topBar.newPublicationClicked = { [weak self] in
             self?.handleButtonTapped()
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        myPublicationView.vc = self
     }
 }
 
@@ -35,17 +38,21 @@ private extension AddNewController {
         if (self.myPublicationView.getNumOfSections() != 0) {
             self.noPublication.isHidden = true
             self.myPublicationView.isHidden = false
+            self.topBar.addNewButton.isHidden = false
         } else {
             self.myPublicationView.isHidden = true
             self.noPublication.isHidden = false
+            self.topBar.addNewButton.isHidden = true
         }
     }
     
     private func handleButtonTapped() {
         let addNew = NewPublicationFirst()
-        addNew.modalPresentationStyle = .fullScreen
-        addNew.modalTransitionStyle = .flipHorizontal
-        self.present(addNew, animated: true)
+        self.hidesBottomBarWhenPushed = true
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(addNew, animated: true)
+        }
+        self.hidesBottomBarWhenPushed = false
     }
 }
 
