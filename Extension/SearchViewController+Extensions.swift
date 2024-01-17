@@ -74,7 +74,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let spacingBetweenCells: CGFloat = 10.0
         let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
         return CGSize(width: cellWidth, height: 260)
-        print("check commit")
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
