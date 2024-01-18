@@ -17,7 +17,6 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         setup()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,11 +10,17 @@ import PhotosUI
 
 class ProductsViewController: UIViewController {
     
+    @IBOutlet weak var addPhotoLabel: UILabel!
     @IBOutlet weak var topBar: UniversalTopBar!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var productNameTextField: UITextField!
     @IBOutlet weak var productInformationTextView: UITextView!
     @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var numberTextField: UITextField!
+    
+    @IBOutlet weak var nameToViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var numberToViewConstraint: NSLayoutConstraint!
+    
     var universalCellDetailsViewController: UniversalCellDetailsViewController?
     var uuid: UUID?
     
@@ -27,6 +33,7 @@ class ProductsViewController: UIViewController {
         super.viewDidLoad()
         topBar.topBarText.text = "Добавить товар"
         setupBackButton()
+        numberTextField.keyboardType = .numberPad
         
         productInformationTextView.layer.cornerRadius = 5
         setupGesture()
@@ -36,6 +43,7 @@ class ProductsViewController: UIViewController {
         if universalCellDetailsViewController != nil {
             setupPrevValues()
         }
+        setupObserver()
     }
     
     @objc func choosePhoto() {
@@ -48,11 +56,12 @@ class ProductsViewController: UIViewController {
         guard let information = productInformationTextView.text else { return } //TODO: - Alert
         guard let price = priceTextField.text else { return } //TODO: - Alert
         guard let userID = UserAuthData.shared.uid else { return }
+        guard let number = numberTextField.text else { return } // TODO: - Alert
         var post : UploadNewPost?
         if let uuid = self.uuid {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", uuidOpt: uuid)
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, uuidOpt: uuid)
         } else {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products")
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number)
         }
         guard let post = post else { return }
         var downloadURL = [String]()
@@ -75,6 +84,44 @@ class ProductsViewController: UIViewController {
             }
         }
     }
+    deinit {
+           NotificationCenter.default.removeObserver(self)
+       }
+}
+
+//MARK: - Keyboard load
+extension ProductsViewController {
+    
+    func setupObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
+            UIView.animate(withDuration: 1) {
+                self.imageView.alpha = 0
+                self.addPhotoLabel.alpha = 0
+                self.nameToViewConstraint.priority = UILayoutPriority(1000)
+                self.numberToViewConstraint.priority = UILayoutPriority(1000)
+                self.productNameTextField.layoutIfNeeded()
+            }
+            self.imageView.isHidden = true
+            self.addPhotoLabel.isHidden = true
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        self.imageView.isHidden = false
+        self.addPhotoLabel.isHidden = false
+        UIView.animate(withDuration: 1) {
+            self.imageView.alpha = 100
+            self.addPhotoLabel.alpha = 100
+            self.nameToViewConstraint.priority = UILayoutPriority(1)
+            self.numberToViewConstraint.priority = UILayoutPriority(1)
+            self.productNameTextField.layoutIfNeeded()
+        }
+    }
+    
 }
 
 //MARK: - configure PHPicker
@@ -113,6 +160,7 @@ extension ProductsViewController {
         imageView.isUserInteractionEnabled = true
         let swipeGestureRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         let swipeGestureLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        let tapGestureToView = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         swipeGestureRight.direction = .right
         swipeGestureLeft.direction = .left
         
@@ -121,8 +169,13 @@ extension ProductsViewController {
         imageView.addGestureRecognizer(tapGesture)
         imageView.addGestureRecognizer(swipeGestureRight)
         imageView.addGestureRecognizer(swipeGestureLeft)
+        view.addGestureRecognizer(tapGestureToView)
         
         updateImage()
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
