@@ -18,8 +18,10 @@ class UploadNewPost {
     let imagesArray: [UIImage]
     let category: String
     let number: String
+    let date: String
+    let address: String
     
-    init(name: String, information: String, price: String, imagesArray: [UIImage], category: String, number: String, uuidOpt: UUID? = nil) {
+    init(name: String, information: String, price: String, imagesArray: [UIImage], category: String, number: String, date: String, address: String, uuidOpt: UUID? = nil) {
         if let uuid = uuidOpt {
             self.uuid = uuid
         } else {
@@ -31,6 +33,8 @@ class UploadNewPost {
         self.imagesArray = imagesArray
         self.category = category
         self.number = number
+        self.date = date
+        self.address = address
     }
     
     func sendImageToStorage(userID: String, completion: @escaping (_ status: Bool, _ response: String) -> Void) { //TODO: - send images to Storage
@@ -62,7 +66,7 @@ class UploadNewPost {
     func sendPostDataToFirebase(downloadURL: [String], userID: String) async throws {
         let db = Firestore.firestore()
         let dbURL = db.collection("Posts").document("\(category)/all/\(uuid.uuidString)")
-        let data = ["UserID" : userID, "UUID" : uuid.uuidString, "Name" : name, "Information" : information, "Images" : downloadURL, "Number" : number, "Price" : price] as [String : Any]
+        let data = ["UserID" : userID, "UUID" : uuid.uuidString, "Name" : name, "Information" : information, "Images" : downloadURL, "Number" : number, "Date" : date, "Address" : address, "Price" : price] as [String : Any]
         try await dbURL.setData(data)
     }
 }

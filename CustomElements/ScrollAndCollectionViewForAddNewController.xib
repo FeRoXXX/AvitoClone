@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="613"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rfh-wH-0kZ">
-                            <rect key="frame" x="10" y="0.0" width="373" height="613"/>
+                            <rect key="frame" x="10" y="6" width="373" height="613"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-9v-Ak9">
                                     <rect key="frame" x="0.0" y="0.0" width="373" height="613"/>
@@ -48,7 +48,7 @@
                         <constraint firstItem="Rfh-wH-0kZ" firstAttribute="leading" secondItem="gC8-iC-Otu" secondAttribute="leading" constant="10" id="cJ6-7r-V45"/>
                         <constraint firstItem="Rfh-wH-0kZ" firstAttribute="bottom" secondItem="gC8-iC-Otu" secondAttribute="bottom" id="e52-GA-TU1"/>
                         <constraint firstAttribute="height" secondItem="Rfh-wH-0kZ" secondAttribute="height" id="pRa-lK-uJn"/>
-                        <constraint firstItem="Rfh-wH-0kZ" firstAttribute="top" secondItem="gC8-iC-Otu" secondAttribute="top" id="vC5-rJ-70S"/>
+                        <constraint firstItem="Rfh-wH-0kZ" firstAttribute="top" secondItem="gC8-iC-Otu" secondAttribute="top" constant="6" id="vC5-rJ-70S"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="gC8-iC-Otu"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="GzI-bC-y1B"/>

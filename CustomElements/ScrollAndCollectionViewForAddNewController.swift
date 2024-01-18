@@ -93,6 +93,8 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
         cell.publicationName.text = postsArray[indexPath.row].name
         cell.publicationImage.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
+        cell.publicationTime.text = postsArray[indexPath.row].date
+        cell.sellerAdress.text = postsArray[indexPath.row].address
         
         return cell
     }

@@ -25,7 +25,6 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                     tableView.alpha = 100.0
                     collectionView.alpha = 0.0
                     self.searchTextField.rightView?.alpha = 100.0
-                    //self.searchWidthConstrain.priority = UILayoutPriority(rawValue: 900)
                     self.toBackViewConstrain.priority = UILayoutPriority(1000)
                     self.searchConstraintWithCart.priority = UILayoutPriority(1)
                     self.layoutIfNeeded()

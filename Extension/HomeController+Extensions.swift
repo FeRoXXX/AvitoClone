@@ -24,6 +24,8 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         cell.publicationName.text = postsArray[indexPath.row].name
         cell.publicationImage.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
+        cell.publicationTime.text = postsArray[indexPath.row].date
+        cell.sellerAdress.text = postsArray[indexPath.row].address
         
         return cell
     }
@@ -59,7 +61,7 @@ extension HomeController {
         Task(priority: .high) {
             do {
                 let posts = try await ReceivedAllPosts.init()
-                
+                guard posts.data.count > 0 else { return }
                 for postIndex in (0...posts.data.count - 1) {
                     let newPost = ReceivedAllPosts(postData: posts.data)
                     newPost.dictionaryToVariables(index: postIndex) { result in

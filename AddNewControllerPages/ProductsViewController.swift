@@ -17,7 +17,7 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var productInformationTextView: UITextView!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var numberTextField: UITextField!
-    
+    @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var nameToViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var numberToViewConstraint: NSLayoutConstraint!
     
@@ -57,11 +57,18 @@ class ProductsViewController: UIViewController {
         guard let price = priceTextField.text else { return } //TODO: - Alert
         guard let userID = UserAuthData.shared.uid else { return }
         guard let number = numberTextField.text else { return } // TODO: - Alert
+        guard let address = addressTextField.text else { return } // TODO: - Alert
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d MMMM, HH:mm"
+        let currentDate = Date()
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
         var post : UploadNewPost?
         if let uuid = self.uuid {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, uuidOpt: uuid)
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address, uuidOpt: uuid)
         } else {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number)
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address)
         }
         guard let post = post else { return }
         var downloadURL = [String]()
@@ -233,6 +240,12 @@ extension ProductsViewController {
                         }
                         if let information = self.currentPost!.information {
                             self.productInformationTextView.text = information
+                        }
+                        if let number = self.currentPost!.number {
+                            self.numberTextField.text = number
+                        }
+                        if let address = self.currentPost!.address {
+                            self.addressTextField.text = address
                         }
                         self.imageArray = self.currentPost!.image
                         self.imageView.image = self.currentPost!.image.first

@@ -18,6 +18,8 @@ class UserPosts {
     var price: String?
     var image: UIImage?
     var category: String?
+    var date: String?
+    var address: String?
     
     init(userID: String) async throws {
         
@@ -60,6 +62,12 @@ class UserPosts {
         }
         if let information = data[index]["Information"] as? String {
             self.information = information
+        }
+        if let date = data[index]["Date"] as? String {
+            self.date = date
+        }
+        if let address = data[index]["Address"] as? String {
+            self.address = address
         }
         if let imageURLArray = data[index]["Images"] as? [String] {
             if let imageURL = imageURLArray.first{

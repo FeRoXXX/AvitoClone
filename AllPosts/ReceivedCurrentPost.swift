@@ -20,6 +20,8 @@ class ReceivedCurrentPost {
     var image = [UIImage]()
     var category: String?
     var userID: String?
+    var number: String?
+    var address: String?
     
     init(uuidCurrentPost: UUID) async throws {
         do{
@@ -96,6 +98,12 @@ class ReceivedCurrentPost {
         }
         if let information = data["Information"] as? String {
             self.information = information
+        }
+        if let number = data["Number"] as? String {
+            self.number = number
+        }
+        if let address = data["Address"] as? String {
+            self.address = address
         }
         if let imageURLArray = data["Images"] as? [String] {
             for imageURL in imageURLArray {
