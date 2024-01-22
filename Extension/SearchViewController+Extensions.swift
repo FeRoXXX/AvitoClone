@@ -65,8 +65,41 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.publicationName.text = postsArray[indexPath.row].name
         cell.publicationImage.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
+        cell.publicationTime.text = postsArray[indexPath.row].date
+        cell.sellerAdress.text = postsArray[indexPath.row].address
+        cell.handleTapped = { [weak self] in
+            self?.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
+        }
+        if let userUUID = UserAuthData.shared.uid,
+           let postUUID = postsArray[indexPath.row].userUUID,
+           userUUID == postUUID{
+            cell.likeImage.isHidden = true
+        } else {
+            cell.likeImage.isHidden = false
+        }
+        if cell.likeImage.isHidden == false,
+           let checkedLike = postsArray[indexPath.row].checkedLikeImage {
+            if checkedLike {
+                cell.likeImage.image = UIImage(systemName: "heart.fill")
+            } else {
+                cell.likeImage.image = UIImage(systemName: "heart")
+            }
+        }
         
         return cell
+    }
+    
+    func likeButtonTapped(currentIndex: Int, indexPath: IndexPath) {
+        guard let currentPostUUID = postsArray[currentIndex].uuid,
+              let currentUserUUID = UserAuthData.shared.uid else { return }
+        Task {
+            do {
+                try await postsArray[currentIndex].addLikeToPublication(postID: currentPostUUID, userID: currentUserUUID)
+                collectionView.reloadItems(at: [indexPath])
+            } catch {
+                print("error")
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -112,12 +145,18 @@ extension SearchViewController {
                 guard posts.data.count > 0 else { return }
                 for postIndex in (0...posts.data.count - 1) {
                     let newPost = ReceivedAllPosts(postData: posts.data)
-                    newPost.dictionaryToVariables(index: postIndex) { result in
+                    newPost.dictionaryToVariables(index: postIndex) { [weak self] result in
                         switch result {
                         case .success(_):
-                            self.postsArray.append(newPost)
-                            self.collectionView.reloadData()
-                            
+                            self?.postsArray.append(newPost)
+                            Task {
+                                for posts in self!.postsArray {
+                                    guard let uuid = posts.uuid,
+                                          let userID = UserAuthData.shared.uid else { return }
+                                    try await posts.checkLike(postID: uuid, userID: userID)
+                                    self?.collectionView.reloadData()
+                                }
+                            }
                         case .failure(let failure):
                             print(failure.localizedDescription)
                         }

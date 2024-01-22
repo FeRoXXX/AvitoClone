@@ -20,6 +20,8 @@
 		2726E4E52B2623DB00850B31 /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2726E4E42B2623DB00850B31 /* SettingsController.xib */; };
 		2726E4E82B26247800850B31 /* CustomProfileTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726E4E72B26247800850B31 /* CustomProfileTopBar.swift */; };
 		2726E4EA2B26248700850B31 /* CustomProfileTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2726E4E92B26248700850B31 /* CustomProfileTopBar.xib */; };
+		273363952B5E9F6A00C0A3FE /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363932B5E9F6A00C0A3FE /* FavouriteViewController.swift */; };
+		273363962B5E9F6A00C0A3FE /* FavouriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273363942B5E9F6A00C0A3FE /* FavouriteViewController.xib */; };
 		2757C6DE2B400CDF00F8D630 /* FireLoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6DD2B400CDF00F8D630 /* FireLoadData.swift */; };
 		2757C6E02B40390600F8D630 /* FireGetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6DF2B40390600F8D630 /* FireGetData.swift */; };
 		2757C6E42B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6E22B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift */; };
@@ -97,6 +99,8 @@
 		2726E4E42B2623DB00850B31 /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		2726E4E72B26247800850B31 /* CustomProfileTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileTopBar.swift; sourceTree = "<group>"; };
 		2726E4E92B26248700850B31 /* CustomProfileTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileTopBar.xib; sourceTree = "<group>"; };
+		273363932B5E9F6A00C0A3FE /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		273363942B5E9F6A00C0A3FE /* FavouriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteViewController.xib; sourceTree = "<group>"; };
 		2757C6DD2B400CDF00F8D630 /* FireLoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireLoadData.swift; sourceTree = "<group>"; };
 		2757C6DF2B40390600F8D630 /* FireGetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireGetData.swift; sourceTree = "<group>"; };
 		2757C6E22B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProfilePhotoViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 			children = (
 				2757C6E22B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift */,
 				2757C6E32B480C7A00F8D630 /* AddNewProfilePhotoViewController.xib */,
+				273363932B5E9F6A00C0A3FE /* FavouriteViewController.swift */,
+				273363942B5E9F6A00C0A3FE /* FavouriteViewController.xib */,
 			);
 			path = SettingsControllerPages;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				273363962B5E9F6A00C0A3FE /* FavouriteViewController.xib in Resources */,
 				277687612B3B1807005C3784 /* CustomButtonEditPassword.xib in Resources */,
 				2757C6E92B480CAB00F8D630 /* AddNewPhotoTopBar.xib in Resources */,
 				277687732B3C78F4005C3784 /* CustomSearchAndSortField.xib in Resources */,
@@ -586,6 +593,7 @@
 				27778E252B3DBAEC00163A16 /* AuthentificationViewController.swift in Sources */,
 				2757C6E02B40390600F8D630 /* FireGetData.swift in Sources */,
 				2726E4AD2B20B68E00850B31 /* SceneDelegate.swift in Sources */,
+				273363952B5E9F6A00C0A3FE /* FavouriteViewController.swift in Sources */,
 				277687642B3B1AA2005C3784 /* ButtonForLogoutCell.swift in Sources */,
 				2757C7072B4D70BC00F8D630 /* ReceivedAllPosts.swift in Sources */,
 				27778E322B3F02EB00163A16 /* CustomRegistrationTopBar.swift in Sources */,

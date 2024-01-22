@@ -80,6 +80,8 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
         case 7:
             cellStyle.text = indexPath.row == 0 ? "Мои отзывы" : "Ждут оценки"
             cellStyle.secondaryText = indexPath.row == 0 ? "Нет отзывов" : "Нет продавцов"
+        case 8:
+            cellStyle.text = "Избранное"
         case 16:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonForLogoutCell") as? ButtonForLogoutCell {
                 cell.customButton.buttonTextLabel.text = "Изменить пароль"
@@ -140,6 +142,16 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 8:
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(FavouriteViewController(), animated: true)
+            }
+        default:
+            print(indexPath.section)
+        }
+    }
     private func configureCell(_ cellStyle: inout UIListContentConfiguration, image: String? = nil, text: String, secondaryText: String) {
         cellStyle.image = image.flatMap({ UIImage(systemName:  $0)?.withTintColor(.gray, renderingMode: .alwaysOriginal) })
         cellStyle.text = text

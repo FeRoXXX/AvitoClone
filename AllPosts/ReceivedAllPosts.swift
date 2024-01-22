@@ -154,11 +154,29 @@ class ReceivedAllPosts {
                         self.checkedLikeImage = false
                     }
                 }
-//                print("id: \(uuid)")
-//                print("userID: \(userID)")
             } else {
                 self.checkedLikeImage = true
             }
+        } catch {
+            throw error
+        }
+    }
+    func checkLikedPostsForFavourite() async throws -> [String] {
+        guard let userID = UserAuthData.shared.uid else { return [] }
+        var postsID = [String]()
+        let db = Firestore.firestore()
+        let dbURL = db.collection("Posts").document("likes").collection("all")
+        do {
+            let results = try await dbURL.getDocuments()
+            for result in results.documents {
+                let likesDictionary = result.data()
+                if let likesArray = likesDictionary["UserID"] as? [String] {
+                    if likesArray.contains(userID) {
+                        postsID.append(result.documentID)
+                    }
+                }
+            }
+            return postsID
         } catch {
             throw error
         }
