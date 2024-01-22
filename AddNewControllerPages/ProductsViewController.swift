@@ -218,6 +218,7 @@ extension ProductsViewController {
     }
 }
 
+//MARK: - setup values from firebase
 extension ProductsViewController {
     
     func setupPrevValues() {
@@ -229,7 +230,8 @@ extension ProductsViewController {
             do {
                 currentPost = try await ReceivedCurrentPost.init(uuidCurrentPost: uuid)
                 guard currentPost != nil else { return }
-                currentPost!.dictionaryToVariables(completion: { result in
+                currentPost!.dictionaryToVariables(completion: { [weak self] result in
+                    guard let self = self else { return }
                     switch result {
                     case .success(_):
                         if let name = self.currentPost!.name {

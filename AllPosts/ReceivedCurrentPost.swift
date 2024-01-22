@@ -22,6 +22,7 @@ class ReceivedCurrentPost {
     var userID: String?
     var number: String?
     var address: String?
+    var date: String?
     
     init(uuidCurrentPost: UUID) async throws {
         do{
@@ -105,18 +106,34 @@ class ReceivedCurrentPost {
         if let address = data["Address"] as? String {
             self.address = address
         }
+        if let date = data["Date"] as? String {
+            self.date = date
+        }
         if let imageURLArray = data["Images"] as? [String] {
             for imageURL in imageURLArray {
-                SDWebImageManager.shared.loadImage(with: URL(string: imageURL), progress: nil) { image, imageData, error, cache, boolData, url in
+                SDWebImageManager.shared.loadImage(with: URL(string: imageURL), progress: nil) { [weak self] image, imageData, error, cache, boolData, url in
                     if let error {
                         completion(.failure(error)) //TODO: - alert
                     }
                     if let image {
-                        self.image.append(image)
+                        self?.image.append(image)
                         completion(.success(true))
                     }
                 }
             }
         }
     }
+//    deinit {
+//        print("OK 3")
+//        uuid = nil
+//        name = nil
+//        information = nil
+//        price = nil
+//        image.removeAll()
+//        category = nil
+//        userID = nil
+//        number = nil
+//        address = nil
+//        date = nil
+//    }
 }

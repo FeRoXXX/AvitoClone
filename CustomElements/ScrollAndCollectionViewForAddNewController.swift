@@ -95,6 +95,7 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
         cell.publicationPrice.text = postsArray[indexPath.row].price
         cell.publicationTime.text = postsArray[indexPath.row].date
         cell.sellerAdress.text = postsArray[indexPath.row].address
+        cell.likeImage.isHidden = true
         
         return cell
     }

@@ -14,6 +14,11 @@ class UniversalCellDetailsViewController: UIViewController {
     @IBOutlet weak var publicationName: UILabel!
     @IBOutlet weak var city: UILabel!
     @IBOutlet weak var aboutPublication: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var callButton: UIButton!
+    
+    @IBOutlet weak var cartButton: UIButton!
     var buttonFlag: Bool?
     var uuid : UUID?
     var currentPost : ReceivedCurrentPost?
@@ -118,6 +123,12 @@ class UniversalCellDetailsViewController: UIViewController {
                         if let information = self.currentPost!.information {
                             self.aboutPublication.text = information
                         }
+                        if let city = self.currentPost!.address {
+                            self.city.text = city
+                        }
+                        if let date = self.currentPost!.date {
+                            self.dateLabel.text = date
+                        }
                         self.imageArray = self.currentPost!.image
                         self.imageView.image = self.currentPost!.image.first
                     case .failure(let failure):
@@ -129,5 +140,14 @@ class UniversalCellDetailsViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func callPressed(_ sender: Any) {
+        if let number = self.currentPost!.number {
+            self.callButton.setTitle(number, for: .normal)
+        }
+    }
+    
+    @IBAction func addToCartClicked(_ sender: Any) {
+    }
+    
 }

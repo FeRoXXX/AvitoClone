@@ -23,8 +23,8 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         setup()
-        setupTableView()
         getAllPosts()
+        setupTableView()
         searchTopBar.collectionView = collectionView
         searchTopBar.tableView = self.tableView
         searchTopBar.viewController = (self, nil)

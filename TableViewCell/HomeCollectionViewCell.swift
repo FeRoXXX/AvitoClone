@@ -15,11 +15,20 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var publicationTime: UILabel!
     @IBOutlet weak var likeImage: UIImageView!
     
+    var handleTapped: (() -> (Void))?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         publicationImage.layer.cornerRadius = 5
+        likeImage.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addLike))
+        likeImage.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func addLike() {
+        handleTapped?()
     }
 
 }
