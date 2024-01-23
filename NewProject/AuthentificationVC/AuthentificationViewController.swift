@@ -30,6 +30,7 @@ class AuthentificationViewController: UIViewController {
         repeatPassword.attributedPlaceholder = NSAttributedString(string: "Повторите пароль", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
     }
 
+    //MARK: - Open google auth web model and get result
     @IBAction func logInWithGoogleClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         FireAuth.share.logInWithGoogle(presenting: self) {  result, error in
@@ -57,6 +58,7 @@ class AuthentificationViewController: UIViewController {
         }
     }
     
+    //MARK: - Check input data + request to firebase, write if data correctly and push to vc
     @IBAction func signUpClicked(_ sender: Any) {
         activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.3) {
@@ -110,6 +112,7 @@ class AuthentificationViewController: UIViewController {
         checkSignUp = true
     }
     
+    //MARK: - Check input data + request to firebase and get result
     @IBAction func logInClicked(_ sender: Any) {
         self.activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.3) {

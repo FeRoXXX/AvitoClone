@@ -175,3 +175,12 @@ extension SearchViewController {
         }
     }
 }
+
+//MARK: - setup search top bar
+extension SearchViewController {
+    func setupSearchTopBar() {
+        searchTopBar.collectionView = collectionView
+        searchTopBar.tableView = self.tableView
+        searchTopBar.viewController = (nil, self)
+    }
+}

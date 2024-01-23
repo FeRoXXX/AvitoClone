@@ -22,6 +22,13 @@
 		2726E4EA2B26248700850B31 /* CustomProfileTopBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2726E4E92B26248700850B31 /* CustomProfileTopBar.xib */; };
 		273363952B5E9F6A00C0A3FE /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363932B5E9F6A00C0A3FE /* FavouriteViewController.swift */; };
 		273363962B5E9F6A00C0A3FE /* FavouriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 273363942B5E9F6A00C0A3FE /* FavouriteViewController.xib */; };
+		2733639C2B5FCCBC00C0A3FE /* UniversalCellDetailsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2733639B2B5FCCBC00C0A3FE /* UniversalCellDetailsViewController+Extensions.swift */; };
+		273363A22B5FDC9800C0A3FE /* ProductsViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363A12B5FDC9800C0A3FE /* ProductsViewController+Extensions.swift */; };
+		273363A42B5FDCD800C0A3FE /* ScrollAndCollectionViewForAddNewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363A32B5FDCD800C0A3FE /* ScrollAndCollectionViewForAddNewController+Extensions.swift */; };
+		273363A62B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363A52B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift */; };
+		273363A82B5FE0C800C0A3FE /* FavouriteViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363A72B5FE0C800C0A3FE /* FavouriteViewController+Extensions.swift */; };
+		273363AA2B5FE10000C0A3FE /* AddNewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363A92B5FE10000C0A3FE /* AddNewController+Extensions.swift */; };
+		273363AC2B5FE18400C0A3FE /* SettingsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273363AB2B5FE18400C0A3FE /* SettingsController+Extensions.swift */; };
 		2757C6DE2B400CDF00F8D630 /* FireLoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6DD2B400CDF00F8D630 /* FireLoadData.swift */; };
 		2757C6E02B40390600F8D630 /* FireGetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6DF2B40390600F8D630 /* FireGetData.swift */; };
 		2757C6E42B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C6E22B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift */; };
@@ -101,6 +108,13 @@
 		2726E4E92B26248700850B31 /* CustomProfileTopBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileTopBar.xib; sourceTree = "<group>"; };
 		273363932B5E9F6A00C0A3FE /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		273363942B5E9F6A00C0A3FE /* FavouriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteViewController.xib; sourceTree = "<group>"; };
+		2733639B2B5FCCBC00C0A3FE /* UniversalCellDetailsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversalCellDetailsViewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363A12B5FDC9800C0A3FE /* ProductsViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductsViewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363A32B5FDCD800C0A3FE /* ScrollAndCollectionViewForAddNewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollAndCollectionViewForAddNewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363A52B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewProfilePhotoViewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363A72B5FE0C800C0A3FE /* FavouriteViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteViewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363A92B5FE10000C0A3FE /* AddNewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewController+Extensions.swift"; sourceTree = "<group>"; };
+		273363AB2B5FE18400C0A3FE /* SettingsController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsController+Extensions.swift"; sourceTree = "<group>"; };
 		2757C6DD2B400CDF00F8D630 /* FireLoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireLoadData.swift; sourceTree = "<group>"; };
 		2757C6DF2B40390600F8D630 /* FireGetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireGetData.swift; sourceTree = "<group>"; };
 		2757C6E22B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProfilePhotoViewController.swift; sourceTree = "<group>"; };
@@ -186,24 +200,10 @@
 		2726E49E2B20B68E00850B31 = {
 			isa = PBXGroup;
 			children = (
-				278035972B514E720040EC4C /* UniversalCellsDetail */,
-				2780358D2B5128470040EC4C /* Extension */,
-				27B70BA22B4F96BD00662987 /* SearchVC */,
-				27B70B9D2B4ED59100662987 /* Navigation */,
-				2757C7082B4D74EE00F8D630 /* GlobalFunctions */,
-				2757C7052B4D707B00F8D630 /* AllPosts */,
-				2757C6F22B495F9600F8D630 /* AddNewControllerPages */,
-				2757C6E12B480C3C00F8D630 /* SettingsControllerPages */,
-				27778E2A2B3DC4D900163A16 /* UserData */,
-				27778E272B3DBDEC00163A16 /* Requests */,
-				2726E4E62B26244900850B31 /* CustomElements */,
-				2726E4E12B26109E00850B31 /* TableViewCell */,
-				2726E4C42B20BD4C00850B31 /* TabBar */,
-				2726E4C12B20B87500850B31 /* AuthentificationVC */,
-				2726E4A92B20B68E00850B31 /* NewProject */,
-				2726E4A82B20B68E00850B31 /* Products */,
-				0E2BF35148A2AD96BAD6A4A7 /* Pods */,
 				E2053904F544D3FBAA007C75 /* Frameworks */,
+				2726E4A92B20B68E00850B31 /* NewProject */,
+				0E2BF35148A2AD96BAD6A4A7 /* Pods */,
+				2726E4A82B20B68E00850B31 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,10 +218,24 @@
 		2726E4A92B20B68E00850B31 /* NewProject */ = {
 			isa = PBXGroup;
 			children = (
-				27B70B9C2B4ED21200662987 /* Supporting */,
 				27778E212B3DA57200163A16 /* GoogleService-Info.plist */,
-				2726E4BB2B20B69000850B31 /* Info.plist */,
 				2726E4B32B20B68E00850B31 /* NewProject.xcdatamodeld */,
+				2726E4BB2B20B69000850B31 /* Info.plist */,
+				2757C6F22B495F9600F8D630 /* AddNewControllerPages */,
+				2757C7052B4D707B00F8D630 /* AllPosts */,
+				2726E4C12B20B87500850B31 /* AuthentificationVC */,
+				2726E4E62B26244900850B31 /* CustomElements */,
+				2780358D2B5128470040EC4C /* Extension */,
+				2757C7082B4D74EE00F8D630 /* GlobalFunctions */,
+				27B70B9D2B4ED59100662987 /* Navigation */,
+				27778E272B3DBDEC00163A16 /* Requests */,
+				27B70BA22B4F96BD00662987 /* SearchVC */,
+				2757C6E12B480C3C00F8D630 /* SettingsControllerPages */,
+				27B70B9C2B4ED21200662987 /* Supporting */,
+				2726E4C42B20BD4C00850B31 /* TabBar */,
+				2726E4E12B26109E00850B31 /* TableViewCell */,
+				278035972B514E720040EC4C /* UniversalCellsDetail */,
+				27778E2A2B3DC4D900163A16 /* UserData */,
 			);
 			path = NewProject;
 			sourceTree = "<group>";
@@ -359,6 +373,13 @@
 				2780358E2B5128790040EC4C /* SearchViewController+Extensions.swift */,
 				278035902B512BBB0040EC4C /* HomeController+Extensions.swift */,
 				278035952B514DF00040EC4C /* CustomSearchAndSortField+Extensions.swift */,
+				273363A12B5FDC9800C0A3FE /* ProductsViewController+Extensions.swift */,
+				2733639B2B5FCCBC00C0A3FE /* UniversalCellDetailsViewController+Extensions.swift */,
+				273363A32B5FDCD800C0A3FE /* ScrollAndCollectionViewForAddNewController+Extensions.swift */,
+				273363A52B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift */,
+				273363A72B5FE0C800C0A3FE /* FavouriteViewController+Extensions.swift */,
+				273363A92B5FE10000C0A3FE /* AddNewController+Extensions.swift */,
+				273363AB2B5FE18400C0A3FE /* SettingsController+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -561,6 +582,7 @@
 				2726E4CE2B20C2BA00850B31 /* SettingsController.swift in Sources */,
 				2757C70A2B4D750B00F8D630 /* GlobalFunctions.swift in Sources */,
 				277687512B39C1F4005C3784 /* CustomViewButtonForRating.swift in Sources */,
+				273363A62B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift in Sources */,
 				2757C7022B49BC1000F8D630 /* UploadNewPost.swift in Sources */,
 				27778E142B3D6A3E00163A16 /* ScrollAndCollectionViewForAddNewController.swift in Sources */,
 				2757C6E72B480CA000F8D630 /* AddNewPhotoTopBar.swift in Sources */,
@@ -568,10 +590,15 @@
 				2757C6F72B49603300F8D630 /* NewPublicationFirst.swift in Sources */,
 				27778E2F2B3F02A100163A16 /* RegistrationViewController.swift in Sources */,
 				278035942B5145A10040EC4C /* HomeController+Protocol.swift in Sources */,
+				273363AA2B5FE10000C0A3FE /* AddNewController+Extensions.swift in Sources */,
 				2780359F2B515A850040EC4C /* ReceivedCurrentPost.swift in Sources */,
 				277687482B39A5F8005C3784 /* ProfileInfoCell.swift in Sources */,
 				27778E292B3DBE1000163A16 /* FireAuth.swift in Sources */,
 				27B70BA02B4ED5B000662987 /* RootNavigationViewController.swift in Sources */,
+				273363AC2B5FE18400C0A3FE /* SettingsController+Extensions.swift in Sources */,
+				2733639C2B5FCCBC00C0A3FE /* UniversalCellDetailsViewController+Extensions.swift in Sources */,
+				273363A82B5FE0C800C0A3FE /* FavouriteViewController+Extensions.swift in Sources */,
+				273363A22B5FDC9800C0A3FE /* ProductsViewController+Extensions.swift in Sources */,
 				27778E2C2B3DC4F100163A16 /* UserAuthData.swift in Sources */,
 				2726E4C72B20BD8F00850B31 /* MainTabBarViewController.swift in Sources */,
 				27778E102B3D66CE00163A16 /* NoPublicationView.swift in Sources */,
@@ -579,6 +606,7 @@
 				2726E4B52B20B68E00850B31 /* NewProject.xcdatamodeld in Sources */,
 				2780358F2B5128790040EC4C /* SearchViewController+Extensions.swift in Sources */,
 				2757C6E42B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift in Sources */,
+				273363A42B5FDCD800C0A3FE /* ScrollAndCollectionViewForAddNewController+Extensions.swift in Sources */,
 				277687682B3B24A6005C3784 /* HomeCollectionViewCell.swift in Sources */,
 				2757C6DE2B400CDF00F8D630 /* FireLoadData.swift in Sources */,
 				2726E4CA2B20C29000850B31 /* HomeController.swift in Sources */,

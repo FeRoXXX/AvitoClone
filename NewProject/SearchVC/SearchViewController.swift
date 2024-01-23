@@ -26,9 +26,7 @@ class SearchViewController: UIViewController {
         setupTableView()
         getAllPosts()
         setupCollectionView()
-        searchTopBar.collectionView = collectionView
-        searchTopBar.tableView = self.tableView
-        searchTopBar.viewController = (nil, self)
+        setupSearchTopBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {

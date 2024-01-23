@@ -31,6 +31,7 @@ class NewPublicationFirst: UIViewController {
     }
 }
 
+//MARK: - setup table view
 extension NewPublicationFirst: UITableViewDelegate, UITableViewDataSource {
     
     private func setupTableView() {

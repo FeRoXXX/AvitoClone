@@ -1,42 +1,16 @@
 //
-//  AddNewController.swift
+//  AddNewController+Extensions.swift
 //  NewProject
 //
-//  Created by Александр Федоткин on 28.12.2023.
+//  Created by Александр Федоткин on 23.01.2024.
 //
 
 import UIKit
 
-class AddNewController: UIViewController {
-    @IBOutlet weak var noPublication: NoPublicationView!
-    @IBOutlet weak var myPublicationView: ScrollAndCollectionViewForAddNewController!
-    @IBOutlet weak var topBar: MyPostsTopBar!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        loadingIndicator.hidesWhenStopped = true
-        self.checkAvailabilityPublication()
-        self.setupPublication()
-        
-        noPublication.addPublication = { [weak self] in
-            self?.handleButtonTapped()
-        }
-        topBar.newPublicationClicked = { [weak self] in
-            self?.handleButtonTapped()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        myPublicationView.vc = self
-    }
-}
-
 //MARK: - supporting function
-private extension AddNewController {
+extension AddNewController {
     
-    private func checkAvailabilityPublication() {
+    func checkAvailabilityPublication() {
         if (self.myPublicationView.getNumOfSections() != 0) {
             self.noPublication.isHidden = true
             self.myPublicationView.isHidden = false
@@ -48,7 +22,7 @@ private extension AddNewController {
         }
     }
     
-    private func handleButtonTapped() {
+    func handleButtonTapped() {
         let addNew = NewPublicationFirst()
         self.hidesBottomBarWhenPushed = true
         if let navigationController = self.navigationController {
@@ -59,9 +33,9 @@ private extension AddNewController {
 }
 
 //MARK: - search publication and setup collectionView
-private extension AddNewController {
+extension AddNewController {
     
-    private func setupPublication() {
+    func setupPublication() {
         self.loadingIndicator.startAnimating()
         if let userId = UserAuthData.shared.uid {
             Task(priority: .high) {

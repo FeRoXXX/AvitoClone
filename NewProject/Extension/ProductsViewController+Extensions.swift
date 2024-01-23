@@ -1,102 +1,12 @@
 //
-//  ProductsViewController.swift
+//  ProductsViewController+Extensions.swift
 //  NewProject
 //
-//  Created by Александр Федоткин on 06.01.2024.
+//  Created by Александр Федоткин on 23.01.2024.
 //
 
 import UIKit
 import PhotosUI
-
-class ProductsViewController: UIViewController {
-    
-    @IBOutlet weak var addPhotoLabel: UILabel!
-    @IBOutlet weak var topBar: UniversalTopBar!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var productNameTextField: UITextField!
-    @IBOutlet weak var productInformationTextView: UITextView!
-    @IBOutlet weak var priceTextField: UITextField!
-    @IBOutlet weak var numberTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var nameToViewConstraint: NSLayoutConstraint!
-    @IBOutlet weak var numberToViewConstraint: NSLayoutConstraint!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var universalCellDetailsViewController: UniversalCellDetailsViewController?
-    var uuid: UUID?
-    
-    var imageArray = [UIImage]()
-    var indexImage: Int = 0
-    var postsArray = [UserPosts]()
-    var currentPost : ReceivedCurrentPost?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        activityIndicator.hidesWhenStopped = true
-        topBar.topBarText.text = "Добавить товар"
-        setupBackButton()
-        numberTextField.keyboardType = .numberPad
-        
-        productInformationTextView.layer.cornerRadius = 5
-        setupGesture()
-       
-        topBar.firstButton.isHidden = true
-        topBar.secondButton.isHidden = true
-        if universalCellDetailsViewController != nil {
-            setupPrevValues()
-        }
-        setupObserver()
-    }
-    
-    @objc func choosePhoto() {
-        configureImagePicker()
-    }
-    
-    @IBAction func saveButtonClicked(_ sender: Any) {
-        guard imageArray.count > 0 else { return } //TODO: - Alert
-        guard let productName = productNameTextField.text else { return } //TODO: - Alert
-        guard let information = productInformationTextView.text else { return } //TODO: - Alert
-        guard let price = priceTextField.text else { return } //TODO: - Alert
-        guard let userID = UserAuthData.shared.uid else { return }
-        guard let number = numberTextField.text else { return } // TODO: - Alert
-        guard let address = addressTextField.text else { return } // TODO: - Alert
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.dateFormat = "d MMMM, HH:mm"
-        let currentDate = Date()
-        let formattedDate = dateFormatter.string(from: currentDate)
-        
-        var post : UploadNewPost?
-        if let uuid = self.uuid {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address, uuidOpt: uuid)
-        } else {
-            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address)
-        }
-        guard let post = post else { return }
-        var downloadURL = [String]()
-        
-        post.sendImageToStorage(userID: userID) { status, result in
-            if status {
-                downloadURL.append(result)
-                Task {
-                    do {
-                        try await post.sendPostDataToFirebase(downloadURL: downloadURL, userID: userID)
-                        if let navigationController = self.navigationController {
-                            navigationController.popToRootViewController(animated: true)
-                        }
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            } else {
-                print(result)
-            }
-        }
-    }
-    deinit {
-           NotificationCenter.default.removeObserver(self)
-       }
-}
 
 //MARK: - Keyboard load
 extension ProductsViewController {
@@ -270,3 +180,43 @@ extension ProductsViewController {
         }
     }
 }
+
+//MARK: - request to firebase for save publication
+extension ProductsViewController {
+    
+    func setupNewPost(productName: String, information: String, price: String, userID: String, number: String, address: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d MMMM, HH:mm"
+        let currentDate = Date()
+        let formattedDate = dateFormatter.string(from: currentDate)
+        
+        var post : UploadNewPost?
+        if let uuid = self.uuid {
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address, uuidOpt: uuid)
+        } else {
+            post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address)
+        }
+        guard let post = post else { return }
+        var downloadURL = [String]()
+        
+        post.sendImageToStorage(userID: userID) { status, result in
+            if status {
+                downloadURL.append(result)
+                Task {
+                    do {
+                        try await post.sendPostDataToFirebase(downloadURL: downloadURL, userID: userID)
+                        if let navigationController = self.navigationController {
+                            navigationController.popToRootViewController(animated: true)
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            } else {
+                print(result)
+            }
+        }
+    }
+}
+

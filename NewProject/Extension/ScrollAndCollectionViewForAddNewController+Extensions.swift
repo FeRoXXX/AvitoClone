@@ -1,51 +1,16 @@
 //
-//  ScrollAndCollectionViewForAddNewController.swift
+//  ScrollAndCollectionViewForAddNewController+Extensions.swift
 //  NewProject
 //
-//  Created by Александр Федоткин on 28.12.2023.
+//  Created by Александр Федоткин on 23.01.2024.
 //
 
 import UIKit
 
-class ScrollAndCollectionViewForAddNewController: UIView {
-    @IBOutlet weak var myPublicationCollectionView: UICollectionView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    let refreshControl = UIRefreshControl()
+//MARK: - get publication from firebase
+extension ScrollAndCollectionViewForAddNewController {
     
-    var postsArray = [UserPosts]()
-    var vc : UIViewController?
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        loadView()
-        setup()
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        scrollView.addSubview(refreshControl)
-        scrollView.refreshControl = refreshControl
-    }
-    
-    private func loadView() {
-        let subview = loadFromNib()
-        
-        self.addSubview(subview)
-    }
-    
-    private func loadFromNib() -> UIView {
-        guard let bundle = Bundle.main.loadNibNamed("ScrollAndCollectionViewForAddNewController", owner: self)?.first as? UIView else { return UIView() }
-        
-        return bundle
-    }
-    
-    func loadData() {
-        postsArray.removeAll()
-        setupPublication()
-    }
-    @objc func refreshData() {
-        loadData()
-    }
-    
-    private func setupPublication() {
+    func setupPublication() {
         if let userId = UserAuthData.shared.uid {
             Task(priority: .high) {
                 do {
@@ -70,11 +35,11 @@ class ScrollAndCollectionViewForAddNewController: UIView {
             }
         }
     }
+    
 }
-
 //MARK: - setup collectionView
 extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    private func setup() {
+    func setup() {
         myPublicationCollectionView.delegate = self
         myPublicationCollectionView.dataSource = self
         myPublicationCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCollectionViewCell")
@@ -130,3 +95,4 @@ extension ScrollAndCollectionViewForAddNewController {
         return postsArray.count
     }
 }
+
