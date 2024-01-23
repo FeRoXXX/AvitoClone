@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationViewController" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Mek-LV-9iG" id="hC3-4F-W1F"/>
                 <outlet property="organisationButton" destination="XJh-Ih-IkO" id="EJ6-EN-MPY"/>
                 <outlet property="organizationNameTextField" destination="rpn-Vx-yf5" id="0Xd-6A-19w"/>
                 <outlet property="profileNameTextField" destination="JGt-7t-7QH" id="RzT-ND-zS5"/>
@@ -70,15 +71,21 @@
                         </textField>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Mek-LV-9iG">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="Mek-LV-9iG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0eD-9c-u4Y"/>
                 <constraint firstItem="cQN-Nd-7V5" firstAttribute="top" secondItem="UEH-p3-dIR" secondAttribute="bottom" constant="133.33000000000001" id="2Zc-D6-hoS"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5Gh-gw-OaG"/>
                 <constraint firstItem="cQN-Nd-7V5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7xs-rj-0GW"/>
                 <constraint firstItem="UEH-p3-dIR" firstAttribute="top" secondItem="keo-0r-qMc" secondAttribute="bottom" constant="100" id="9tb-pO-YIz"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FIc-fm-3an"/>
+                <constraint firstItem="Mek-LV-9iG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ODn-Qc-9dA"/>
                 <constraint firstItem="keo-0r-qMc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="g5x-Vf-dcT"/>
                 <constraint firstItem="UEH-p3-dIR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xBD-hz-hQh"/>
             </constraints>

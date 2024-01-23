@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Kv2-PT-g8T" id="oeU-xO-tly"/>
+                <outlet property="loadingIndicator" destination="JSn-JL-hs4" id="rf2-rJ-yw2"/>
                 <outlet property="searchTopBar" destination="X0S-r6-Uae" id="ZYo-X7-1Dy"/>
                 <outlet property="tableView" destination="9nd-Ic-ZUM" id="itA-l8-jqy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -68,6 +69,10 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="xSx-Ua-OJ4"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="wZm-j5-9UJ"/>
                 </scrollView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="JSn-JL-hs4">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,9 +81,11 @@
                 <constraint firstItem="wx0-PY-3HW" firstAttribute="top" secondItem="X0S-r6-Uae" secondAttribute="top" id="Gwr-Fv-oTK"/>
                 <constraint firstItem="X0S-r6-Uae" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="J7r-ja-FMy"/>
                 <constraint firstItem="X0S-r6-Uae" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="JWY-JH-Bvk"/>
+                <constraint firstItem="JSn-JL-hs4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ju3-7n-hIB"/>
                 <constraint firstItem="X0S-r6-Uae" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="VQj-4v-GIY"/>
                 <constraint firstItem="X0S-r6-Uae" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YkN-b3-DKH"/>
                 <constraint firstItem="X0S-r6-Uae" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rRy-pN-S6E"/>
+                <constraint firstItem="JSn-JL-hs4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="sUL-C9-TEh"/>
             </constraints>
             <point key="canvasLocation" x="84.732824427480907" y="-11.267605633802818"/>
         </view>

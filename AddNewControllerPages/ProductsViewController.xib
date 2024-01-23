@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductsViewController" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="WW7-bV-ABS" id="zuy-7T-jEN"/>
                 <outlet property="addPhotoLabel" destination="cnD-z7-Tbz" id="asA-Nx-d1B"/>
                 <outlet property="addressTextField" destination="IFT-Uo-swE" id="qly-bs-ZYa"/>
                 <outlet property="imageView" destination="w68-SP-GUQ" id="8Th-UH-eSa"/>
@@ -147,6 +148,10 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="BBl-cd-4o6"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="UL0-Ie-tfT"/>
                 </scrollView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WW7-bV-ABS">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,8 +160,10 @@
                 <constraint firstItem="Lkd-16-pY3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="H7F-EE-hPG"/>
                 <constraint firstItem="3Lr-5k-c0t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Htd-X1-ZeZ"/>
                 <constraint firstItem="PB1-78-S1I" firstAttribute="top" secondItem="Lkd-16-pY3" secondAttribute="bottom" id="OFd-oE-4jd"/>
+                <constraint firstItem="WW7-bV-ABS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Oc8-fU-QxX"/>
                 <constraint firstItem="PB1-78-S1I" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PJX-g4-2eI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3Lr-5k-c0t" secondAttribute="bottom" constant="32" id="PlA-vY-dPH"/>
+                <constraint firstItem="WW7-bV-ABS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TnT-pB-Zt8"/>
                 <constraint firstItem="PB1-78-S1I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="anK-lg-t5O"/>
                 <constraint firstItem="3Lr-5k-c0t" firstAttribute="top" secondItem="PB1-78-S1I" secondAttribute="bottom" constant="8" id="jBt-hG-cMT"/>
                 <constraint firstItem="Lkd-16-pY3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="yuN-Ik-Jpj"/>

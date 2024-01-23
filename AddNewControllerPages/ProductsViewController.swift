@@ -20,6 +20,7 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var nameToViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var numberToViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var universalCellDetailsViewController: UniversalCellDetailsViewController?
     var uuid: UUID?
@@ -31,6 +32,7 @@ class ProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.hidesWhenStopped = true
         topBar.topBarText.text = "Добавить товар"
         setupBackButton()
         numberTextField.keyboardType = .numberPad
@@ -222,6 +224,7 @@ extension ProductsViewController {
 extension ProductsViewController {
     
     func setupPrevValues() {
+        self.activityIndicator.startAnimating()
         guard let uuid = self.uuid else {
             GlobalFunctions.alert(vc: self, title: "Ошибка", message: "Произошла ошибка попробуйте позднее")
             return
@@ -229,7 +232,10 @@ extension ProductsViewController {
         Task {
             do {
                 currentPost = try await ReceivedCurrentPost.init(uuidCurrentPost: uuid)
-                guard currentPost != nil else { return }
+                guard currentPost != nil else {
+                    activityIndicator.stopAnimating()
+                    return
+                }
                 currentPost!.dictionaryToVariables(completion: { [weak self] result in
                     guard let self = self else { return }
                     switch result {
@@ -251,12 +257,15 @@ extension ProductsViewController {
                         }
                         self.imageArray = self.currentPost!.image
                         self.imageView.image = self.currentPost!.image.first
+                        self.activityIndicator.stopAnimating()
                     case .failure(let failure):
                         print(failure.localizedDescription)
+                        self.activityIndicator.stopAnimating()
                     }
                 })
             } catch {
                 print(error.localizedDescription)
+                self.activityIndicator.stopAnimating()
             }
         }
     }

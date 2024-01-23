@@ -15,6 +15,7 @@ class AuthentificationViewController: UIViewController {
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var checkSignIn = true
     private var checkSignUp = false
@@ -22,6 +23,7 @@ class AuthentificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        activityIndicator.hidesWhenStopped = true
         repeatPassword.isHidden = true
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Почта", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
@@ -29,7 +31,8 @@ class AuthentificationViewController: UIViewController {
     }
 
     @IBAction func logInWithGoogleClicked(_ sender: Any) {
-        FireAuth.share.logInWithGoogle(presenting: self) { result, error in
+        activityIndicator.startAnimating()
+        FireAuth.share.logInWithGoogle(presenting: self) {  result, error in
             if error == nil {
                 if let email = Auth.auth().currentUser?.email as? String {
                     UserAuthData.shared.email = email
@@ -46,13 +49,16 @@ class AuthentificationViewController: UIViewController {
                         }
                     }
                 }
+                self.activityIndicator.stopAnimating()
             } else {
                 print(error?.localizedDescription as? String ?? "error")
+                self.activityIndicator.stopAnimating()
             }
         }
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
+        activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.3) {
             self.repeatPassword.isHidden = false
         }
@@ -60,23 +66,27 @@ class AuthentificationViewController: UIViewController {
         if checkSignUp == true {
             guard let email = emailTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Введите почту для регистрации")
+                self.activityIndicator.stopAnimating()
                 return
             }
             guard let password = passwordTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Введите пароль")
+                self.activityIndicator.stopAnimating()
                 return
             }
             guard let repeatedPassword = repeatPassword.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Повторите пароль")
+                self.activityIndicator.stopAnimating()
                 return
             }
             
             guard password == repeatedPassword else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Пароли не совпадают")
+                self.activityIndicator.stopAnimating()
                 return
             }
             
-            FireAuth.share.signUpWithEmail(email: email, password: password) { result in
+            FireAuth.share.signUpWithEmail(email: email, password: password) {  result in
                 switch result {
                 case .success(_):
                     if let email = Auth.auth().currentUser?.email {
@@ -87,9 +97,11 @@ class AuthentificationViewController: UIViewController {
                     }
                     self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
                     self.navigationController?.setNavigationBarHidden(true, animated: true)
+                    self.activityIndicator.stopAnimating()
                 case .failure(let error):
                     print(error.localizedDescription) //TODO: - alert
                     GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Введены неверные данные")
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -99,6 +111,7 @@ class AuthentificationViewController: UIViewController {
     }
     
     @IBAction func logInClicked(_ sender: Any) {
+        self.activityIndicator.startAnimating()
         UIView.animate(withDuration: 0.3) {
             self.repeatPassword.text = ""
             self.repeatPassword.isHidden = true
@@ -107,10 +120,12 @@ class AuthentificationViewController: UIViewController {
         if checkSignIn == true {
             guard let email = emailTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка входа", message: "Введите почту для регистрации")
+                self.activityIndicator.stopAnimating()
                 return
             }
             guard let password = passwordTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка входа", message: "Введите пароль")
+                self.activityIndicator.stopAnimating()
                 return
             }
             FireAuth.share.logInWithEmail(email: email, password: password) { result in
@@ -130,14 +145,17 @@ class AuthentificationViewController: UIViewController {
                                 self.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
                                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                             }
+                            self.activityIndicator.stopAnimating()
                         }
                     }
                 case .failure(let error):
                     print(error.localizedDescription) //TODO: - alert
                     GlobalFunctions.alert(vc: self, title: "Ошибка входа", message: "Введены неверные данные")
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }
+        
         checkSignUp = false
         checkSignIn = true
     }

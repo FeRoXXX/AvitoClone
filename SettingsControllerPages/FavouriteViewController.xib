@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavouriteViewController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="SGb-41-xCX" id="93I-nn-T7k"/>
+                <outlet property="loadingIndicator" destination="GUn-5m-xpx" id="l5J-EE-Ydd"/>
                 <outlet property="topBar" destination="myh-m8-OlI" id="jcs-Yw-XYI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -60,12 +61,18 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="8ad-DN-tgR"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="HF2-SM-Kqu"/>
                 </scrollView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="GUn-5m-xpx">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.51155379700000003" green="0.46890663179999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="GUn-5m-xpx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1QU-BI-26e"/>
                 <constraint firstItem="FIF-N5-p3J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9OT-hh-MZs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FIF-N5-p3J" secondAttribute="bottom" id="CWN-GS-mZz"/>
+                <constraint firstItem="GUn-5m-xpx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Cji-IB-Yv0"/>
                 <constraint firstItem="myh-m8-OlI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="GJS-Bg-qXM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FIF-N5-p3J" secondAttribute="trailing" id="iwY-Nh-JP0"/>
                 <constraint firstItem="myh-m8-OlI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nn3-mo-qN6"/>

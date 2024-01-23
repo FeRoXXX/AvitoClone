@@ -13,6 +13,8 @@ class HomeController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var searchTopBar: CustomSearchAndSortField!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     var refreshControl = UIRefreshControl()
     
     static let shared = HomeController()
@@ -29,6 +31,7 @@ class HomeController: UIViewController {
         searchTopBar.tableView = self.tableView
         searchTopBar.viewController = (self, nil)
         setupRefreshControl()
+        self.loadingIndicator.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

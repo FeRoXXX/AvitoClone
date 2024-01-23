@@ -16,6 +16,7 @@
                 <outlet property="city" destination="1QE-nb-FRt" id="DGq-7j-QOF"/>
                 <outlet property="dateLabel" destination="EBB-s2-OA5" id="BbH-Fn-iuZ"/>
                 <outlet property="imageView" destination="tNC-7l-eXD" id="29H-g3-PpM"/>
+                <outlet property="loadingIndicator" destination="1Rh-B9-kwM" id="mrL-tv-f2Y"/>
                 <outlet property="publicationName" destination="mHE-0r-XlB" id="duo-Ic-uug"/>
                 <outlet property="publicationPrice" destination="JQc-bm-BU7" id="pJf-XK-8kd"/>
                 <outlet property="topBar" destination="90O-5W-gbO" id="6aw-Sh-d6t"/>
@@ -119,6 +120,11 @@
                         <constraint firstItem="4s6-jO-eU8" firstAttribute="width" secondItem="fNa-Zh-nFV" secondAttribute="width" id="QfW-aq-wYq"/>
                     </constraints>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1Rh-B9-kwM">
+                    <rect key="frame" x="186" y="408" width="20" height="34.333333333333314"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewController" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="loadingIndicator" destination="n3Y-9w-mkv" id="QyS-qH-IlE"/>
                 <outlet property="myPublicationView" destination="aFB-Gm-u7V" id="5w8-na-qZJ"/>
                 <outlet property="noPublication" destination="XVS-Mc-JiC" id="fGu-fN-yKn"/>
                 <outlet property="topBar" destination="Lu8-1C-6BJ" id="VZV-Pu-ygy"/>
@@ -39,6 +40,10 @@
                     <rect key="frame" x="0.0" y="112" width="393" height="706"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="n3Y-9w-mkv">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,7 +57,9 @@
                 <constraint firstItem="Lu8-1C-6BJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="VGl-1R-PLi"/>
                 <constraint firstItem="aFB-Gm-u7V" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Vdh-vl-LfO"/>
                 <constraint firstItem="Lu8-1C-6BJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eZG-dA-nbP"/>
+                <constraint firstItem="n3Y-9w-mkv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="iOL-gB-diI"/>
                 <constraint firstItem="aFB-Gm-u7V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qeN-6m-qWk"/>
+                <constraint firstItem="n3Y-9w-mkv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yVr-N3-GXt"/>
             </constraints>
             <point key="canvasLocation" x="87.786259541984734" y="-11.267605633802818"/>
         </view>

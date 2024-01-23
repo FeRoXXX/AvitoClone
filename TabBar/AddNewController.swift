@@ -11,10 +11,12 @@ class AddNewController: UIViewController {
     @IBOutlet weak var noPublication: NoPublicationView!
     @IBOutlet weak var myPublicationView: ScrollAndCollectionViewForAddNewController!
     @IBOutlet weak var topBar: MyPostsTopBar!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadingIndicator.hidesWhenStopped = true
         self.checkAvailabilityPublication()
         self.setupPublication()
         
@@ -60,27 +62,34 @@ private extension AddNewController {
 private extension AddNewController {
     
     private func setupPublication() {
+        self.loadingIndicator.startAnimating()
         if let userId = UserAuthData.shared.uid {
             Task(priority: .high) {
                 do {
                     let posts = try await UserPosts.init(userID: userId)
-                    guard posts.data.count > 0 else { return }
+                    guard posts.data.count > 0 else {
+                        self.loadingIndicator.stopAnimating()
+                        return
+                    }
                     for postIndex in (0...posts.data.count - 1) {
                         let newPost = UserPosts(postData: posts.data)
-                        newPost.dictionaryToVariables(index: postIndex) { result in
+                        newPost.dictionaryToVariables(index: postIndex) { [weak self]result in
                             switch result {
                             case .success(_):
-                                self.myPublicationView.postsArray.append(newPost)
-                                self.myPublicationView.myPublicationCollectionView.reloadData()
+                                self?.myPublicationView.postsArray.append(newPost)
+                                self?.myPublicationView.myPublicationCollectionView.reloadData()
                                 
-                                self.checkAvailabilityPublication()
+                                self?.checkAvailabilityPublication()
+                                self?.loadingIndicator.stopAnimating()
                             case .failure(let failure):
                                 print(failure.localizedDescription)
+                                self?.loadingIndicator.stopAnimating()
                             }
                         }
                     }
                 } catch {
                     print(error.localizedDescription)
+                    self.loadingIndicator.stopAnimating()
                 }
             }
         }

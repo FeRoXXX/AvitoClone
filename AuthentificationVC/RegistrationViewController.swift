@@ -16,6 +16,8 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var tableViewButton: UIButton!
     @IBOutlet weak var organisationButton: UIButton!
     @IBOutlet weak var organizationNameTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     private var selectCity: String?
     
     lazy var actionClosure: (UIAction) -> Void = { [weak self] action in
@@ -56,6 +58,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.hidesWhenStopped = true
         organizationNameTextField.isHidden = true
         setupDropDownMenu()
         topBar.backButtonTapped = { [weak self] in
@@ -65,12 +68,15 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
+        activityIndicator.startAnimating()
         guard let cityName = selectCity else {
             GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите город")
+            self.activityIndicator.stopAnimating()
             return
         }
         guard let userName = profileNameTextField.text else {
             GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите имя пользователя")
+            self.activityIndicator.stopAnimating()
             return
         }
         var organizationName = ""
@@ -79,6 +85,7 @@ class RegistrationViewController: UIViewController {
         } else {
             guard let text = organizationNameTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите название организации")
+                self.activityIndicator.stopAnimating()
                 return
             }
             organizationName = text
@@ -98,8 +105,10 @@ class RegistrationViewController: UIViewController {
                 mainScreen.modalPresentationStyle = .fullScreen
                 mainScreen.modalTransitionStyle = .flipHorizontal
                 self.present(mainScreen, animated: true)
+                self.activityIndicator.stopAnimating()
             } catch {
                 print(error.localizedDescription)
+                self.activityIndicator.stopAnimating()
             }
         }
     }

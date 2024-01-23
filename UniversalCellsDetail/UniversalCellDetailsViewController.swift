@@ -17,6 +17,7 @@ class UniversalCellDetailsViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var cartButton: UIButton!
     var buttonFlag: Bool?
@@ -28,6 +29,7 @@ class UniversalCellDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingIndicator.hidesWhenStopped = true
         getPostFromFirebase()
         imageView.isUserInteractionEnabled = true
         topBar.backButtonTapped = { [weak self] in
@@ -103,6 +105,7 @@ class UniversalCellDetailsViewController: UIViewController {
     }
     
     func getPostFromFirebase() {
+        self.loadingIndicator.startAnimating()
         guard let uuid = self.uuid else {
             GlobalFunctions.alert(vc: self, title: "Ошибка", message: "Произошла ошибка попробуйте позднее")
             return
@@ -131,12 +134,15 @@ class UniversalCellDetailsViewController: UIViewController {
                         }
                         self.imageArray = self.currentPost!.image
                         self.imageView.image = self.currentPost!.image.first
+                        self.loadingIndicator.stopAnimating()
                     case .failure(let failure):
                         print(failure.localizedDescription)
+                        self.loadingIndicator.stopAnimating()
                     }
                 })
             } catch {
                 print(error.localizedDescription)
+                self.loadingIndicator.stopAnimating()
             }
         }
     }

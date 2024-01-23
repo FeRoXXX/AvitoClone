@@ -88,10 +88,14 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
 extension HomeController {
     
     func getAllPosts() {
+        self.loadingIndicator.startAnimating()
         Task(priority: .high) {
             do {
                 let posts = try await ReceivedAllPosts.init()
-                guard posts.data.count > 0 else { return }
+                guard posts.data.count > 0 else {
+                    self.loadingIndicator.stopAnimating()
+                    return
+                }
                 for postIndex in (0...posts.data.count - 1) {
                     let newPost = ReceivedAllPosts(postData: posts.data)
                     newPost.dictionaryToVariables(index: postIndex) { [weak self] result in
@@ -104,16 +108,19 @@ extension HomeController {
                                           let userID = UserAuthData.shared.uid else { return }
                                     try await posts.checkLike(postID: uuid, userID: userID)
                                     self?.collectionView.reloadData()
+                                    self?.loadingIndicator.stopAnimating()
                                 }
                             }
                             
                         case .failure(let failure):
                             print(failure.localizedDescription)
+                            self?.loadingIndicator.stopAnimating()
                         }
                     }
                 }
             } catch {
                 print(error.localizedDescription)
+                self.loadingIndicator.stopAnimating()
             }
         }
     }

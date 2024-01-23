@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeController" customModule="NewProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="7hZ-fD-IOZ" id="EX0-4R-ffJ"/>
+                <outlet property="loadingIndicator" destination="B9L-5X-Iza" id="rGg-es-8yC"/>
                 <outlet property="scrollView" destination="hUb-fp-f3r" id="lgW-dp-6Ca"/>
                 <outlet property="searchTopBar" destination="bXh-y4-vpN" id="kZk-FX-Jpr"/>
                 <outlet property="tableView" destination="eow-pL-RHf" id="VWj-Rt-fsQ"/>
@@ -68,12 +69,18 @@
                         <constraint firstAttribute="height" constant="51" id="whV-KJ-WIr"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="B9L-5X-Iza">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="40" id="EPx-K2-rXM"/>
                 <constraint firstItem="bXh-y4-vpN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hoe-MD-pJA"/>
+                <constraint firstItem="B9L-5X-Iza" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ody-Cn-IpA"/>
+                <constraint firstItem="B9L-5X-Iza" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="S2k-FE-TLK"/>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="59" id="SVX-eB-mEi"/>
                 <constraint firstItem="bXh-y4-vpN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dls-Wc-34z"/>
                 <constraint firstItem="hUb-fp-f3r" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dqR-fh-bAv"/>

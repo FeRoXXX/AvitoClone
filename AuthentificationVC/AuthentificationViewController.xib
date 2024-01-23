@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthentificationViewController" customModule="NewProject" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="dFE-xH-DDa" id="Yww-Lt-aHH"/>
                 <outlet property="emailTextField" destination="VoU-iQ-mMv" id="JXC-jX-q3S"/>
                 <outlet property="logInWithGoogle" destination="kc1-YC-LSW" id="Yrt-RX-nRk"/>
                 <outlet property="passwordTextField" destination="ET6-AW-5L2" id="Luy-uu-tY0"/>
@@ -105,12 +106,18 @@
                         </stackView>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dFE-xH-DDa">
+                    <rect key="frame" x="186.66666666666666" y="416" width="20" height="20"/>
+                    <color key="color" red="0.50196081400000003" green="0.47058826679999999" blue="0.75686275960000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="dFE-xH-DDa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="3UE-Ex-tAP"/>
                 <constraint firstItem="Bpd-6r-v3K" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Id3-1Q-Rwp"/>
                 <constraint firstItem="Bpd-6r-v3K" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OJc-4e-5IU"/>
+                <constraint firstItem="dFE-xH-DDa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QfC-la-D1d"/>
             </constraints>
             <point key="canvasLocation" x="61.832061068702288" y="-11.267605633802818"/>
         </view>
