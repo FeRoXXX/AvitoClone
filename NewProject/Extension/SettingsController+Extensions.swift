@@ -45,7 +45,8 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 cell.toAddPhotoVC = { [weak self] in
-                    self?.goToAddPhoto()
+                    guard let self = self else { return }
+                    self.goToAddPhoto()
                 }
                 return cell
             }

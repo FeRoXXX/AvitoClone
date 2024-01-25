@@ -181,6 +181,6 @@ extension SearchViewController {
     func setupSearchTopBar() {
         searchTopBar.collectionView = collectionView
         searchTopBar.tableView = self.tableView
-        searchTopBar.viewController = (nil, self)
+        searchTopBar.viewController = self
     }
 }

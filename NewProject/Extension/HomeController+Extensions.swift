@@ -152,10 +152,11 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let navigationController = self.navigationController {
-            let newVC = SearchViewController()
+            var newVC : SearchViewController? = SearchViewController()
             //TODO: - ARRAY WITH Search Results
-            newVC.sortedText = "Search"
-            navigationController.pushViewController(newVC, animated: true)
+            newVC!.sortedText = "Search"
+            navigationController.pushViewController(newVC!, animated: true)
+            newVC = nil
         }
         searchTopBar.searchTextField.resignFirstResponder()
         tableView.deselectRow(at: indexPath, animated: true)
@@ -167,11 +168,12 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 extension HomeController {
     func goToNewViewControllerFromSearchBar() {
         if let navigationController = self.navigationController {
-            let newVC = SearchViewController()
+            var newVC : SearchViewController? = SearchViewController()
             if let text = self.searchTopBar.searchTextField.text {
-                newVC.sortedText = text
+                newVC!.sortedText = text
             }
-            navigationController.pushViewController(newVC, animated: true)
+            navigationController.pushViewController(newVC!, animated: true)
+            newVC = nil
         }
     }
 }

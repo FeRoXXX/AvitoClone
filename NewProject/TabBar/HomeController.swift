@@ -27,20 +27,27 @@ class HomeController: UIViewController {
         setup()
         getAllPosts()
         setupTableView()
-        searchTopBar.collectionView = collectionView
-        searchTopBar.tableView = self.tableView
-        searchTopBar.viewController = (self, nil)
         setupRefreshControl()
         self.loadingIndicator.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        searchTopBar.collectionView = collectionView
+        searchTopBar.tableView = self.tableView
+        searchTopBar.viewController = self
         if firstOpen {
             firstOpen = false
         } else {
-            postsArray.removeAll()
             getAllPosts()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        searchTopBar.collectionView = nil
+        searchTopBar.tableView = nil
+        searchTopBar.viewController = nil
+        postsArray.removeAll()
     }
 }
 

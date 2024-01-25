@@ -13,10 +13,6 @@ import SDWebImage
 class FireGetData {
     static let shared = FireGetData()
     
-    private init() {
-        
-    }
-    
     func getUserDataFromFirestore(uid: String) async throws -> DocumentSnapshot {
         let db = Firestore.firestore()
         let userCollection = db.collection("Users")
@@ -61,6 +57,10 @@ class FireGetData {
                 }
             }
         }
+    }
+    
+    deinit {
+        print("FireGetData was deinited")
     }
     
 }

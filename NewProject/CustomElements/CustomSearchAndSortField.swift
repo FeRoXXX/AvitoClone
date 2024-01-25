@@ -19,9 +19,9 @@ class CustomSearchAndSortField: UIView {
     
     @IBOutlet weak var searchConstraintWithCart: NSLayoutConstraint!
     
-    var collectionView : UICollectionView?
-    var tableView : UITableView?
-    var viewController : (HomeController?, SearchViewController?)
+    weak var collectionView : UICollectionView?
+    weak var tableView : UITableView?
+    weak var viewController : UIViewController?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -41,6 +41,9 @@ class CustomSearchAndSortField: UIView {
         guard let view = Bundle.main.loadNibNamed("CustomSearchAndSortField", owner: self)?.first as? UIView else { return UIView() }
         
         return view
+    }
+    deinit {
+        print("Search top bar was deinited")
     }
 }
 

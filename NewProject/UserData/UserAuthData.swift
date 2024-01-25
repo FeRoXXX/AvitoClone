@@ -18,9 +18,6 @@ class UserAuthData {
     var profilePhoto: UIImage?
     var organizationName: String?
     
-    private init() {
-    }
-    
     func reset() {
         email = ""
         uid = ""
@@ -29,6 +26,9 @@ class UserAuthData {
         registrationYear = nil
         profilePhoto = nil
         organizationName = ""
+    }
+    deinit {
+        print("singleton was deinited")
     }
     
 }
