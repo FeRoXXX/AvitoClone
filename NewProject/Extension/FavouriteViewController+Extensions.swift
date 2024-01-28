@@ -21,7 +21,7 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
         guard postsArray.count > 0 else { return cell }
         
         cell.publicationName.text = postsArray[indexPath.row].name
-        cell.publicationImage.image = postsArray[indexPath.row].image
+        cell.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
         cell.publicationTime.text = postsArray[indexPath.row].date
         cell.sellerAdress.text = postsArray[indexPath.row].address
@@ -59,6 +59,16 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
         let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
         return CGSize(width: cellWidth, height: 260)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.setupImage()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.publicationImage.image = UIImage(systemName: "heart")
+    }
 }
 
 //MARK: - get data from base
@@ -85,8 +95,10 @@ extension FavouriteViewController {
                                         guard let uuid = posts.uuid,
                                               let userID = UserAuthData.shared.uid else { return }
                                         try await posts.checkLike(postID: uuid, userID: userID)
-                                        self?.collectionView.reloadData()
                                         self?.loadingIndicator.stopAnimating()
+                                    }
+                                    if postIndex == posts.data.count - 1 {
+                                        self?.collectionView.reloadData()
                                     }
                                 }
                             }

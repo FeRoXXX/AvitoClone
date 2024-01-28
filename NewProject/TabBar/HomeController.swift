@@ -17,14 +17,12 @@ class HomeController: UIViewController {
     
     var refreshControl = UIRefreshControl()
     
-    static let shared = HomeController()
     var postsArray = [ReceivedAllPosts]()
-    private var firstOpen = true
+    var firstOpen = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
-        setup()
         getAllPosts()
         setupTableView()
         setupRefreshControl()
@@ -37,6 +35,7 @@ class HomeController: UIViewController {
         searchTopBar.viewController = self
         if firstOpen {
             firstOpen = false
+            setup()
         } else {
             getAllPosts()
         }
@@ -44,10 +43,10 @@ class HomeController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        searchTopBar.collectionView = nil
-        searchTopBar.tableView = nil
-        searchTopBar.viewController = nil
         postsArray.removeAll()
+    }
+    deinit {
+        print("HomeVC is deinited")
     }
 }
 

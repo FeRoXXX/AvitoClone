@@ -32,5 +32,9 @@ class AddNewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         myPublicationView.vc = self
+        myPublicationView.setupPublication()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        myPublicationView.postsArray.removeAll()
     }
 }

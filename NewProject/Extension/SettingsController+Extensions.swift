@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
 
 //MARK: - Setup TableView
 extension SettingsController : UITableViewDelegate, UITableViewDataSource {
@@ -30,10 +31,6 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileInfoCell") as? ProfileInfoCell {
                 if let userName = UserAuthData.shared.name {
                     cell.firstSecondNameLabel.text = userName
-                }
-                
-                if let image = UserAuthData.shared.profilePhoto {
-                    cell.profileImageView.image = image
                 }
                 
                 if let organization = UserAuthData.shared.organizationName {
@@ -78,14 +75,13 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
         case 17:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonForLogoutCell") as? ButtonForLogoutCell {
                 cell.customButton.buttonTextLabel.text = "Выйти"
-                cell.customButton.tapHandler = {
+                cell.customButton.tapHandler = { [weak self] in
                     do{
                         try Auth.auth().signOut()
                         let authenticationVC = AuthentificationViewController()
-                        
-                        self.navigationController?.viewControllers = [authenticationVC]
                         UserAuthData.shared.reset()
-                        
+                        SDImageCache.shared.clearMemory()
+                        self?.navigationController?.viewControllers = [authenticationVC]
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -114,6 +110,7 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print("Setup")
         return 18
     }
     
@@ -137,6 +134,37 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
             print(indexPath.section)
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let cell = cell as? ProfileInfoCell
+            if let image = UserAuthData.shared.profilePhoto {
+                let resizedImage = resizeImageToFullHD(image)
+                cell?.profileImageView.image = resizedImage
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let cell = cell as? ProfileInfoCell
+            cell?.profileImageView.image = UIImage(systemName: "heart")
+        }
+    }
+    
+}
+
+//MARK: - supporting functions
+extension SettingsController {
+    
+    func resizeImageToFullHD(_ image: UIImage) -> UIImage? {
+        let targetSize = CGSize(width: 640, height: 480)
+
+        return UIGraphicsImageRenderer(size: targetSize).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+    }
+    
     private func configureCell(_ cellStyle: inout UIListContentConfiguration, image: String? = nil, text: String, secondaryText: String) {
         cellStyle.image = image.flatMap({ UIImage(systemName:  $0)?.withTintColor(.gray, renderingMode: .alwaysOriginal) })
         cellStyle.text = text
@@ -149,5 +177,4 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
         profilePhoto.modalTransitionStyle = .flipHorizontal
         self.present(profilePhoto, animated: true)
     }
-    
 }
