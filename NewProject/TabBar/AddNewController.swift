@@ -21,14 +21,20 @@ class AddNewController: UIViewController {
         self.setupPublication()
         
         noPublication.addPublication = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else { return }
+            self.handleButtonTapped()
         }
         topBar.newPublicationClicked = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else { return }
+            self.handleButtonTapped()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         myPublicationView.vc = self
+        myPublicationView.setupPublication()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        myPublicationView.postsArray.removeAll()
     }
 }

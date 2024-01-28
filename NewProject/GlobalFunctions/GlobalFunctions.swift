@@ -16,8 +16,4 @@ class GlobalFunctions {
         alert.addAction(okButton)
         vc.present(alert, animated: true)
     }
-    
-    static func quit() {
-        HomeController.shared.postsArray.removeAll()
-    }
 }

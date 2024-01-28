@@ -24,7 +24,6 @@ class ReceivedAllPosts {
     var checkedLikeImage: Bool? = false
     
     init() async throws {
-        
         do{
             let snapshot = try await getAllUserPosts()
             
@@ -181,15 +180,4 @@ class ReceivedAllPosts {
             throw error
         }
     }
-//    deinit {
-//        print("ok")
-//        uuid = nil
-//        name = nil
-//        information = nil
-//        price = nil
-//        image = nil
-//        category = nil
-//        date = nil
-//        address = nil
-//    }
 }

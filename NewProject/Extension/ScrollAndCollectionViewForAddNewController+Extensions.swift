@@ -18,11 +18,13 @@ extension ScrollAndCollectionViewForAddNewController {
                     guard posts.data.count > 0 else { return }
                     for postIndex in (0...posts.data.count - 1) {
                         let newPost = UserPosts(postData: posts.data)
-                        newPost.dictionaryToVariables(index: postIndex) { result in
+                        newPost.dictionaryToVariables(index: postIndex) { [weak self] result in
                             switch result {
                             case .success(_):
-                                self.postsArray.append(newPost)
-                                self.myPublicationCollectionView.reloadData()
+                                self?.postsArray.append(newPost)
+                                if postIndex == posts.data.count - 1 {
+                                    self?.myPublicationCollectionView.reloadData()
+                                }
                             case .failure(let failure):
                                 print(failure.localizedDescription)
                             }
@@ -56,7 +58,7 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
         guard postsArray.count > 0 else { return cell }
         
         cell.publicationName.text = postsArray[indexPath.row].name
-        cell.publicationImage.image = postsArray[indexPath.row].image
+        cell.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
         cell.publicationTime.text = postsArray[indexPath.row].date
         cell.sellerAdress.text = postsArray[indexPath.row].address
@@ -85,6 +87,15 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
             navigationController.pushViewController(detailsViewController, animated: true)
         }
         vc.hidesBottomBarWhenPushed = false
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.publicationImage.image = UIImage(systemName: "heart")
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.setupImage()
     }
 }
 

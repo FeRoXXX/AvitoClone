@@ -229,7 +229,7 @@
 				2757C7082B4D74EE00F8D630 /* GlobalFunctions */,
 				27B70B9D2B4ED59100662987 /* Navigation */,
 				27778E272B3DBDEC00163A16 /* Requests */,
-				27B70BA22B4F96BD00662987 /* SearchVC */,
+				27B70BA22B4F96BD00662987 /* SearchViewController */,
 				2757C6E12B480C3C00F8D630 /* SettingsControllerPages */,
 				27B70B9C2B4ED21200662987 /* Supporting */,
 				2726E4C42B20BD4C00850B31 /* TabBar */,
@@ -421,13 +421,13 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		27B70BA22B4F96BD00662987 /* SearchVC */ = {
+		27B70BA22B4F96BD00662987 /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
 				27B70BA32B4F96E400662987 /* SearchViewController.swift */,
 				27B70BA42B4F96E400662987 /* SearchViewController.xib */,
 			);
-			path = SearchVC;
+			path = SearchViewController;
 			sourceTree = "<group>";
 		};
 		E2053904F544D3FBAA007C75 /* Frameworks */ = {

@@ -34,5 +34,12 @@ class SearchViewController: UIViewController {
             firstOpen = false
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        postsArray.removeAll()
+    }
 
+    deinit {
+        print("Search vc deinited")
+    }
 }

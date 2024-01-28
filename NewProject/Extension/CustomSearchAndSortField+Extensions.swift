@@ -55,7 +55,6 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                     self.searchWidthConstrain.priority = UILayoutPriority(rawValue: 10.0)
                     self.layoutIfNeeded()
                     self.toBackViewConstrain.priority = UILayoutPriority(100)
-                    //self.searchWidthConstrain.priority = UILayoutPriority(250)
                     self.searchConstraintWithCart.priority = UILayoutPriority(1000)
                     self.layoutIfNeeded()
                 } completion: { _ in
@@ -73,7 +72,6 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
     //Нажимаем на кнопку
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let text = textField.text {
-            print(text)
         }
     }
     
@@ -87,7 +85,7 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
 //MARK: - Function for pushVC
 extension CustomSearchAndSortField {
     func goToNewViewControllerFromSearchBar() {
-        if let viewController = viewController.0 {
+        if let viewController = viewController {
             if let navigationController = viewController.navigationController {
                 let newVC = SearchViewController()
                 if let text = searchTextField.text {
@@ -95,7 +93,7 @@ extension CustomSearchAndSortField {
                 }
                 navigationController.pushViewController(newVC, animated: true)
             }
-        } else if let viewController = viewController.1 {
+        } else if let viewController = viewController {
             if let navigationController = viewController.navigationController {
                 let newVC = SearchViewController()
                 if let text = searchTextField.text {

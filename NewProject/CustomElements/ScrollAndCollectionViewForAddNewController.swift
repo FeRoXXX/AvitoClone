@@ -12,8 +12,8 @@ class ScrollAndCollectionViewForAddNewController: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     let refreshControl = UIRefreshControl()
     
-    var postsArray = [UserPosts]()
-    var vc : UIViewController?
+    var postsArray : [UserPosts] = []
+    weak var vc : UIViewController?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -41,7 +41,12 @@ class ScrollAndCollectionViewForAddNewController: UIView {
         postsArray.removeAll()
         setupPublication()
     }
+    
     @objc func refreshData() {
         loadData()
+    }
+    
+    deinit {
+        print("Scroll and collection was deinited")
     }
 }

@@ -13,10 +13,6 @@ import FirebaseStorage
 class FireLoadData {
     static let shared = FireLoadData()
     
-    private init() {
-        
-    }
-    
     func loadRegisterData(db: Firestore, requestData: [String : Any]) async throws {
         guard let userId = UserAuthData.shared.uid else { return } //TODO: - alert
         try await db.collection("Users").document(userId).setData(requestData)

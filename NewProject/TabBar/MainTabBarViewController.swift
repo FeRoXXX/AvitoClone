@@ -8,40 +8,46 @@
 import UIKit
 
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
-    let customTabBar = CustomTabBar()
+    var customTabBar : CustomTabBar? = CustomTabBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let homeController = UINavigationController(rootViewController: HomeController())
-        homeController.setNavigationBarHidden(true, animated: true)
-        let addNewController = UINavigationController(rootViewController: AddNewController())
-        addNewController.setNavigationBarHidden(true, animated: true)
-        let settingsController = SettingsController()
+        var homeController : UINavigationController? = UINavigationController(rootViewController: HomeController())
+        homeController!.setNavigationBarHidden(true, animated: true)
+        var addNewController : UINavigationController? = UINavigationController(rootViewController: AddNewController())
+        addNewController!.setNavigationBarHidden(true, animated: true)
+        var settingsController : SettingsController? = SettingsController()
         
-        customTabBar.delegate = self
-        view.addSubview(customTabBar)
-        self.setValue(customTabBar, forKey: "tabBar")
+        customTabBar!.delegate = self
+        view.addSubview(customTabBar!)
+        self.setValue(customTabBar!, forKey: "tabBar")
         
-        homeController.title = "Публикации"
-        homeController.tabBarItem.image = UIImage(systemName: "cart")
-        addNewController.title = "Добавить"
-        addNewController.tabBarItem.image = UIImage(systemName: "plus")
-        settingsController.title = "Настройки"
-        settingsController.tabBarItem.image = UIImage(systemName: "gearshape.2")
+        homeController!.title = "Публикации"
+        homeController!.tabBarItem.image = UIImage(systemName: "cart")
+        addNewController!.title = "Добавить"
+        addNewController!.tabBarItem.image = UIImage(systemName: "plus")
+        settingsController!.title = "Настройки"
+        settingsController!.tabBarItem.image = UIImage(systemName: "gearshape.2")
         self.modalTransitionStyle = .flipHorizontal
         
-        self.setViewControllers([homeController, addNewController, settingsController], animated: true)
+        self.setViewControllers([homeController!, addNewController!, settingsController!], animated: true)
+        homeController = nil
+        addNewController = nil
+        settingsController = nil
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         NSLayoutConstraint.activate([
-                customTabBar.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
-                customTabBar.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
-                customTabBar.topAnchor.constraint(equalTo: tabBar.topAnchor),
-                customTabBar.heightAnchor.constraint(equalTo: tabBar.heightAnchor)
+                customTabBar!.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+                customTabBar!.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+                customTabBar!.topAnchor.constraint(equalTo: tabBar.topAnchor),
+                customTabBar!.heightAnchor.constraint(equalTo: tabBar.heightAnchor)
             ])
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        customTabBar = nil
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

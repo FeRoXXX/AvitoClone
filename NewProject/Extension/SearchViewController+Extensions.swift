@@ -63,7 +63,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard postsArray.count > 0 else { return cell }
         
         cell.publicationName.text = postsArray[indexPath.row].name
-        cell.publicationImage.image = postsArray[indexPath.row].image
+        cell.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
         cell.publicationTime.text = postsArray[indexPath.row].date
         cell.sellerAdress.text = postsArray[indexPath.row].address
@@ -119,6 +119,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         hidesBottomBarWhenPushed = false
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.setupImage()
+    }
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.publicationImage.image = UIImage(systemName: "heart")
+    }
 }
 
 //MARK: - Swipe Gesture for popBack
@@ -158,8 +167,10 @@ extension SearchViewController {
                                     guard let uuid = posts.uuid,
                                           let userID = UserAuthData.shared.uid else { return }
                                     try await posts.checkLike(postID: uuid, userID: userID)
-                                    self?.collectionView.reloadData()
                                     self?.loadingIndicator.stopAnimating()
+                                }
+                                if postIndex == posts.data.count - 1 {
+                                    self?.collectionView.reloadData()
                                 }
                             }
                         case .failure(let failure):
@@ -181,6 +192,6 @@ extension SearchViewController {
     func setupSearchTopBar() {
         searchTopBar.collectionView = collectionView
         searchTopBar.tableView = self.tableView
-        searchTopBar.viewController = (nil, self)
+        searchTopBar.viewController = self
     }
 }

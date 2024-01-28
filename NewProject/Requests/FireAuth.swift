@@ -16,10 +16,6 @@ struct FireAuth {
     static let share = FireAuth()
     private var emailLink: String?
     
-    private init() {
-        
-    }
-    
     func logInWithGoogle(presenting: UIViewController, completion: @escaping(AuthDataResult?, Error?) -> Void) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 

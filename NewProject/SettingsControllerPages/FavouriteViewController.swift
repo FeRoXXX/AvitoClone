@@ -22,5 +22,9 @@ class FavouriteViewController: UIViewController {
         view.backgroundColor = .darkGray
         loadingIndicator.hidesWhenStopped = true
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        postsArray.removeAll()
+    }
 
 }

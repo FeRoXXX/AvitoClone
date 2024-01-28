@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 //MARK: - Setup collectionView
 extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -22,7 +23,7 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         guard postsArray.count > 0 else { return cell }
         
         cell.publicationName.text = postsArray[indexPath.row].name
-        cell.publicationImage.image = postsArray[indexPath.row].image
+        cell.image = postsArray[indexPath.row].image
         cell.publicationPrice.text = postsArray[indexPath.row].price
         cell.publicationTime.text = postsArray[indexPath.row].date
         cell.sellerAdress.text = postsArray[indexPath.row].address
@@ -61,6 +62,7 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Setup")
         guard postsArray.count > 0 else { return 0 }
         return postsArray.count
     }
@@ -81,6 +83,16 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         let spacingBetweenCells: CGFloat = 10.0
         let cellWidth = (collectionViewWidth - spacingBetweenCells) / 2.0
         return CGSize(width: cellWidth, height: 260)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        cell?.publicationImage.image = UIImage(systemName: "heart")
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as? HomeCollectionViewCell
+        //print(indexPath.row)
+        cell?.setupImage()
     }
 }
 
@@ -107,8 +119,10 @@ extension HomeController {
                                     guard let uuid = posts.uuid,
                                           let userID = UserAuthData.shared.uid else { return }
                                     try await posts.checkLike(postID: uuid, userID: userID)
-                                    self?.collectionView.reloadData()
                                     self?.loadingIndicator.stopAnimating()
+                                }
+                                if postIndex == posts.data.count - 1 {
+                                    self?.collectionView.reloadData()
                                 }
                             }
                             
@@ -152,10 +166,11 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let navigationController = self.navigationController {
-            let newVC = SearchViewController()
+            var newVC : SearchViewController? = SearchViewController()
             //TODO: - ARRAY WITH Search Results
-            newVC.sortedText = "Search"
-            navigationController.pushViewController(newVC, animated: true)
+            newVC!.sortedText = "Search"
+            navigationController.pushViewController(newVC!, animated: true)
+            newVC = nil
         }
         searchTopBar.searchTextField.resignFirstResponder()
         tableView.deselectRow(at: indexPath, animated: true)
@@ -167,11 +182,12 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 extension HomeController {
     func goToNewViewControllerFromSearchBar() {
         if let navigationController = self.navigationController {
-            let newVC = SearchViewController()
+            var newVC : SearchViewController? = SearchViewController()
             if let text = self.searchTopBar.searchTextField.text {
-                newVC.sortedText = text
+                newVC!.sortedText = text
             }
-            navigationController.pushViewController(newVC, animated: true)
+            navigationController.pushViewController(newVC!, animated: true)
+            newVC = nil
         }
     }
 }

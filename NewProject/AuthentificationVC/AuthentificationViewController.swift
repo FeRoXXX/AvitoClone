@@ -33,7 +33,7 @@ class AuthentificationViewController: UIViewController {
     //MARK: - Open google auth web model and get result
     @IBAction func logInWithGoogleClicked(_ sender: Any) {
         activityIndicator.startAnimating()
-        FireAuth.share.logInWithGoogle(presenting: self) {  result, error in
+        FireAuth.share.logInWithGoogle(presenting: self) { [weak self] result, error in
             if error == nil {
                 if let email = Auth.auth().currentUser?.email as? String {
                     UserAuthData.shared.email = email
@@ -42,18 +42,18 @@ class AuthentificationViewController: UIViewController {
                     UserAuthData.shared.uid = userId
                     FireAuth.share.checkUserDataExistence(uid: userId) { result, error in
                         if result?.data() == nil {
-                            self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
-                            self.navigationController?.setNavigationBarHidden(true, animated: true)
+                            self?.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                            self?.navigationController?.setNavigationBarHidden(true, animated: true)
                         } else {
-                            self.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
-                            self.navigationController?.setNavigationBarHidden(true, animated: true)
+                            self?.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
+                            self?.navigationController?.setNavigationBarHidden(true, animated: true)
                         }
                     }
                 }
-                self.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             } else {
                 print(error?.localizedDescription as? String ?? "error")
-                self.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             }
         }
     }
@@ -88,7 +88,7 @@ class AuthentificationViewController: UIViewController {
                 return
             }
             
-            FireAuth.share.signUpWithEmail(email: email, password: password) {  result in
+            FireAuth.share.signUpWithEmail(email: email, password: password) { [weak self] result in
                 switch result {
                 case .success(_):
                     if let email = Auth.auth().currentUser?.email {
@@ -97,13 +97,13 @@ class AuthentificationViewController: UIViewController {
                     if let userId = Auth.auth().currentUser?.uid {
                         UserAuthData.shared.uid = userId
                     }
-                    self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
-                    self.navigationController?.setNavigationBarHidden(true, animated: true)
-                    self.activityIndicator.stopAnimating()
+                    self?.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                    self?.navigationController?.setNavigationBarHidden(true, animated: true)
+                    self?.activityIndicator.stopAnimating()
                 case .failure(let error):
                     print(error.localizedDescription) //TODO: - alert
-                    GlobalFunctions.alert(vc: self, title: "Ошибка регистрации", message: "Введены неверные данные")
-                    self.activityIndicator.stopAnimating()
+                    GlobalFunctions.alert(vc: self!, title: "Ошибка регистрации", message: "Введены неверные данные")
+                    self?.activityIndicator.stopAnimating()
                 }
             }
         }
@@ -131,7 +131,7 @@ class AuthentificationViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 return
             }
-            FireAuth.share.logInWithEmail(email: email, password: password) { result in
+            FireAuth.share.logInWithEmail(email: email, password: password) { [weak self] result in
                 switch result {
                 case .success(_):
                     if let email = Auth.auth().currentUser?.email {
@@ -141,20 +141,20 @@ class AuthentificationViewController: UIViewController {
                         UserAuthData.shared.uid = userId
                         FireAuth.share.checkUserDataExistence(uid: userId) { result, error in
                             if result?.data() == nil {
-                                self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
-                                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                                self?.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+                                self?.navigationController?.setNavigationBarHidden(true, animated: true)
                             } else {
                                 FireGetData.shared.getDataFromUserBase()
-                                self.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
-                                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                                self?.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
+                                self?.navigationController?.setNavigationBarHidden(true, animated: true)
                             }
-                            self.activityIndicator.stopAnimating()
+                            self?.activityIndicator.stopAnimating()
                         }
                     }
                 case .failure(let error):
                     print(error.localizedDescription) //TODO: - alert
-                    GlobalFunctions.alert(vc: self, title: "Ошибка входа", message: "Введены неверные данные")
-                    self.activityIndicator.stopAnimating()
+                    GlobalFunctions.alert(vc: self!, title: "Ошибка входа", message: "Введены неверные данные")
+                    self?.activityIndicator.stopAnimating()
                 }
             }
         }
