@@ -45,6 +45,7 @@ class AuthentificationViewController: UIViewController {
                             self?.navigationController?.pushViewController(RegistrationViewController(), animated: true)
                             self?.navigationController?.setNavigationBarHidden(true, animated: true)
                         } else {
+                            FireGetData.shared.getDataFromUserBase()
                             self?.navigationController?.pushViewController(MainTabBarViewController(), animated: true)
                             self?.navigationController?.setNavigationBarHidden(true, animated: true)
                         }

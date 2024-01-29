@@ -46,9 +46,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 customTabBar!.heightAnchor.constraint(equalTo: tabBar.heightAnchor)
             ])
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        customTabBar = nil
-    }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if let tabbar = tabBar as? CustomTabBar {

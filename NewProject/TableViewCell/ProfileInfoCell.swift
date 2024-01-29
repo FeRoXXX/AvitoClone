@@ -21,7 +21,6 @@ class ProfileInfoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         profileImageView.image = UIImage(systemName: "plus")
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -34,7 +33,6 @@ class ProfileInfoCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     @objc func goToAddProfilePhoto() {
