@@ -18,22 +18,28 @@ extension ProductsViewController {
     }
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 1) { [weak self] in
+                guard let self = self else {
+                    return
+                }
                 self.imageView.alpha = 0
                 self.addPhotoLabel.alpha = 0
                 self.nameToViewConstraint.priority = UILayoutPriority(1000)
                 self.numberToViewConstraint.priority = UILayoutPriority(1000)
                 self.productNameTextField.layoutIfNeeded()
             }
-            self.imageView.isHidden = true
-            self.addPhotoLabel.isHidden = true
+            imageView.isHidden = true
+            addPhotoLabel.isHidden = true
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
-        self.imageView.isHidden = false
-        self.addPhotoLabel.isHidden = false
-        UIView.animate(withDuration: 1) {
+        imageView.isHidden = false
+        addPhotoLabel.isHidden = false
+        UIView.animate(withDuration: 1) { [weak self] in
+            guard let self = self else {
+                return
+            }
             self.imageView.alpha = 100
             self.addPhotoLabel.alpha = 100
             self.nameToViewConstraint.priority = UILayoutPriority(1)
@@ -52,12 +58,12 @@ extension ProductsViewController: PHPickerViewControllerDelegate {
         imageArray.removeAll()
         indexImage = 0
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
-                        self.imageArray.append(image)
-                        self.indexImage = 0
-                        self.updateImage()
+                        self?.imageArray.append(image)
+                        self?.indexImage = 0
+                        self?.updateImage()
                     }
                 }
             }
@@ -121,16 +127,22 @@ extension ProductsViewController {
     func updateImage() {
         guard imageArrayString.count != 0 else { return }
         if imageArray.count > 0 {
-            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: { [weak self] in
+                guard let self = self else {
+                    return
+                }
                 self.imageView.image = self.imageArray[self.indexImage]
             }, completion: nil)
         } else {
-            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
                 DispatchQueue.main.async {
-                    guard self.imageArray.count > 0 else { return }
-                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArrayString[self.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                    guard strongSelf.imageArray.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: strongSelf.imageArrayString[strongSelf.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
                         if let image = image {
-                            self.imageView.image = self.resizeImageToFullHD(image)
+                            self?.imageView.image = self?.resizeImageToFullHD(image)
                         }
                     }
                 }
@@ -144,12 +156,15 @@ extension ProductsViewController {
     
     func setupBackButton() {
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
     }
     
     private func handleButtonTapped() {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
         }
     }
@@ -159,8 +174,8 @@ extension ProductsViewController {
 extension ProductsViewController {
     
     func setupPrevValues() {
-        self.activityIndicator.startAnimating()
-        guard let uuid = self.uuid else {
+        activityIndicator.startAnimating()
+        guard let uuid = uuid else {
             GlobalFunctions.alert(vc: self, title: "Ошибка", message: "Произошла ошибка попробуйте позднее")
             return
         }
@@ -175,26 +190,29 @@ extension ProductsViewController {
                       let information = currentPost.information,
                       let city = currentPost.address,
                       let image = currentPost.image else { return }
-                self.productNameTextField.text = name
-                self.priceTextField.text = price
-                self.productInformationTextView.text = information
-                self.numberTextField.text = number
-                self.addressTextField.text = city
+                productNameTextField.text = name
+                priceTextField.text = price
+                productInformationTextView.text = information
+                numberTextField.text = number
+                addressTextField.text = city
                 for image in image {
                     imageArrayString.append(image)
                 }
-                DispatchQueue.main.async {
-                    guard self.imageArrayString.count > 0 else { return }
-                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArrayString.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    guard strongSelf.imageArrayString.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: strongSelf.imageArrayString.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
                         if let image = image {
-                            self.imageView.image = self.resizeImageToFullHD(image)
+                            self?.imageView.image = self?.resizeImageToFullHD(image)
                         }
                     }
                 }
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             } catch {
                 print(error)
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
         }
     }
@@ -219,7 +237,7 @@ extension ProductsViewController {
         let formattedDate = dateFormatter.string(from: currentDate)
         
         var post : UploadNewPost?
-        if let uuid = self.uuid {
+        if let uuid = uuid {
             post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address, uuidOpt: uuid)
         } else {
             post = UploadNewPost(name: productName, information: information, price: price, imagesArray: imageArray, category: "products", number: number, date: formattedDate, address: address)
@@ -227,13 +245,13 @@ extension ProductsViewController {
         guard let post = post else { return }
         var downloadURL = [String]()
         
-        post.sendImageToStorage(userID: userID) { status, result in
+        post.sendImageToStorage(userID: userID) { [weak self] status, result in
             if status {
                 downloadURL.append(result)
                 Task {
                     do {
                         try await post.sendPostDataToFirebase(downloadURL: downloadURL, userID: userID)
-                        if let navigationController = self.navigationController {
+                        if let navigationController = self?.navigationController {
                             navigationController.popToRootViewController(animated: true)
                         }
                     } catch {

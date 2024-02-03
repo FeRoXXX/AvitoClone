@@ -21,9 +21,9 @@ class ReceivedAllPosts {
             for document in snapshot.documents {
                 await dictionaryToVariables(data: document.data())
                 
-                guard self.postsArray.count > 0 else { continue }
-                let index = self.postsArray.count - 1
-                try await self.checkLike(index: index)
+                guard postsArray.count > 0 else { continue }
+                let index = postsArray.count - 1
+                try await checkLike(index: index)
             }
         } catch {
             throw error
@@ -36,9 +36,9 @@ class ReceivedAllPosts {
             for document in snapshot.documents {
                 await dictionaryToVariables(data: document.data())
                 
-                guard self.postsArray.count > 0 else { continue }
-                let index = self.postsArray.count - 1
-                try await self.checkLike(index: index)
+                guard postsArray.count > 0 else { continue }
+                let index = postsArray.count - 1
+                try await checkLike(index: index)
             }
         } catch {
             throw error
@@ -50,10 +50,10 @@ class ReceivedAllPosts {
             
             for document in snapshot.documents {
                 await dictionaryToVariables(data: document.data())
-                guard self.postsArray.count > 0 else { continue }
-                let index = self.postsArray.count - 1
+                guard postsArray.count > 0 else { continue }
+                let index = postsArray.count - 1
                 do {
-                    try await self.checkLike(index: index)
+                    try await checkLike(index: index)
                 } catch {
                     throw error
                 }
@@ -86,16 +86,16 @@ class ReceivedAllPosts {
               let imageURLArray = data["Images"] as? [String],
               let imageURL = imageURLArray.first else { return }
         
-            self.postsArray.append(AllPostsData(uuid: UUID(uuidString: uuid),
-                                                name: name,
-                                                information: information,
-                                                price: price,
-                                                imageURL: imageURL,
-                                                category: "Products",
-                                                date: date,
-                                                address: address,
-                                                userUUID: userUUID,
-                                                checkedLikeImage: false))
+        postsArray.append(AllPostsData(uuid: UUID(uuidString: uuid),
+                                       name: name,
+                                       information: information,
+                                       price: price,
+                                       imageURL: imageURL,
+                                       category: "Products",
+                                       date: date,
+                                       address: address,
+                                       userUUID: userUUID,
+                                       checkedLikeImage: false))
     }
     
     
@@ -152,13 +152,13 @@ class ReceivedAllPosts {
             if let result = results.data() {
                 if let usersArray = result["UserID"] as? [String] {
                     if usersArray.contains(userID) {
-                        self.postsArray[index].checkedLikeImage = true
+                        postsArray[index].checkedLikeImage = true
                     } else {
-                        self.postsArray[index].checkedLikeImage = false
+                        postsArray[index].checkedLikeImage = false
                     }
                 }
             } else {
-                self.postsArray[index].checkedLikeImage = false
+                postsArray[index].checkedLikeImage = false
             }
         } catch {
             throw error

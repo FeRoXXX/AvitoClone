@@ -21,7 +21,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         customTabBar!.delegate = self
         view.addSubview(customTabBar!)
-        self.setValue(customTabBar!, forKey: "tabBar")
+        setValue(customTabBar!, forKey: "tabBar")
         
         homeController!.title = "Публикации"
         homeController!.tabBarItem.image = UIImage(systemName: "cart")
@@ -29,9 +29,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         addNewController!.tabBarItem.image = UIImage(systemName: "plus")
         settingsController!.title = "Настройки"
         settingsController!.tabBarItem.image = UIImage(systemName: "gearshape.2")
-        self.modalTransitionStyle = .flipHorizontal
+        modalTransitionStyle = .flipHorizontal
         
-        self.setViewControllers([homeController!, addNewController!, settingsController!], animated: true)
+        setViewControllers([homeController!, addNewController!, settingsController!], animated: true)
         homeController = nil
         addNewController = nil
         settingsController = nil

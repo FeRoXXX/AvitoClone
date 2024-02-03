@@ -29,7 +29,10 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         cell.publicationTime.text = posts.postsArray[indexPath.row].date
         cell.sellerAdress.text = posts.postsArray[indexPath.row].address
         cell.handleTapped = { [weak self] in
-            self?.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
+            guard let self = self else {
+                return
+            }
+            self.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
         }
         if let userUUID = UserAuthData.shared.uid,
            let postUUID = posts.postsArray[indexPath.row].userUUID,
@@ -73,7 +76,7 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         detailsViewController.uuid = posts.postsArray[indexPath.row].uuid
         hidesBottomBarWhenPushed = true
         
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.pushViewController(detailsViewController, animated: true)
         }
         hidesBottomBarWhenPushed = false
@@ -102,12 +105,12 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
 extension HomeController {
     
     func getAllPosts() {
-        self.loadingIndicator.startAnimating()
+        loadingIndicator.startAnimating()
         posts = nil
         Task(priority: .high) {
             posts = try await ReceivedAllPosts()
             collectionView.reloadData()
-            self.loadingIndicator.stopAnimating()
+            loadingIndicator.stopAnimating()
         }
     }
 }
@@ -116,9 +119,9 @@ extension HomeController {
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func setupTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.backgroundColor = .darkGray
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .darkGray
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,7 +140,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             var newVC : SearchViewController? = SearchViewController()
             //TODO: - ARRAY WITH Search Results
             newVC!.sortedText = "Search"
@@ -153,9 +156,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - go to new vc
 extension HomeController {
     func goToNewViewControllerFromSearchBar() {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             var newVC : SearchViewController? = SearchViewController()
-            if let text = self.searchTopBar.searchTextField.text {
+            if let text = searchTopBar.searchTextField.text {
                 newVC!.sortedText = text
             }
             navigationController.pushViewController(newVC!, animated: true)

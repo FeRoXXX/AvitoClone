@@ -31,9 +31,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
     func setupImage() async throws{
         guard let image = image else { return }
         DispatchQueue.main.async {
-            SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+            SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { [weak self] image, _, error, _, _, _ in
                 if let image = image {
-                    self.publicationImage.image = self.resizeImageToFullHD(image)
+                    self?.publicationImage.image = self?.resizeImageToFullHD(image)
                 }
             }
         }

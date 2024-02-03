@@ -11,8 +11,8 @@ import SDWebImage
 //MARK: - get data from firebase
 extension UniversalCellDetailsViewController {
     func getPostFromFirebase() {
-        self.loadingIndicator.startAnimating()
-        guard let uuid = self.uuid else {
+        loadingIndicator.startAnimating()
+        guard let uuid = uuid else {
             GlobalFunctions.alert(vc: self, title: "Ошибка", message: "Произошла ошибка попробуйте позднее")
             return
         }
@@ -27,26 +27,29 @@ extension UniversalCellDetailsViewController {
                       let city = currentPost.address,
                       let date = currentPost.date,
                       let image = currentPost.image else { return }
-                self.publicationName.text = name
-                self.publicationPrice.text = price
-                self.aboutPublication.text = information
+                publicationName.text = name
+                publicationPrice.text = price
+                aboutPublication.text = information
                 self.city.text = city
-                self.dateLabel.text = date
+                dateLabel.text = date
                 for image in image {
                     imageArray.append(image)
                 }
-                DispatchQueue.main.async {
-                    guard self.imageArray.count > 0 else { return }
-                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArray.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    guard strongSelf.imageArray.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: strongSelf.imageArray.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
                         if let image = image {
-                            self.imageView.image = self.resizeImageToFullHD(image)
+                            self?.imageView.image = self?.resizeImageToFullHD(image)
                         }
                     }
                 }
-                self.loadingIndicator.stopAnimating()
+                loadingIndicator.stopAnimating()
             } catch {
                 print(error)
-                self.loadingIndicator.stopAnimating()
+                loadingIndicator.stopAnimating()
             }
         }
     }
@@ -86,11 +89,14 @@ extension UniversalCellDetailsViewController {
     func updateImage() {
         guard imageArray.count != 0 else { return }
         UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            DispatchQueue.main.async {
-                guard self.imageArray.count > 0 else { return }
-                SDWebImageManager.shared.loadImage(with: URL(string: self.imageArray[self.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                guard strongSelf.imageArray.count > 0 else { return }
+                SDWebImageManager.shared.loadImage(with: URL(string: strongSelf.imageArray[strongSelf.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
                     if let image = image {
-                        self.imageView.image = self.resizeImageToFullHD(image)
+                        self?.imageView.image = self?.resizeImageToFullHD(image)
                     }
                 }
             }
@@ -103,14 +109,23 @@ extension UniversalCellDetailsViewController {
 
     func setupTopBar() {
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
         if buttonFlag != nil, buttonFlag! {
             topBar.firstButtonTapped = { [weak self] in
-                self?.handleCorrectButtonTapped()
+                guard let self = self else {
+                    return
+                }
+                self.handleCorrectButtonTapped()
             }
             topBar.secondButtonTapped = { [weak self] in
-                self?.handleDeleteButtonTapped()
+                guard let self = self else {
+                    return
+                }
+                self.handleDeleteButtonTapped()
             }
             topBar.firstButton.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
             topBar.secondButton.setImage(UIImage(systemName: "trash"), for: .normal)
@@ -126,7 +141,7 @@ extension UniversalCellDetailsViewController {
         productsViewController.universalCellDetailsViewController = self
         productsViewController.uuid = self.uuid
         hidesBottomBarWhenPushed = true
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.pushViewController(productsViewController, animated: true)
         }
     }
@@ -136,7 +151,7 @@ extension UniversalCellDetailsViewController {
             do {
                 guard let post = post else { return }
                 try await post.deletePost()
-                if let navigationController = self.navigationController {
+                if let navigationController = navigationController {
                     self.scrollAndCollectionVC?.loadData()
                     navigationController.popViewController(animated: true)
                 }

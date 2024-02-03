@@ -64,8 +64,8 @@ class ProductsViewController: UIViewController {
         setupNewPost(productName: productName, information: information, price: price, userID: userID, number: number, address: address)
     }
     deinit {
-           NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("products vc is deinited")
-       }
+    }
 }
 

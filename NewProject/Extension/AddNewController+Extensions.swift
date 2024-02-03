@@ -11,23 +11,23 @@ import UIKit
 extension AddNewController {
     
     func checkAvailabilityPublication() {
-        if (self.myPublicationView.getNumOfSections() != 0) {
-            self.noPublication.isHidden = true
-            self.myPublicationView.isHidden = false
-            self.topBar.addNewButton.isHidden = false
+        if (myPublicationView.getNumOfSections() != 0) {
+            noPublication.isHidden = true
+            myPublicationView.isHidden = false
+            topBar.addNewButton.isHidden = false
         } else {
-            self.myPublicationView.isHidden = true
-            self.noPublication.isHidden = false
-            self.topBar.addNewButton.isHidden = true
+            myPublicationView.isHidden = true
+            noPublication.isHidden = false
+            topBar.addNewButton.isHidden = true
         }
     }
     
     func handleButtonTapped() {
         let addNew = NewPublicationFirst()
-        self.hidesBottomBarWhenPushed = true
-        if let navigationController = self.navigationController {
+        hidesBottomBarWhenPushed = true
+        if let navigationController = navigationController {
             navigationController.pushViewController(addNew, animated: true)
         }
-        self.hidesBottomBarWhenPushed = false
+        hidesBottomBarWhenPushed = false
     }
 }

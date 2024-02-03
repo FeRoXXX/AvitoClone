@@ -17,8 +17,8 @@ class AddNewController: UIViewController {
         super.viewDidLoad()
         
         loadingIndicator.hidesWhenStopped = true
-        self.myPublicationView.setup()
-        self.myPublicationView.setupPublication()
+        myPublicationView.setup()
+        myPublicationView.setupPublication()
         noPublication.isHidden = true
         myPublicationView.isHidden = false
         

@@ -21,14 +21,20 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                 tableView.alpha = 0.0
                 collectionView.isHidden = true
                 tableView.isHidden = false
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
                     tableView.alpha = 100.0
                     collectionView.alpha = 0.0
                     self.searchTextField.rightView?.alpha = 100.0
                     self.toBackViewConstrain.priority = UILayoutPriority(1000)
                     self.searchConstraintWithCart.priority = UILayoutPriority(1)
                     self.layoutIfNeeded()
-                } completion: { _ in
+                } completion: { [weak self] _ in
+                    guard let self = self else {
+                        return
+                    }
                     self.searchTextField.rightImage = nil
                     self.sortImage.image = nil
                     let button = UIButton(type: .custom)
@@ -48,7 +54,10 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
             if let tableView = self.tableView,
                let collectionView = self.collectionView {
                 collectionView.isHidden = false
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
                     tableView.alpha = 0.0
                     collectionView.alpha = 100.0
                     self.searchTextField.rightView?.alpha = 0.0
@@ -57,7 +66,10 @@ extension CustomSearchAndSortField: UITextFieldDelegate {
                     self.toBackViewConstrain.priority = UILayoutPriority(100)
                     self.searchConstraintWithCart.priority = UILayoutPriority(1000)
                     self.layoutIfNeeded()
-                } completion: { _ in
+                } completion: { [weak self] _ in
+                    guard let self = self else {
+                        return
+                    }
                     tableView.isHidden = true
                     self.searchTextField.text = ""
                     self.searchTextField.rightView = nil

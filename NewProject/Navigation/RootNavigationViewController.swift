@@ -20,7 +20,10 @@ class RootNavigationViewController: UINavigationController {
                 UserAuthData.shared.email = email
             }
             
-            FireAuth.share.checkUserDataExistence(uid: uid) { result, error in
+            FireAuth.share.checkUserDataExistence(uid: uid) { [weak self] result, error in
+                guard let self = self else {
+                    return
+                }
                 if result?.data() == nil {
                     self.setAuthenticationViewControllerRoot()
                 } else {
@@ -35,11 +38,11 @@ class RootNavigationViewController: UINavigationController {
 
     private func setMainTabBarRoot() {
         let navigationController = MainTabBarViewController()
-        self.viewControllers = [navigationController]
+        viewControllers = [navigationController]
     }
     
     private func setAuthenticationViewControllerRoot() {
         let navigationController = AuthentificationViewController()
-        self.viewControllers = [navigationController]
+        viewControllers = [navigationController]
     }
 }

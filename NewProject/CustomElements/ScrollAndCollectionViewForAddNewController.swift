@@ -38,7 +38,6 @@ class ScrollAndCollectionViewForAddNewController: UIView {
     }
     
     func loadData() {
-        //postsArray.removeAll()
         setupPublication()
     }
     

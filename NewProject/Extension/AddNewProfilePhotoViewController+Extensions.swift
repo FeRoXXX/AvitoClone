@@ -35,8 +35,8 @@ extension AddNewProfilePhotoViewController: PHPickerViewControllerDelegate {
                         print(error.localizedDescription)
                     }
                     if let image = image as? UIImage {
-                        DispatchQueue.main.async {
-                            self.previewProfileImage.image = image
+                        DispatchQueue.main.async { [weak self] in
+                            self?.previewProfileImage.image = image
                         }
                     }
                 }

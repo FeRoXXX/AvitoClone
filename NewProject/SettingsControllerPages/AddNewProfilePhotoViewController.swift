@@ -19,10 +19,13 @@ class AddNewProfilePhotoViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
-        self.previewProfileImage.layer.cornerRadius = self.previewProfileImage.bounds.width / 2
-        self.previewProfileImage.layer.masksToBounds = true
+        previewProfileImage.layer.cornerRadius = previewProfileImage.bounds.width / 2
+        previewProfileImage.layer.masksToBounds = true
     }
     
     @IBAction func makePhoto(_ sender: Any) {
@@ -43,7 +46,10 @@ class AddNewProfilePhotoViewController: UIViewController {
         let photosRef = storageRef.child("media/profilePhotos")
         if let imageData = previewProfileImage.image?.jpegData(compressionQuality: 0.8) {
             let imageRef = photosRef.child("\(String(describing: uuid)).jpg")
-            FireLoadData.shared.uploadProfileImage(reference: imageRef, data: imageData) { result in
+            FireLoadData.shared.uploadProfileImage(reference: imageRef, data: imageData) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
                 switch result {
                 case .success(_):
                     let db = Firestore.firestore()
@@ -69,7 +75,7 @@ class AddNewProfilePhotoViewController: UIViewController {
     }
     
     private func handleButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
 }

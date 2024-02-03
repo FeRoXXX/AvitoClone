@@ -18,14 +18,17 @@ class NewPublicationFirst: UIViewController {
         // Do any additional setup after loading the view.
         topBar.topBarText.text = "Выберите категорию"
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
         topBar.firstButton.isHidden = true
         topBar.secondButton.isHidden = true
     }
 
     private func handleButtonTapped() {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }
     }
@@ -64,7 +67,7 @@ extension NewPublicationFirst: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             self.hidesBottomBarWhenPushed = true
             let productsScreen = ProductsViewController()
-            if let navigationController = self.navigationController {
+            if let navigationController = navigationController {
                 navigationController.pushViewController(productsScreen, animated: true)
             }
         }

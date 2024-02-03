@@ -41,7 +41,7 @@ class UniversalCellDetailsViewController: UIViewController {
         guard let post = post,
               let currentPost = post.currentPost,
               let number = currentPost.number else { return }
-        self.callButton.setTitle(number, for: .normal)
+        callButton.setTitle(number, for: .normal)
     }
     
     @IBAction func addToCartClicked(_ sender: Any) {

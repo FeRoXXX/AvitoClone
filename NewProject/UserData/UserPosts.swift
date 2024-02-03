@@ -19,7 +19,6 @@ class UserPosts {
             
             for document in snapshot.documents {
                 await dictionaryToVariables(document.data())
-                //self.data.append(document.data())
             }
         } catch {
             throw error
@@ -48,13 +47,13 @@ class UserPosts {
               let imageURLArray = data["Images"] as? [String],
               let imageURL = imageURLArray.first else { return }
         
-        self.postsArray.append(UserPostsData(uuid: UUID(uuidString: uuid),
-                                             name: name,
-                                             information: information,
-                                             price: price,
-                                             imageURL: imageURL,
-                                             category: "products",
-                                             date: date,
-                                             address: address))
+        postsArray.append(UserPostsData(uuid: UUID(uuidString: uuid),
+                                        name: name,
+                                        information: information,
+                                        price: price,
+                                        imageURL: imageURL,
+                                        category: "products",
+                                        date: date,
+                                        address: address))
     }
 }

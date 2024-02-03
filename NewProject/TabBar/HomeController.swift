@@ -27,7 +27,7 @@ class HomeController: UIViewController {
         getAllPosts()
         setupTableView()
         setupRefreshControl()
-        self.loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.hidesWhenStopped = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,17 +38,6 @@ class HomeController: UIViewController {
             firstOpen = false
             setup()
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //postsArray.removeAll()
-        guard let posts = posts else { return }
-//        for index in 0..<posts.postsArray.count {
-//            let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? HomeCollectionViewCell
-//            cell?.publicationImage.image = UIImage(systemName: "heart")
-//            collectionView.reloadData()
-//        }
     }
     deinit {
         print("HomeVC is deinited")

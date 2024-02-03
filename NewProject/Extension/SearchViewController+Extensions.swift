@@ -65,13 +65,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
               posts.postsArray.count > 0 else { return cell }
         
         cell.publicationName.text = posts.postsArray[indexPath.row].name
-        //cell.image = posts.postsArray[indexPath.row].image
         cell.image = posts.postsArray[indexPath.row].imageURL
         cell.publicationPrice.text = posts.postsArray[indexPath.row].price
         cell.publicationTime.text = posts.postsArray[indexPath.row].date
         cell.sellerAdress.text = posts.postsArray[indexPath.row].address
         cell.handleTapped = { [weak self] in
-            self?.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
+            guard let self = self else {
+                return
+            }
+            self.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
         }
         if let userUUID = UserAuthData.shared.uid,
            let postUUID = posts.postsArray[indexPath.row].userUUID,
@@ -117,7 +119,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         detailsViewController.uuid = posts.postsArray[indexPath.row].uuid
         hidesBottomBarWhenPushed = true
         
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.pushViewController(detailsViewController, animated: true)
         }
         hidesBottomBarWhenPushed = false
@@ -138,7 +140,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 //MARK: - Swipe Gesture for popBack
 extension SearchViewController: UIGestureRecognizerDelegate {
     func setupGesture() {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.interactivePopGestureRecognizer?.delegate = self
             navigationController.interactivePopGestureRecognizer?.isEnabled = true
         }
@@ -153,12 +155,12 @@ extension SearchViewController: UIGestureRecognizerDelegate {
 extension SearchViewController {
     
     func getAllPosts() {
-        self.loadingIndicator.startAnimating()
+        loadingIndicator.startAnimating()
         Task(priority: .high) {
             posts = try await ReceivedAllPosts(sortString: sortedText)
             print("compiled")
             collectionView.reloadData()
-            self.loadingIndicator.stopAnimating()
+            loadingIndicator.stopAnimating()
         }
     }
 }

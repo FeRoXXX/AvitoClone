@@ -21,18 +21,24 @@ class RegistrationViewController: UIViewController {
     private var selectCity: String?
     
     lazy var actionClosure: (UIAction) -> Void = { [weak self] action in
-        self?.selectCity = action.title
+        guard let self = self else {
+            return
+        }
+        self.selectCity = action.title
     }
     
     lazy var actionClosureForOrganization: (UIAction) -> Void = { [weak self] action in
+        guard let self = self else {
+            return
+        }
         if action.title == "Организация" {
             UIView.animate(withDuration: 0.3) {
-                self?.organizationNameTextField.isHidden = false
+                self.organizationNameTextField.isHidden = false
             }
         } else {
             UIView.animate(withDuration: 0.3) {
-                self?.organizationNameTextField.text = ""
-                self?.organizationNameTextField.isHidden = true
+                self.organizationNameTextField.text = ""
+                self.organizationNameTextField.isHidden = true
             }
         }
     }
@@ -62,7 +68,10 @@ class RegistrationViewController: UIViewController {
         organizationNameTextField.isHidden = true
         setupDropDownMenu()
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
         
     }
@@ -71,12 +80,12 @@ class RegistrationViewController: UIViewController {
         activityIndicator.startAnimating()
         guard let cityName = selectCity else {
             GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите город")
-            self.activityIndicator.stopAnimating()
+            activityIndicator.stopAnimating()
             return
         }
         guard let userName = profileNameTextField.text else {
             GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите имя пользователя")
-            self.activityIndicator.stopAnimating()
+            activityIndicator.stopAnimating()
             return
         }
         var organizationName = ""
@@ -85,7 +94,7 @@ class RegistrationViewController: UIViewController {
         } else {
             guard let text = organizationNameTextField.text else {
                 GlobalFunctions.alert(vc: self, title: "Ошибка введенных данных", message: "Введите название организации")
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
                 return
             }
             organizationName = text
@@ -104,17 +113,17 @@ class RegistrationViewController: UIViewController {
                 let mainScreen = MainTabBarViewController()
                 mainScreen.modalPresentationStyle = .fullScreen
                 mainScreen.modalTransitionStyle = .flipHorizontal
-                self.present(mainScreen, animated: true)
-                self.activityIndicator.stopAnimating()
+                present(mainScreen, animated: true)
+                activityIndicator.stopAnimating()
             } catch {
                 print(error.localizedDescription)
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
         }
     }
     
     private func handleButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }

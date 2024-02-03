@@ -27,7 +27,10 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.publicationTime.text = posts.postsArray[indexPath.row].date
         cell.sellerAdress.text = posts.postsArray[indexPath.row].address
         cell.handleTapped = { [weak self] in
-            self?.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
+            guard let self = self else {
+                return
+            }
+            self.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
         }
         cell.likeImage.image = UIImage(systemName: "heart.fill")
         
@@ -40,8 +43,8 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
             do {
                 try await posts.addLikeToPublication(index: currentIndex)
                 posts.postsArray.remove(at: currentIndex)
-                UIView.animate(withDuration: 0.3) {
-                    self.collectionView.reloadData()
+                UIView.animate(withDuration: 0.3) { [weak self] in
+                    self?.collectionView.reloadData()
                 }
             } catch {
                 print("error")
@@ -78,12 +81,12 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
 //MARK: - get data from base
 extension FavouriteViewController {
     func getAllPosts() {
-        self.loadingIndicator.startAnimating()
+        loadingIndicator.startAnimating()
         Task(priority: .high) {
             posts = try await ReceivedAllPosts()
-            self.posts?.postsArray = posts!.postsArray.filter{$0.checkedLikeImage == true}
+            posts?.postsArray = posts!.postsArray.filter{$0.checkedLikeImage == true}
             collectionView.reloadData()
-            self.loadingIndicator.stopAnimating()
+            loadingIndicator.stopAnimating()
         }
     }
 }
@@ -94,12 +97,15 @@ extension FavouriteViewController {
     func setupTopBar() {
         topBar.topBarText.text = "Избранное"
         topBar.backButtonTapped = { [weak self] in
-            self?.handleButtonTapped()
+            guard let self = self else {
+                return
+            }
+            self.handleButtonTapped()
         }
     }
     
     func handleButtonTapped() {
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
         }
     }

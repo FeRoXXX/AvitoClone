@@ -127,7 +127,7 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 8:
-            if let navigationController = self.navigationController {
+            if let navigationController = navigationController {
                 navigationController.pushViewController(FavouriteViewController(), animated: true)
             }
         default:
@@ -140,9 +140,9 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
             let cell = cell as? ProfileInfoCell
             if let image = UserAuthData.shared.profilePhoto {
                 DispatchQueue.main.async {
-                    SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                    SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { [weak self] image, _, error, _, _, _ in
                         if let image = image {
-                            cell?.profileImageView.image = self.resizeImageToFullHD(image)
+                            cell?.profileImageView.image = self?.resizeImageToFullHD(image)
                         }
                     }
                 }
@@ -181,6 +181,6 @@ extension SettingsController {
         let profilePhoto = AddNewProfilePhotoViewController()
         profilePhoto.modalPresentationStyle = .fullScreen
         profilePhoto.modalTransitionStyle = .flipHorizontal
-        self.present(profilePhoto, animated: true)
+        present(profilePhoto, animated: true)
     }
 }

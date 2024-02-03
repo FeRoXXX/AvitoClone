@@ -38,7 +38,7 @@ class ReceivedCurrentPost {
     }
     
     private func deleteImage() async throws {
-        guard let currentPost = self.currentPost,
+        guard let currentPost = currentPost,
               let userID = currentPost.userID,
               let uuid = currentPost.uuid else { return }
         let storage = Storage.storage()
