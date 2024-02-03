@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    var postsArray = [ReceivedAllPosts]()
+    var posts : ReceivedAllPosts?
     private var firstOpen = true
     var sortedText = ""
     
@@ -33,13 +33,5 @@ class SearchViewController: UIViewController {
         if firstOpen {
             firstOpen = false
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        postsArray.removeAll()
-    }
-
-    deinit {
-        print("Search vc deinited")
     }
 }

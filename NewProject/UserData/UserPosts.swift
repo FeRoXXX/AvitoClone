@@ -10,16 +10,7 @@ import FirebaseFirestore
 import SDWebImage
 
 class UserPosts {
-    
-    var data = [[String : Any]]()
-    var uuid: UUID?
-    var name: String?
-    var information: String?
-    var price: String?
-    var image: UIImage?
-    var category: String?
-    var date: String?
-    var address: String?
+    var postsArray: [UserPostsData] = []
     
     init(userID: String) async throws {
         
@@ -27,15 +18,12 @@ class UserPosts {
             let snapshot = try await getAllUserPosts(userID)
             
             for document in snapshot.documents {
-                self.data.append(document.data())
+                await dictionaryToVariables(document.data())
+                //self.data.append(document.data())
             }
         } catch {
             throw error
         }
-    }
-    
-    init(postData: [[String : Any]]) {
-        self.data = postData
     }
     
     private func getAllUserPosts(_ userID: String) async throws -> QuerySnapshot{
@@ -50,37 +38,23 @@ class UserPosts {
         }
     }
     
-    func dictionaryToVariables(index: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        if let uuid = data[index]["UUID"] as? String {
-            self.uuid = UUID(uuidString: uuid)
-        }
-        if let name = data[index]["Name"] as? String {
-            self.name = name
-        }
-        if let price = data[index]["Price"] as? String {
-            self.price = price
-        }
-        if let information = data[index]["Information"] as? String {
-            self.information = information
-        }
-        if let date = data[index]["Date"] as? String {
-            self.date = date
-        }
-        if let address = data[index]["Address"] as? String {
-            self.address = address
-        }
-        if let imageURLArray = data[index]["Images"] as? [String] {
-            if let imageURL = imageURLArray.first{
-                SDWebImageManager.shared.loadImage(with: URL(string: imageURL), progress: nil) { image, imageData, error, cache, boolData, url in
-                    if let error {
-                        completion(.failure(error)) //TODO: - alert
-                    }
-                    if let image {
-                        self.image = image
-                        completion(.success(true))
-                    }
-                }
-            }
-        }
+    func dictionaryToVariables(_ data: [String : Any]) async {
+        guard let uuid = data["UUID"] as? String,
+              let name = data["Name"] as? String,
+              let price = data["Price"] as? String,
+              let information = data["Information"] as? String,
+              let date = data["Date"] as? String,
+              let address = data["Address"] as? String,
+              let imageURLArray = data["Images"] as? [String],
+              let imageURL = imageURLArray.first else { return }
+        
+        self.postsArray.append(UserPostsData(uuid: UUID(uuidString: uuid),
+                                             name: name,
+                                             information: information,
+                                             price: price,
+                                             imageURL: imageURL,
+                                             category: "products",
+                                             date: date,
+                                             address: address))
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var publicationImage: UIImageView!
@@ -16,7 +17,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeImage: UIImageView!
     
     var handleTapped: (() -> (Void))?
-    var image: UIImage? = UIImage()
+    var image: String? = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,16 +28,22 @@ class HomeCollectionViewCell: UICollectionViewCell {
         likeImage.addGestureRecognizer(tapGesture)
     }
     
-    func setupImage() {
-        let resizedImage = resizeImageToFullHD(image!)
-        publicationImage.image = resizedImage
+    func setupImage() async throws{
+        guard let image = image else { return }
+        DispatchQueue.main.async {
+            SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                if let image = image {
+                    self.publicationImage.image = self.resizeImageToFullHD(image)
+                }
+            }
+        }
     }
     
     func resizeImageToFullHD(_ image: UIImage) -> UIImage? {
         let targetSize = CGSize(width: 640, height: 480)
-
         return UIGraphicsImageRenderer(size: targetSize).image { _ in
             image.draw(in: CGRect(origin: .zero, size: targetSize))
+            SDImageCache.shared.clearMemory()
         }
     }
     

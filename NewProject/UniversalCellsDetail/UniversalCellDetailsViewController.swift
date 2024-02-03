@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UniversalCellDetailsViewController: UIViewController {
     @IBOutlet weak var topBar: UniversalTopBar!
@@ -22,8 +23,8 @@ class UniversalCellDetailsViewController: UIViewController {
     @IBOutlet weak var cartButton: UIButton!
     var buttonFlag: Bool?
     var uuid : UUID?
-    var currentPost : ReceivedCurrentPost?
-    var imageArray = [UIImage]()
+    var post : ReceivedCurrentPost?
+    var imageArray = [String]()
     var indexImage: Int = 0
     var scrollAndCollectionVC : ScrollAndCollectionViewForAddNewController?
     
@@ -37,12 +38,17 @@ class UniversalCellDetailsViewController: UIViewController {
     }
     
     @IBAction func callPressed(_ sender: Any) {
-        if let number = self.currentPost!.number {
-            self.callButton.setTitle(number, for: .normal)
-        }
+        guard let post = post,
+              let currentPost = post.currentPost,
+              let number = currentPost.number else { return }
+        self.callButton.setTitle(number, for: .normal)
     }
     
     @IBAction func addToCartClicked(_ sender: Any) {
     }
     
+    deinit {
+        print("cell details is deinited")
+        SDImageCache.shared.clearMemory()
+    }
 }

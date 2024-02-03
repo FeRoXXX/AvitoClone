@@ -25,10 +25,11 @@ class ProductsViewController: UIViewController {
     var universalCellDetailsViewController: UniversalCellDetailsViewController?
     var uuid: UUID?
     
+    var imageArrayString = [String]()
     var imageArray = [UIImage]()
     var indexImage: Int = 0
     var postsArray = [UserPosts]()
-    var currentPost : ReceivedCurrentPost?
+    var post : ReceivedCurrentPost?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,7 @@ class ProductsViewController: UIViewController {
     }
     deinit {
            NotificationCenter.default.removeObserver(self)
+        print("products vc is deinited")
        }
 }
 

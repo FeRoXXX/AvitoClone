@@ -17,8 +17,10 @@ class AddNewController: UIViewController {
         super.viewDidLoad()
         
         loadingIndicator.hidesWhenStopped = true
-        self.checkAvailabilityPublication()
-        self.setupPublication()
+        self.myPublicationView.setup()
+        self.myPublicationView.setupPublication()
+        noPublication.isHidden = true
+        myPublicationView.isHidden = false
         
         noPublication.addPublication = { [weak self] in
             guard let self = self else { return }
@@ -32,9 +34,5 @@ class AddNewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         myPublicationView.vc = self
-        myPublicationView.setupPublication()
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        myPublicationView.postsArray.removeAll()
     }
 }

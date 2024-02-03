@@ -46,6 +46,8 @@
 		2757C7042B4C161E00F8D630 /* UserPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C7032B4C161E00F8D630 /* UserPosts.swift */; };
 		2757C7072B4D70BC00F8D630 /* ReceivedAllPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C7062B4D70BC00F8D630 /* ReceivedAllPosts.swift */; };
 		2757C70A2B4D750B00F8D630 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757C7092B4D750B00F8D630 /* GlobalFunctions.swift */; };
+		2760EDF42B6CF63A006B78B5 /* UserPostsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760EDF32B6CF63A006B78B5 /* UserPostsData.swift */; };
+		2760EDF62B6E6EAC006B78B5 /* CurrentPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760EDF52B6E6EAC006B78B5 /* CurrentPostData.swift */; };
 		277687482B39A5F8005C3784 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277687462B39A5F8005C3784 /* ProfileInfoCell.swift */; };
 		277687492B39A5F8005C3784 /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277687472B39A5F8005C3784 /* ProfileInfoCell.xib */; };
 		277687512B39C1F4005C3784 /* CustomViewButtonForRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277687502B39C1F4005C3784 /* CustomViewButtonForRating.swift */; };
@@ -86,6 +88,7 @@
 		27B70BA12B4ED5B000662987 /* RootNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B70B9F2B4ED5B000662987 /* RootNavigationViewController.xib */; };
 		27B70BA52B4F96E400662987 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B70BA32B4F96E400662987 /* SearchViewController.swift */; };
 		27B70BA62B4F96E400662987 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B70BA42B4F96E400662987 /* SearchViewController.xib */; };
+		27DDFC022B67E87A00B1C692 /* AllPostsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DDFC012B67E87A00B1C692 /* AllPostsData.swift */; };
 		DAB9AE96AB6F5F423B67F550 /* Pods_NewProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41B065FAFAF9A1FE10D7CA27 /* Pods_NewProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,8 @@
 		2757C7032B4C161E00F8D630 /* UserPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPosts.swift; sourceTree = "<group>"; };
 		2757C7062B4D70BC00F8D630 /* ReceivedAllPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedAllPosts.swift; sourceTree = "<group>"; };
 		2757C7092B4D750B00F8D630 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		2760EDF32B6CF63A006B78B5 /* UserPostsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsData.swift; sourceTree = "<group>"; };
+		2760EDF52B6E6EAC006B78B5 /* CurrentPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPostData.swift; sourceTree = "<group>"; };
 		277687462B39A5F8005C3784 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		277687472B39A5F8005C3784 /* ProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoCell.xib; sourceTree = "<group>"; };
 		277687502B39C1F4005C3784 /* CustomViewButtonForRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewButtonForRating.swift; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 		27B70B9F2B4ED5B000662987 /* RootNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootNavigationViewController.xib; sourceTree = "<group>"; };
 		27B70BA32B4F96E400662987 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		27B70BA42B4F96E400662987 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		27DDFC012B67E87A00B1C692 /* AllPostsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsData.swift; sourceTree = "<group>"; };
 		41B065FAFAF9A1FE10D7CA27 /* Pods_NewProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76681B5E5EF066791FF426A5 /* Pods-NewProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewProject.release.xcconfig"; path = "Target Support Files/Pods-NewProject/Pods-NewProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -334,6 +340,8 @@
 			children = (
 				2757C7062B4D70BC00F8D630 /* ReceivedAllPosts.swift */,
 				2780359E2B515A850040EC4C /* ReceivedCurrentPost.swift */,
+				27DDFC012B67E87A00B1C692 /* AllPostsData.swift */,
+				2760EDF52B6E6EAC006B78B5 /* CurrentPostData.swift */,
 			);
 			path = AllPosts;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 				27778E2B2B3DC4F100163A16 /* UserAuthData.swift */,
 				2757C7012B49BC1000F8D630 /* UploadNewPost.swift */,
 				2757C7032B4C161E00F8D630 /* UserPosts.swift */,
+				2760EDF32B6CF63A006B78B5 /* UserPostsData.swift */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -585,6 +594,7 @@
 				273363A62B5FE07000C0A3FE /* AddNewProfilePhotoViewController+Extensions.swift in Sources */,
 				2757C7022B49BC1000F8D630 /* UploadNewPost.swift in Sources */,
 				27778E142B3D6A3E00163A16 /* ScrollAndCollectionViewForAddNewController.swift in Sources */,
+				2760EDF42B6CF63A006B78B5 /* UserPostsData.swift in Sources */,
 				2757C6E72B480CA000F8D630 /* AddNewPhotoTopBar.swift in Sources */,
 				27778E092B3D5D4D00163A16 /* AddNewController.swift in Sources */,
 				2757C6F72B49603300F8D630 /* NewPublicationFirst.swift in Sources */,
@@ -603,6 +613,7 @@
 				2726E4C72B20BD8F00850B31 /* MainTabBarViewController.swift in Sources */,
 				27778E102B3D66CE00163A16 /* NoPublicationView.swift in Sources */,
 				2776875F2B3B17FE005C3784 /* CustomButtonEditPassword.swift in Sources */,
+				27DDFC022B67E87A00B1C692 /* AllPostsData.swift in Sources */,
 				2726E4B52B20B68E00850B31 /* NewProject.xcdatamodeld in Sources */,
 				2780358F2B5128790040EC4C /* SearchViewController+Extensions.swift in Sources */,
 				2757C6E42B480C7A00F8D630 /* AddNewProfilePhotoViewController.swift in Sources */,
@@ -623,6 +634,7 @@
 				2726E4AD2B20B68E00850B31 /* SceneDelegate.swift in Sources */,
 				273363952B5E9F6A00C0A3FE /* FavouriteViewController.swift in Sources */,
 				277687642B3B1AA2005C3784 /* ButtonForLogoutCell.swift in Sources */,
+				2760EDF62B6E6EAC006B78B5 /* CurrentPostData.swift in Sources */,
 				2757C7072B4D70BC00F8D630 /* ReceivedAllPosts.swift in Sources */,
 				27778E322B3F02EB00163A16 /* CustomRegistrationTopBar.swift in Sources */,
 				2757C6FA2B49626200F8D630 /* UniversalTopBar.swift in Sources */,

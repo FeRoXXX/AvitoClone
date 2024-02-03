@@ -45,14 +45,7 @@ class FireGetData {
                     UserAuthData.shared.organizationName = convertData["Organization"] as? String
                     UserAuthData.shared.registrationYear = convertData["RegistrationYear"] as? Int
                     if let imageURL = convertData["imageURL"] as? String {
-                        SDWebImageManager.shared.loadImage(with: URL(string: imageURL), progress: nil) { image, imageData, error, cache, boolData, url in
-                            if let error {
-                                print(error.localizedDescription) //TODO: - alert
-                            }
-                            if let image {
-                                UserAuthData.shared.profilePhoto = image
-                            }
-                        }
+                        UserAuthData.shared.profilePhoto = imageURL
                     }
                 }
             }

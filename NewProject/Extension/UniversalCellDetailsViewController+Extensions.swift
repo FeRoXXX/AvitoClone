@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 //MARK: - get data from firebase
 extension UniversalCellDetailsViewController {
@@ -17,38 +18,44 @@ extension UniversalCellDetailsViewController {
         }
         Task {
             do {
-                currentPost = try await ReceivedCurrentPost.init(uuidCurrentPost: uuid)
-                guard currentPost != nil else { return }
-                currentPost!.dictionaryToVariables(completion: { result in
-                    switch result {
-                    case .success(_):
-                        if let name = self.currentPost!.name {
-                            self.publicationName.text = name
+                try await post = ReceivedCurrentPost(uuidCurrentPost: uuid)
+                guard let post = post,
+                      let currentPost = post.currentPost,
+                      let name = currentPost.name,
+                      let price = currentPost.price,
+                      let information = currentPost.information,
+                      let city = currentPost.address,
+                      let date = currentPost.date,
+                      let image = currentPost.image else { return }
+                self.publicationName.text = name
+                self.publicationPrice.text = price
+                self.aboutPublication.text = information
+                self.city.text = city
+                self.dateLabel.text = date
+                for image in image {
+                    imageArray.append(image)
+                }
+                DispatchQueue.main.async {
+                    guard self.imageArray.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArray.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                        if let image = image {
+                            self.imageView.image = self.resizeImageToFullHD(image)
                         }
-                        if let price = self.currentPost!.price {
-                            self.publicationPrice.text = price
-                        }
-                        if let information = self.currentPost!.information {
-                            self.aboutPublication.text = information
-                        }
-                        if let city = self.currentPost!.address {
-                            self.city.text = city
-                        }
-                        if let date = self.currentPost!.date {
-                            self.dateLabel.text = date
-                        }
-                        self.imageArray = self.currentPost!.image
-                        self.imageView.image = self.currentPost!.image.first
-                        self.loadingIndicator.stopAnimating()
-                    case .failure(let failure):
-                        print(failure.localizedDescription)
-                        self.loadingIndicator.stopAnimating()
                     }
-                })
+                }
+                self.loadingIndicator.stopAnimating()
             } catch {
-                print(error.localizedDescription)
+                print(error)
                 self.loadingIndicator.stopAnimating()
             }
+        }
+    }
+    
+    func resizeImageToFullHD(_ image: UIImage) -> UIImage? {
+        let targetSize = CGSize(width: 640, height: 480)
+        return UIGraphicsImageRenderer(size: targetSize).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+            SDImageCache.shared.clearMemory()
         }
     }
 }
@@ -79,7 +86,14 @@ extension UniversalCellDetailsViewController {
     func updateImage() {
         guard imageArray.count != 0 else { return }
         UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.imageView.image = self.imageArray[self.indexImage]
+            DispatchQueue.main.async {
+                guard self.imageArray.count > 0 else { return }
+                SDWebImageManager.shared.loadImage(with: URL(string: self.imageArray[self.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                    if let image = image {
+                        self.imageView.image = self.resizeImageToFullHD(image)
+                    }
+                }
+            }
         }, completion: nil)
     }
 }
@@ -120,7 +134,8 @@ extension UniversalCellDetailsViewController {
     private func handleDeleteButtonTapped() {
         Task {
             do {
-                try await currentPost?.deletePost()
+                guard let post = post else { return }
+                try await post.deletePost()
                 if let navigationController = self.navigationController {
                     self.scrollAndCollectionVC?.loadData()
                     navigationController.popViewController(animated: true)

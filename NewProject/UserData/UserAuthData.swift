@@ -15,7 +15,7 @@ class UserAuthData {
     var name: String?
     var registrationYear: Int?
     var city: String?
-    var profilePhoto: UIImage?
+    var profilePhoto: String?
     var organizationName: String?
     
     func reset() {

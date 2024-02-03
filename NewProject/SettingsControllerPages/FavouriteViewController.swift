@@ -12,7 +12,7 @@ class FavouriteViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    var postsArray = [ReceivedAllPosts]()
+    var posts : ReceivedAllPosts?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class FavouriteViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        postsArray.removeAll()
+        //postsArray.removeAll()
     }
 
 }

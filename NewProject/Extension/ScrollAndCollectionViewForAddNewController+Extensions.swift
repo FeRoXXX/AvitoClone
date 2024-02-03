@@ -11,29 +11,13 @@ import UIKit
 extension ScrollAndCollectionViewForAddNewController {
     
     func setupPublication() {
-        if let userId = UserAuthData.shared.uid {
-            Task(priority: .high) {
-                do {
-                    let posts = try await UserPosts.init(userID: userId)
-                    guard posts.data.count > 0 else { return }
-                    for postIndex in (0...posts.data.count - 1) {
-                        let newPost = UserPosts(postData: posts.data)
-                        newPost.dictionaryToVariables(index: postIndex) { [weak self] result in
-                            switch result {
-                            case .success(_):
-                                self?.postsArray.append(newPost)
-                                if postIndex == posts.data.count - 1 {
-                                    self?.myPublicationCollectionView.reloadData()
-                                }
-                            case .failure(let failure):
-                                print(failure.localizedDescription)
-                            }
-                        }
-                    }
-                    self.refreshControl.endRefreshing()
-                } catch {
-                    print(error.localizedDescription)
-                }
+        guard let userID = UserAuthData.shared.uid else { return }
+        Task {
+            do {
+                posts = try await UserPosts(userID: userID)
+                self.myPublicationCollectionView.reloadData()
+            } catch {
+                print("Error")
             }
         }
     }
@@ -48,20 +32,22 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard postsArray.count > 0 else { return 0}
-        return postsArray.count
+        guard let posts = posts,
+              posts.postsArray.count > 0 else { return 0 }
+        return posts.postsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
         
-        guard postsArray.count > 0 else { return cell }
+        guard let posts = posts,
+              posts.postsArray.count > 0 else { return cell }
         
-        cell.publicationName.text = postsArray[indexPath.row].name
-        cell.image = postsArray[indexPath.row].image
-        cell.publicationPrice.text = postsArray[indexPath.row].price
-        cell.publicationTime.text = postsArray[indexPath.row].date
-        cell.sellerAdress.text = postsArray[indexPath.row].address
+        cell.publicationName.text = posts.postsArray[indexPath.row].name
+        cell.image = posts.postsArray[indexPath.row].imageURL
+        cell.publicationPrice.text = posts.postsArray[indexPath.row].price
+        cell.publicationTime.text = posts.postsArray[indexPath.row].date
+        cell.sellerAdress.text = posts.postsArray[indexPath.row].address
         cell.likeImage.isHidden = true
         
         return cell
@@ -75,10 +61,11 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let vc = self.vc else { return }
+        guard let vc = self.vc,
+            let posts = posts else { return }
         let detailsViewController = UniversalCellDetailsViewController()
         detailsViewController.scrollAndCollectionVC = self
-        detailsViewController.uuid = postsArray[indexPath.row].uuid
+        detailsViewController.uuid = posts.postsArray[indexPath.row].uuid
         vc.hidesBottomBarWhenPushed = true
         detailsViewController.buttonFlag = true
         
@@ -95,15 +82,18 @@ extension ScrollAndCollectionViewForAddNewController: UICollectionViewDelegate, 
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as? HomeCollectionViewCell
-        cell?.setupImage()
+        Task {
+            try await cell?.setupImage()
+        }
     }
 }
 
 //MARK: - get numbers of sections
 extension ScrollAndCollectionViewForAddNewController {
     func getNumOfSections() -> Int {
-        guard postsArray.count > 0 else { return 0}
-        return postsArray.count
+        guard let posts = posts,
+              posts.postsArray.count > 0 else { return 0 }
+        return posts.postsArray.count
     }
 }
 

@@ -20,25 +20,26 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
-        guard postsArray.count > 0 else { return cell }
+        guard let posts = posts,
+              posts.postsArray.count > 0 else { return cell}
         
-        cell.publicationName.text = postsArray[indexPath.row].name
-        cell.image = postsArray[indexPath.row].image
-        cell.publicationPrice.text = postsArray[indexPath.row].price
-        cell.publicationTime.text = postsArray[indexPath.row].date
-        cell.sellerAdress.text = postsArray[indexPath.row].address
+        cell.publicationName.text = posts.postsArray[indexPath.row].name
+        cell.image = posts.postsArray[indexPath.row].imageURL
+        cell.publicationPrice.text = posts.postsArray[indexPath.row].price
+        cell.publicationTime.text = posts.postsArray[indexPath.row].date
+        cell.sellerAdress.text = posts.postsArray[indexPath.row].address
         cell.handleTapped = { [weak self] in
             self?.likeButtonTapped(currentIndex: indexPath.row, indexPath: indexPath)
         }
         if let userUUID = UserAuthData.shared.uid,
-           let postUUID = postsArray[indexPath.row].userUUID,
+           let postUUID = posts.postsArray[indexPath.row].userUUID,
            userUUID == postUUID{
             cell.likeImage.isHidden = true
         } else {
             cell.likeImage.isHidden = false
         }
         if cell.likeImage.isHidden == false,
-           let checkedLike = postsArray[indexPath.row].checkedLikeImage {
+           let checkedLike = posts.postsArray[indexPath.row].checkedLikeImage {
             if checkedLike {
                 cell.likeImage.image = UIImage(systemName: "heart.fill")
             } else {
@@ -50,11 +51,10 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func likeButtonTapped(currentIndex: Int, indexPath: IndexPath) {
-        guard let currentPostUUID = postsArray[currentIndex].uuid,
-              let currentUserUUID = UserAuthData.shared.uid else { return }
+        guard let posts = posts else { return }
         Task {
             do {
-                try await postsArray[currentIndex].addLikeToPublication(postID: currentPostUUID, userID: currentUserUUID)
+                try await posts.addLikeToPublication(index: currentIndex)
                 collectionView.reloadItems(at: [indexPath])
             } catch {
                 print("error")
@@ -62,14 +62,15 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Setup")
-        guard postsArray.count > 0 else { return 0 }
-        return postsArray.count
+        guard let posts = posts,
+              posts.postsArray.count > 0 else { return 0 }
+        return posts.postsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let posts = posts else { return }
         let detailsViewController = UniversalCellDetailsViewController()
-        detailsViewController.uuid = postsArray[indexPath.row].uuid
+        detailsViewController.uuid = posts.postsArray[indexPath.row].uuid
         hidesBottomBarWhenPushed = true
         
         if let navigationController = self.navigationController {
@@ -91,8 +92,9 @@ extension HomeController : UICollectionViewDelegate, UICollectionViewDataSource,
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as? HomeCollectionViewCell
-        //print(indexPath.row)
-        cell?.setupImage()
+        Task {
+            try await cell?.setupImage()
+        }
     }
 }
 
@@ -101,41 +103,11 @@ extension HomeController {
     
     func getAllPosts() {
         self.loadingIndicator.startAnimating()
+        posts = nil
         Task(priority: .high) {
-            do {
-                let posts = try await ReceivedAllPosts.init()
-                guard posts.data.count > 0 else {
-                    self.loadingIndicator.stopAnimating()
-                    return
-                }
-                for postIndex in (0...posts.data.count - 1) {
-                    let newPost = ReceivedAllPosts(postData: posts.data)
-                    newPost.dictionaryToVariables(index: postIndex) { [weak self] result in
-                        switch result {
-                        case .success(_):
-                            self?.postsArray.append(newPost)
-                            Task {
-                                for posts in self!.postsArray {
-                                    guard let uuid = posts.uuid,
-                                          let userID = UserAuthData.shared.uid else { return }
-                                    try await posts.checkLike(postID: uuid, userID: userID)
-                                    self?.loadingIndicator.stopAnimating()
-                                }
-                                if postIndex == posts.data.count - 1 {
-                                    self?.collectionView.reloadData()
-                                }
-                            }
-                            
-                        case .failure(let failure):
-                            print(failure.localizedDescription)
-                            self?.loadingIndicator.stopAnimating()
-                        }
-                    }
-                }
-            } catch {
-                print(error.localizedDescription)
-                self.loadingIndicator.stopAnimating()
-            }
+            posts = try await ReceivedAllPosts()
+            collectionView.reloadData()
+            self.loadingIndicator.stopAnimating()
         }
     }
 }
@@ -202,7 +174,6 @@ extension HomeController {
     }
     
     func updateData() {
-        postsArray.removeAll()
         getAllPosts()
         self.refreshControl.endRefreshing()
     }

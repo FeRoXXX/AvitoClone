@@ -12,7 +12,7 @@ class ScrollAndCollectionViewForAddNewController: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     let refreshControl = UIRefreshControl()
     
-    var postsArray : [UserPosts] = []
+    var posts : UserPosts?
     weak var vc : UIViewController?
     
     required init?(coder: NSCoder) {
@@ -38,7 +38,7 @@ class ScrollAndCollectionViewForAddNewController: UIView {
     }
     
     func loadData() {
-        postsArray.removeAll()
+        //postsArray.removeAll()
         setupPublication()
     }
     

@@ -12,23 +12,13 @@ import SDWebImage
 
 class ReceivedCurrentPost {
     
-    var data = [String : Any]()
-    var uuid: UUID?
-    var name: String?
-    var information: String?
-    var price: String?
-    var image = [UIImage]()
-    var category: String?
-    var userID: String?
-    var number: String?
-    var address: String?
-    var date: String?
+    var currentPost : CurrentPostData? = nil
     
     init(uuidCurrentPost: UUID) async throws {
         do{
             let snapshot = try await getPost(uuidCurrentPost: uuidCurrentPost)
             if let data = snapshot.data() {
-                self.data = data
+                await dictionaryToVariables(data: data)
             }
         } catch {
             throw error
@@ -48,7 +38,9 @@ class ReceivedCurrentPost {
     }
     
     private func deleteImage() async throws {
-        guard let userID = self.userID, let uuid = self.uuid else { return }
+        guard let currentPost = self.currentPost,
+              let userID = currentPost.userID,
+              let uuid = currentPost.uuid else { return }
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let images = storageRef.child("media/posts/\(userID)/\(uuid.uuidString)")
@@ -68,7 +60,8 @@ class ReceivedCurrentPost {
     }
     
     func deletePost() async throws {
-        guard let uuid = self.uuid else { return }
+        guard let currentPost = currentPost,
+              let uuid = currentPost.uuid else { return }
         let db = Firestore.firestore()
         let dbURL = db.collection("Posts").document("products").collection("all").document(uuid.uuidString)
         do {
@@ -84,56 +77,26 @@ class ReceivedCurrentPost {
         }
     }
     
-    func dictionaryToVariables(completion: @escaping (Result<Bool, Error>) -> Void) {
-        if let uuid = data["UUID"] as? String{
-            self.uuid = UUID(uuidString: uuid)
-        }
-        if let userID = data["UserID"] as? String {
-            self.userID = userID
-        }
-        if let name = data["Name"] as? String {
-            self.name = name
-        }
-        if let price = data["Price"] as? String {
-            self.price = price
-        }
-        if let information = data["Information"] as? String {
-            self.information = information
-        }
-        if let number = data["Number"] as? String {
-            self.number = number
-        }
-        if let address = data["Address"] as? String {
-            self.address = address
-        }
-        if let date = data["Date"] as? String {
-            self.date = date
-        }
-        if let imageURLArray = data["Images"] as? [String] {
-            for imageURL in imageURLArray {
-                SDWebImageManager.shared.loadImage(with: URL(string: imageURL), progress: nil) { [weak self] image, imageData, error, cache, boolData, url in
-                    if let error {
-                        completion(.failure(error)) //TODO: - alert
-                    }
-                    if let image {
-                        self?.image.append(image)
-                        completion(.success(true))
-                    }
-                }
-            }
-        }
+    func dictionaryToVariables(data: [String : Any]) async {
+        guard let uuid = data["UUID"] as? String,
+              let userUUID = data["UserID"] as? String,
+              let name = data["Name"] as? String,
+              let price = data["Price"] as? String,
+              let information = data["Information"] as? String,
+              let number = data["Number"] as? String,
+              let date = data["Date"] as? String,
+              let address = data["Address"] as? String,
+              let imageURLArray = data["Images"] as? [String] else { return }
+        
+        currentPost = CurrentPostData(uuid: UUID(uuidString: uuid), 
+                                      name: name,
+                                      information: information,
+                                      price: price,
+                                      image: imageURLArray,
+                                      category: "products",
+                                      userID: userUUID,
+                                      number: number,
+                                      address: address,
+                                      date: date)
     }
-//    deinit {
-//        print("OK 3")
-//        uuid = nil
-//        name = nil
-//        information = nil
-//        price = nil
-//        image.removeAll()
-//        category = nil
-//        userID = nil
-//        number = nil
-//        address = nil
-//        date = nil
-//    }
 }

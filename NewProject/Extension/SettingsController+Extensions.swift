@@ -139,8 +139,13 @@ extension SettingsController : UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = cell as? ProfileInfoCell
             if let image = UserAuthData.shared.profilePhoto {
-                let resizedImage = resizeImageToFullHD(image)
-                cell?.profileImageView.image = resizedImage
+                DispatchQueue.main.async {
+                    SDWebImageManager.shared.loadImage(with: URL(string: image), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                        if let image = image {
+                            cell?.profileImageView.image = self.resizeImageToFullHD(image)
+                        }
+                    }
+                }
             }
         }
     }
@@ -162,6 +167,7 @@ extension SettingsController {
 
         return UIGraphicsImageRenderer(size: targetSize).image { _ in
             image.draw(in: CGRect(origin: .zero, size: targetSize))
+            SDImageCache.shared.clearMemory()
         }
     }
     

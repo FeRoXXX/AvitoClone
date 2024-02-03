@@ -46,7 +46,6 @@ class AddNewProfilePhotoViewController: UIViewController {
             FireLoadData.shared.uploadProfileImage(reference: imageRef, data: imageData) { result in
                 switch result {
                 case .success(_):
-                    UserAuthData.shared.profilePhoto = UIImage(data: imageData)
                     let db = Firestore.firestore()
                     FireLoadData.shared.downloadURLImage(imageReference: imageRef) { result in
                         switch result {

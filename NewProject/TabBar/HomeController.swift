@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeController: UIViewController {
     
@@ -17,7 +18,7 @@ class HomeController: UIViewController {
     
     var refreshControl = UIRefreshControl()
     
-    var postsArray = [ReceivedAllPosts]()
+    var posts : ReceivedAllPosts?
     var firstOpen = true
     
     override func viewDidLoad() {
@@ -36,14 +37,18 @@ class HomeController: UIViewController {
         if firstOpen {
             firstOpen = false
             setup()
-        } else {
-            getAllPosts()
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postsArray.removeAll()
+        //postsArray.removeAll()
+        guard let posts = posts else { return }
+//        for index in 0..<posts.postsArray.count {
+//            let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? HomeCollectionViewCell
+//            cell?.publicationImage.image = UIImage(systemName: "heart")
+//            collectionView.reloadData()
+//        }
     }
     deinit {
         print("HomeVC is deinited")

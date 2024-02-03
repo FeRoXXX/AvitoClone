@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import SDWebImage
 
 //MARK: - Keyboard load
 extension ProductsViewController {
@@ -55,6 +56,7 @@ extension ProductsViewController: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self.imageArray.append(image)
+                        self.indexImage = 0
                         self.updateImage()
                     }
                 }
@@ -98,19 +100,42 @@ extension ProductsViewController {
     }
     
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-        if gesture.direction == .left {
-            indexImage = (indexImage + 1) % imageArray.count
+        if imageArray.count > 0 {
+            if gesture.direction == .left {
+                indexImage = (indexImage + 1) % imageArray.count
+            }
+            if gesture.direction == .right {
+                indexImage = (indexImage - 1 + imageArray.count) % imageArray.count
+            }
+        } else {
+            if gesture.direction == .left {
+                indexImage = (indexImage + 1) % imageArrayString.count
+            }
+            if gesture.direction == .right {
+                indexImage = (indexImage - 1 + imageArrayString.count) % imageArrayString.count
+            }
         }
-        if gesture.direction == .right {
-            indexImage = (indexImage - 1 + imageArray.count) % imageArray.count
-        }
-        
         updateImage()
     }
     
     func updateImage() {
-        guard imageArray.count != 0 else { return }
-        imageView.image = imageArray[indexImage]
+        guard imageArrayString.count != 0 else { return }
+        if imageArray.count > 0 {
+            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.imageView.image = self.imageArray[self.indexImage]
+            }, completion: nil)
+        } else {
+            UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                DispatchQueue.main.async {
+                    guard self.imageArray.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArrayString[self.indexImage]), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                        if let image = image {
+                            self.imageView.image = self.resizeImageToFullHD(image)
+                        }
+                    }
+                }
+            }, completion: nil)
+        }
     }
 }
 
@@ -141,42 +166,44 @@ extension ProductsViewController {
         }
         Task {
             do {
-                currentPost = try await ReceivedCurrentPost.init(uuidCurrentPost: uuid)
-                guard currentPost != nil else {
-                    activityIndicator.stopAnimating()
-                    return
+                try await post = ReceivedCurrentPost(uuidCurrentPost: uuid)
+                guard let post = post,
+                      let currentPost = post.currentPost,
+                      let name = currentPost.name,
+                      let price = currentPost.price,
+                      let number = currentPost.number,
+                      let information = currentPost.information,
+                      let city = currentPost.address,
+                      let image = currentPost.image else { return }
+                self.productNameTextField.text = name
+                self.priceTextField.text = price
+                self.productInformationTextView.text = information
+                self.numberTextField.text = number
+                self.addressTextField.text = city
+                for image in image {
+                    imageArrayString.append(image)
                 }
-                currentPost!.dictionaryToVariables(completion: { [weak self] result in
-                    guard let self = self else { return }
-                    switch result {
-                    case .success(_):
-                        if let name = self.currentPost!.name {
-                            self.productNameTextField.text = name
+                DispatchQueue.main.async {
+                    guard self.imageArrayString.count > 0 else { return }
+                    SDWebImageManager.shared.loadImage(with: URL(string: self.imageArrayString.first!), options: .lowPriority, progress: .none) { image, _, error, _, _, _ in
+                        if let image = image {
+                            self.imageView.image = self.resizeImageToFullHD(image)
                         }
-                        if let price = self.currentPost!.price {
-                            self.priceTextField.text = price
-                        }
-                        if let information = self.currentPost!.information {
-                            self.productInformationTextView.text = information
-                        }
-                        if let number = self.currentPost!.number {
-                            self.numberTextField.text = number
-                        }
-                        if let address = self.currentPost!.address {
-                            self.addressTextField.text = address
-                        }
-                        self.imageArray = self.currentPost!.image
-                        self.imageView.image = self.currentPost!.image.first
-                        self.activityIndicator.stopAnimating()
-                    case .failure(let failure):
-                        print(failure.localizedDescription)
-                        self.activityIndicator.stopAnimating()
                     }
-                })
+                }
+                self.activityIndicator.stopAnimating()
             } catch {
-                print(error.localizedDescription)
+                print(error)
                 self.activityIndicator.stopAnimating()
             }
+        }
+    }
+    
+    func resizeImageToFullHD(_ image: UIImage) -> UIImage? {
+        let targetSize = CGSize(width: 640, height: 480)
+        return UIGraphicsImageRenderer(size: targetSize).image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+            SDImageCache.shared.clearMemory()
         }
     }
 }
